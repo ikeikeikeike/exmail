@@ -1,0 +1,76 @@
+<%
+camp = @report.campaign
+%>
+
+<div class='resources'>
+
+  <h1 class='h2'>
+    <%= camp.name %>
+    <%= render_with "_report_switcher.html", assigns %>
+  </h1>
+
+  <%= render_with "_overview_menu.html", assigns %>
+
+  <h2 class='h3'>
+    <%= gettext "Campaign sent" %>
+  </h2>
+
+  <div class='after-middle'>
+
+    <div class="middle-header">
+      <div class="btn-group">
+        <a href="#" type="button" class="btn btn-default disabled"><%= gettext "Export As CSV" %></a>
+      </div>
+    </div>
+
+    <div class="middle-body">
+      <table class="table table-hover">
+         <thead>
+            <tr>
+               <th>#</th>
+               <th><%= gettext "Email Address" %></th>
+               <th><%= gettext "First Name" %></th>
+               <th><%= gettext "Last Name" %></th>
+               <th><%= gettext "Member Rating" %></th>
+               <th><%= gettext "Last Changed" %></th>
+            </tr>
+         </thead>
+         <tbody>
+           <%= for ac <- @activities do %>
+             <% link = subscriber_path @conn, :show_activity, ac.audience_id, ac.subscriber_id %>
+              <tr>
+                <th url-for="<%= link %>" scope="row"></th>
+                <td url-for="<%= link %>"><%= ac.subscriber.email %></td>
+                <td url-for="<%= link %>"><%= ac.subscriber.first_name %></td>
+                <td url-for="<%= link %>"><%= ac.subscriber.last_name %></td>
+                <td url-for="<%= link %>">a b c d</td>
+                <td url-for="<%= link %>"><%= view_time(ac.subscriber.updated_at) %></td>
+              </tr>
+            <% end %>
+         </tbody>
+      </table>
+    </div>
+
+    <div class="middle-footer">
+
+      <div class='clearfix'></div>
+
+      <div class='wrap-pagination'>
+        <% params = take_params @conn,
+                                carried_params(),
+                                distance: 7,
+                                first: false, last: false,
+                                previous: Phoenix.HTML.raw("&leftarrow;"), next: Phoenix.HTML.raw("&rightarrow;") %>
+
+        <%= pagination_links @activities, to_keylist(params) %>
+      </div>
+
+      <div class='clearfix'></div>
+
+    </div>
+
+    <div class='clearfix'></div>
+
+  </div>
+
+</div>

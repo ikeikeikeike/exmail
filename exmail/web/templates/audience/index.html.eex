@@ -1,0 +1,49 @@
+<div class='resources'>
+
+  <h1 class='h2'>
+    <%= gettext "Listing audiences" %>
+    <%= link gettext("Create Audience"), to: audience_path(@conn, :new), class: "btn btn-default pull-right" %>
+  </h1>
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th><%= gettext "Name" %></th>
+        <th><%= gettext "Email from" %></th>
+        <th><%= gettext "Name from" %></th>
+        <th><%= gettext "Explain" %></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= for audience <- @audiences do %>
+        <% showlink = audience_path(@conn, :show, audience) %>
+        <tr>
+          <td url-for="<%= showlink %>"><%= audience.name %></td>
+          <td url-for="<%= showlink %>"><%= audience.from_email %></td>
+          <td url-for="<%= showlink %>"><%= audience.from_name %></td>
+          <td url-for="<%= showlink %>"><%= audience.explain %></td>
+
+          <td class="text-right">
+            <%= link gettext("Edit"), to: audience_path(@conn, :edit, audience), class: "btn btn-default btn-xs" %>
+            <%= link gettext("Delete"), to: audience_path(@conn, :delete, audience), class: "btn btn-danger btn-xs disabled",
+                  method: :delete, data: [confirm: gettext("Are you sure?")] %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div class='clearfix'></div>
+  <div class='wrap-pagination'>
+    <% params = take_params @conn,
+                            carried_params(),
+                            distance: 7,
+                            first: false, last: false,
+                            previous: Phoenix.HTML.raw("&leftarrow;"), next: Phoenix.HTML.raw("&rightarrow;") %>
+
+    <%= pagination_links @conn, @audiences, to_keylist(params) %>
+  </div>
+  <div class='clearfix'></div>
+
+</div>

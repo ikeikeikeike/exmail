@@ -1,0 +1,24 @@
+<%= inputs_for @f, :regulartype, fn fp -> %>
+  <div class="form-group required">
+    <%= label fp, :from_email, gettext("From email address"), class: "control-label required", required: true %>
+    <%= email_input fp, :from_email, class: "form-control", required: true %>
+    <%= error_tag fp, :from_email %>
+    <p class='help-block'><%= gettext "This input form is not working currently. From mailaddress is fixed by Amazon SES." %><br /><%= gettext "e.g. `exmaple name` <this-email@address>" %></a>
+  </div>
+
+  <div class="form-group required">
+    <%= label fp, :from_name, gettext("From name"), class: "control-label required", required: true %>
+    <%= text_input fp, :from_name, class: "form-control", required: true %>
+    <%= error_tag fp, :from_name %>
+    <p class='help-block'><%= gettext "Use something subscribers will instantly recognize, like your company name." %><br /><%= gettext "e.g. `this name` <examplre@gmail.com>" %></p>
+  </div>
+
+  <div class="form-group required">
+    <%= label fp, :subject, gettext("Email subject"), class: "control-label required", required: true %>
+    <p class="emoji-picker-container">
+      <%= text_input fp, :subject, class: "form-control", required: true, "data-emojiable": "true" %>
+    </p>
+    <%= error_tag fp, :subject %>
+    <p class='help-block'><a target='_blank' href='https://dl.dropboxusercontent.com/spa/ohj2tplmz3dn81a/u8438k3-.png'/>Write text for help, like this.</a>
+  </div>
+<% end %>

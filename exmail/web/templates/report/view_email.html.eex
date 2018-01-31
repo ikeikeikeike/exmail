@@ -1,0 +1,22 @@
+<%
+camp                  = @report.campaign
+# reltype               = Campaign.reltype camp
+%>
+
+<div class='resources'>
+
+  <div class='col-md-12 full-element'>
+    <h1 class='col-md-8 h2 row'>
+      <%= camp.name %>
+      <%= render_with "_report_switcher.html", assigns %>
+    </h1>
+
+    <div class='col-md-4 h1 row'>
+      <%= link gettext("Back"), to: report_path(@conn, :overview, @report), class: "btn btn-default pull-right" %>
+    </div>
+  </div>
+
+  <%= render_with __MODULE__, "_view_email_#{String.downcase camp.type}.html", assigns %>
+
+
+</div>

@@ -1,0 +1,9 @@
+<div class='resources'>
+
+  <h1 class='h3'>
+    <%= gettext "Something Wrong" %>
+  </h1>
+
+  Still not implementation.
+
+</div>

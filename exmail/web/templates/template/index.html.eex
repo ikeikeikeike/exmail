@@ -1,0 +1,69 @@
+<div class='resources template'>
+
+  <h1 class='h2'>
+
+    <%= gettext "Templates" %>
+
+    <div class="btn-group pull-right">
+      <%= link gettext("Create Template"), to: template_path(@conn, :new), class: "btn btn-default" %>
+      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span class="caret"></span>
+        <span class="sr-only"><%= gettext "Toggle Dropdown for Templates" %></span>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a href="#"><%= gettext "File Manager" %></a></li>
+      </ul>
+    </div>
+  </h1>
+
+  <div class="middle">
+    <%= for tpl <- @templates do %>
+      <hr class='clearfix' />
+
+      <div class="media">
+        <div class="media-left">
+          <a href="<%= template_path(@conn, :edit, tpl) %>">
+            <img alt="<%= tpl.title %>-72x80" class="media-object" data-src="holder.js/72x80" data-holder-rendered="true" style="width: 72px; height: 80px;"
+                 src="<%= Exmail.TemplateUploader.url({tpl.tpl, tpl}, :screenshot) || "https://placehold.it/72x80&text=No Photo" %>" >
+          </a>
+        </div>
+        <div class="media-body">
+          <h4 class="media-heading"><%= tpl.title || gettext("No Title") %></h4>
+          <p><strong><%= gettext "Last edited" %></strong><%= gettext " on %{date} ago by %{name}", date: time_ago_in_words(tpl.updated_at), name: tpl.user.email %></p>
+          <p><%= tpl.type %></p>
+        </div>
+        <div class="media-right vmiddle"  aria-controls="recipient-radio" aria-expanded="true" data-target="#recipient-radio-<%= tpl.id %>" data-toggle="collapse">
+          <div class="btn-group">
+            <%= link gettext("Edit"), to: template_path(@conn, :edit, tpl), class: "btn btn-default" %>
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="caret"></span>
+              <span class="sr-only"><%= gettext "Toggle Dropdown for Templates" %></span>
+            </button>
+            <ul class="dropdown-menu">
+              <li class='disabled'><a class='disabled' href="#"><%= gettext "Copy this one" %></a></li>
+              <li class='disabled'><a class='disabled' href="#"><%= gettext "Create Campaign" %></a></li>
+              <li class='disabled'><a class='disabled' href="#"><%= gettext "Preview" %></a></li>
+              <li class='disabled'><a class='disabled' href="#"><%= gettext "Export as HTML" %></a></li>
+              <li class='disabled'><a class='disabled' href="#"><%= gettext "Share" %></a></li>
+              <li class='disabled'><a class='disabled' href="#"><%= gettext "Replaciate" %></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    <% end %>
+
+    <div class='clearfix'></div>
+    <div class='wrap-pagination'>
+      <% params = take_params @conn,
+                              carried_params(),
+                              distance: 7,
+                              first: false, last: false,
+                              previous: Phoenix.HTML.raw("&leftarrow;"), next: Phoenix.HTML.raw("&rightarrow;") %>
+
+      <%= pagination_links @conn, @templates, to_keylist(params) %>
+    </div>
+    <div class='clearfix'></div>
+  </div>
+
+</div>

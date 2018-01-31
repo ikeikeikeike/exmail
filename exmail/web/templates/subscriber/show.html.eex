@@ -1,0 +1,144 @@
+
+<div class='resources subscriber'>
+
+  <h1 class='h2'>
+    <%= @audience.name %>
+    <%= render_with "_audience_switcher.html", assigns %>
+  </h1>
+
+  <%= render_with "_audience_menu.html", assigns %>
+
+  <%= render_with "_subscriber_profile.html", assigns %>
+
+  <%= render_with "_subscriber_bounce.html", assigns %>
+
+  <%= render_with "_subscriber_menu.html", assigns %>
+
+  <h2 class='h3'>
+    <%= gettext "Subscriber details" %>
+  </h2>
+
+  <div class='profile profile-bottom'>
+    <div class='col-md-12 row'>
+      <div class='col-md-6 row'>
+        <div class="media">
+          <div class="media-body">
+            <h4 class="media-heading"><%= gettext "Email Address" %></h4>
+            <p><%= @subscriber.email %></p>
+          </div>
+        </div>
+        <div class="media">
+          <div class="media-body">
+            <h4 class="media-heading"><%= gettext "First Name" %></h4>
+            <p><%= @subscriber.first_name || gettext("No Edited") %></p>
+          </div>
+        </div>
+      </div>
+
+      <div class='col-md-6'>
+        <div class="media">
+          <div class="media-body">
+            <h4 class="media-heading"><%= gettext "Last Name" %></h4>
+            <p><%= @subscriber.last_name || gettext("No Edited") %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2 class='h3'>
+    <%= gettext "Overview" %>
+  </h2>
+
+  <div class='profile profile-bottom'>
+    <div class='col-md-12 row'>
+      <div class='col-md-6 row'>
+        <div class="media">
+          <div class="media-body">
+            <h4 class="media-heading"><%= gettext "Profile updated" %></h4>
+            <p><%= view_time @subscriber.updated_at, :detail %></p>
+          </div>
+        </div>
+        <div class="media">
+          <div class="media-body">
+            <h4 class="media-heading"><%= gettext "Time zone" %></h4>
+            <p><%= @subscriber.timezone || gettext("Undetected") %></p>
+          </div>
+        </div>
+        <div class="media">
+          <div class="media-body">
+            <h4 class="media-heading"><%= gettext "Location" %></h4>
+            <p>
+              <%= if @subscriber.latlon do %>
+                <a data-toggle="tooltip" data-placement="top" title="TODO: Change geolocation to Prefecture Name e.g. Ōsaka, JP"
+                   target='_blank' href='<%= googlemap @subscriber.latlon %>'><%= @subscriber.latlon %></a>
+              <% else %>
+                <%= gettext("Undetected") %>
+              <% end %>
+            </p>
+          </div>
+        </div>
+        <div class="media">
+          <div class="media-body">
+            <h4 class="media-heading"><%= gettext "Language" %></h4>
+            <p><%= @subscriber.language || gettext("Undetected") %></p>
+          </div>
+        </div>
+        <div class="media">
+          <div class="media-body">
+            <h4 class="media-heading"><%= gettext "Favorite email client" %></h4>
+            <p><%= @subscriber.mailer || gettext("Undetected") %></p>
+          </div>
+        </div>
+      </div>
+
+      <%# XXX: Below will consuder later that comment out, because a latest subscriber has been shared data between each user. %>
+      <% latest = @subscriber.subscriber %>
+
+      <div class='col-md-6'>
+        <div class="media">
+          <div class="media-body">
+            <h4 class="media-heading"><%= gettext "Latest profile updated" %></h4>
+            <p><%= view_time latest.updated_at, :detail %></p>
+          </div>
+        </div>
+        <div class="media">
+          <div class="media-body">
+            <h4 class="media-heading"><%= gettext "Latest time zone" %></h4>
+            <p><%= latest.timezone || gettext("Undetected") %></p>
+          </div>
+        </div>
+        <div class="media">
+          <div class="media-body">
+            <h4 class="media-heading"><%= gettext "Latest location" %></h4>
+            <p>
+              <%= if latest.latlon do %>
+                <a data-toggle="tooltip" data-placement="top" title="TODO: Change geolocation to Prefecture Name e.g. Ōsaka, JP"
+                   target='_blank' href='<%= googlemap latest.latlon %>'><%= latest.latlon %></a>
+              <% else %>
+                <%= gettext("Undetected") %>
+              <% end %>
+            </p>
+          </div>
+        </div>
+        <div class="media">
+          <div class="media-body">
+            <h4 class="media-heading"><%= gettext "Latest language" %></h4>
+            <p><%= latest.language || gettext("Undetected") %></p>
+          </div>
+        </div>
+        <div class="media">
+          <div class="media-body">
+            <h4 class="media-heading"><%= gettext "Latest email client" %></h4>
+            <p><%= latest.mailer || gettext("Undetected") %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class='clearfix'></div>
+
+
+<%= render_with "_subscriber_bouncedetail.html", assigns %>

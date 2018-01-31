@@ -1,0 +1,2 @@
+<%#= This will not be rendered within a layout because `put_text_layout` was not used. %>
+Sign In: <%=# sign_in_url(Myapp.Endpoint, :create, @person) %>

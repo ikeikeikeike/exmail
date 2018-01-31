@@ -1,0 +1,61 @@
+<div class='resources col-lg-10 col-centered'>
+
+  <h1 class='h2 text-center'>
+    <%= gettext "Select A Type Of Campaign To Send:" %>
+  </h1>
+
+  <div class="middle">
+
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><%= gettext "Regular campaign" %></h4>
+        <%= gettext "Send a lovely HTML email along with a plain-text alternative version." %>
+      </div>
+      <div class="media-right">
+        <%= link gettext("Select"), to: campaign_path(@conn, :distribute, type: "Regular", wizard: "Recipient"), class: "btn btn-default vmiddle", method: :post %>
+      </div>
+    </div>
+
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><%= gettext "Plain-text campaign" %></h4>
+        <%= gettext "Send a simple plain-text email with no pictures or formatting." %>
+      </div>
+      <div class="media-right">
+        <%= link gettext("Select"), to: campaign_path(@conn, :distribute, type: "Text", wizard: "Recipient"), class: "btn btn-default vmiddle", method: :post %>
+      </div>
+    </div>
+
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><%= gettext "A/B testing campaign" %></h4>
+        <%= gettext "Send up to three variations of a campaign to test the best subject line, from name, email content, or time/day to send campaigns." %>
+      </div>
+      <div class="media-right">
+        <%= link gettext("Select"), to: campaign_path(@conn, :distribute, type: "ABTest", wizard: "Recipient"), class: "btn btn-default vmiddle", method: :post %>
+      </div>
+    </div>
+
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><%= gettext "Automated Campaign" %></h4>
+        <%= gettext "Streamline your communication and personalize each customer's experience. Use automation to create an email or series of emails that send when triggered by a specific date, event, or contact's activity." %>
+      </div>
+      <div class="media-right">
+        <%= link gettext("Select"), to: campaign_path(@conn, :distribute, type: "Auto", wizard: "Recipient"), class: "btn btn-default vmiddle disabled", method: :post %>
+      </div>
+    </div>
+
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><%= gettext "RSS campaign" %></h4>
+        <%= gettext "Send content from an RSS feed to a list." %>
+      </div>
+      <div class="media-right">
+        <%= link gettext("Select"), to: campaign_path(@conn, :distribute, type: "RSS", wizard: "Recipient"), class: "btn btn-default vmiddle disabled", method: :post %>
+      </div>
+    </div>
+
+  </div>
+
+</div>

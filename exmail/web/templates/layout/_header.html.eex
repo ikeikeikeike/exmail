@@ -1,0 +1,68 @@
+<header id="topbar" class="navbar navbar-default navbar-fixed-top bs-docs-nav" role="banner">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+        <span class="sr-only"><%= gettext "Navigation" %></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a style="font-size: 14px;" class="navbar-brand" rel="home" href="/" >
+        <strong><%#= sitemeta :host %></strong>
+      </a>
+    </div>
+
+    <nav class="navbar-collapse bs-navbar-collapse collapse" role="navigation" style="height: 1px;">
+      <ul itemscope="itemscope" itemtype="http://www.schema.org/SiteNavigationElement" class="nav navbar-nav">
+        <li itemprop="name"><a itemprop="url" href='<%= campaign_path @conn, :index %>'>
+            <span class="glyphicon glyphicon-send"></span> <%= gettext "Campaigns" %>
+        </a></li>
+        <li itemprop="name"><a itemprop="url" href='<%= template_path @conn, :index %>'>
+            <span class="glyphicon glyphicon-th-list"></span> <%= gettext "Templates" %>
+        </a></li>
+        <li itemprop="name"><a itemprop="url" href='<%= audience_path @conn, :index %>'>
+            <span class="glyphicon glyphicon-zoom-in"></span> <%= gettext "Audiences" %>
+        </a></li>
+        <li itemprop="name"><a itemprop="url" href='<%= report_path @conn, :index %>'>
+            <span class='glyphicon glyphicon-indent-right'></span> <%= gettext "Reports" %>
+        </a></li>
+      </ul>
+
+      <ul itemscope="itemscope" itemtype="http://www.schema.org/SiteNavigationElement" class="nav navbar-nav navbar-right">
+        <%= if Guardian.Plug.current_resource(@conn) do %>
+          <li itemprop="name" >
+            <%= link to: auth_path(@conn, :logout), method: :delete, class: "btn btn-link", itemprop: "url" do %>
+              <span class='glyphicon glyphicon-remove-sign'></span> <%= gettext "Sign Out" %>
+            <% end %>
+          </li>
+        <% else %>
+          <li itemprop="name">
+            <a itemprop="url" href='<%= auth_path @conn, :login, "identiry" %>'>
+              <span class='glyphicon glyphicon-ok-sign'></span> <%= gettext "Sign In" %>
+            </a>
+          </li>
+        <% end %>
+      </ul>
+    </nav>
+  </div>
+
+  <%= if get_flash(@conn, :info) do %>
+    <div style='margin-bottom: 0;' class="alert alert-info alert-dismissible text-center button-boder-line" role="alert">
+      <button type="button" class="close text-center" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <%= raw get_flash(@conn, :info) %>
+    </div>
+  <% end %>
+  <%= if get_flash(@conn, :warn) do %>
+    <div style='margin-bottom: 0;' class="alert alert-warning alert-dismissible text-center button-boder-line" role="alert">
+      <button type="button" class="close text-center" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <%= raw get_flash(@conn, :warn) %>
+    </div>
+  <% end %>
+  <%= if get_flash(@conn, :error) do %>
+    <div style='margin-bottom: 0;' class="alert alert-danger alert-dismissible text-center button-boder-line" role="alert">
+      <button type="button" class="close text-center" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <%= raw get_flash(@conn, :error) %>
+    </div>
+  <% end %>
+
+</header>

@@ -1,0 +1,32 @@
+<%= form_for @changeset, @action, fn f -> %>
+
+  <%= if @changeset.action do %>
+    <%= render_with "_flash_errors.html", Map.merge(assigns, %{form: f}) %>
+  <% end %>
+
+  <div class="form-group required">
+    <%= label f, :email, gettext("Email Address"), class: "control-label required", required: true %>
+    <%= email_input f, :email, class: "form-control", required: true %>
+    <%= error_tag f, :email %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :first_name, gettext("First Name"), class: "control-label" %>
+    <%= text_input f, :first_name, class: "form-control" %>
+    <%= error_tag f, :first_name %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :last_name, gettext("Last Name"), class: "control-label" %>
+    <%= text_input f, :last_name, class: "form-control" %>
+    <%= error_tag f, :last_name %>
+  </div>
+
+  <div class='help-block'>
+    <%= gettext "If this person is already on my list, update their profile." %>
+  </div>
+
+  <div class="form-group">
+    <%= submit gettext("Save"), class: "btn btn-primary" %>
+  </div>
+<% end %>

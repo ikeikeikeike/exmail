@@ -1,0 +1,57 @@
+<div class='resources col-lg-10 col-centered'>
+
+  <h1 class='h2 text-center'>
+    <%= gettext "Who are you sending to?" %>
+  </h1>
+
+  <div class="middle">
+    <%= for ad <- @audiences do %>
+      <div class="media">
+        <div class="media-body pointer" aria-controls="recipient-radio" aria-expanded="true" data-target="#recipient-radio-<%= ad.id %>" data-toggle="collapse">
+          <h3 class="media-heading"><%= translate_default ad.name %></h3>
+          <%= if ad.from_email do %>
+            <h4><small><%= gettext "Default E-Mail: %{email}", email: ad.from_email %></small></h4>
+          <% end %>
+          <%= if ad.from_name do %>
+            <h4><small><%= gettext "Default Name: %{name}", name: ad.from_name %></small></h4>
+          <% end %>
+          <small><%= ad.explain || gettext("No explaining yet") %></small>
+        </div>
+        <div class="media-right vmiddle" aria-controls="recipient-radio" aria-expanded="true" data-target="#recipient-radio-<%= ad.id %>" data-toggle="collapse">
+          <button class="btn btn-default" type="button">
+            <%= gettext "Select" %>
+          </button>
+        </div>
+      </div>
+
+      <div class="collapse" id="recipient-radio-<%= ad.id %>" aria-expanded="true">
+        <label class="radio-inline">
+          <input type="radio" name="recipient_audience" id="inlineRadio<%= ad.id %>1" value='<%= "entire-#{ad.id}" %>' checked> <%= gettext "Entire list" %>
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="recipient_audience" id="inlineRadio<%= ad.id %>2" value='<%= "presegs-#{ad.id}" %>' disabled> <%= gettext "Saved or pre-built segment" %>
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="recipient_audience" id="inlineRadio<%= ad.id %>3" value='<%= "newseg-#{ad.id}" %>' disabled> <%= gettext "Group or new segment" %>
+        </label>
+        <label class="radio-inline">
+          <%= link gettext("Next　>>"), to: campaign_path(@conn, :distribute, wizard: "Setup"), id: "save-recipient-#{ad.id}", class: "btn btn-primary disabled", method: :post %>
+        </label>
+
+        <div class='help-block'>
+          <%= gettext "%{total} recipients. Everyone in your list will receive this email.", total: length(ad.subscribers) %>
+        </div>
+
+      </div>
+    <% end %>
+
+    <%= if length(@audiences) <= 0 do %>
+      <h2 class='h4 text-center'>
+        <a href='<%= audience_path @conn, :new %>' target='_blank'>
+        <%= gettext "There's no audiences, Could you make audience first?" %>
+        </a>
+      </h2>
+    <% end %>
+  </div>
+
+</div>

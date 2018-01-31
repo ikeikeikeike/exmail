@@ -1,0 +1,53 @@
+.jq-toast-single {
+  border-radius: 0;
+  font-family: 'Yantramanav', sans-serif;
+  background-color: #313a46;
+  font-size: 14px;
+}
+.jq-toast-single h2 {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+.jq-toast-single a {
+  font-size: 14px;
+}
+.jq-toast-single a:hover {
+  color: #1ea69a;
+}
+.jq-icon-info {
+  background-color: #45bbe0;
+  color: #ffffff;
+  border-color: #45bbe0;
+}
+.jq-icon-success {
+  background-color: #78c350;
+  color: #ffffff;
+  border-color: #78c350;
+}
+.jq-icon-warning {
+  background-color: #ff9800;
+  color: #ffffff;
+  border-color: #ff9800;
+}
+.jq-icon-error {
+  background-color: #f7531f;
+  color: #ffffff;
+  border-color: #f7531f;
+}
+.close-jq-toast-single {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  font-size: 20px;
+  cursor: pointer;
+  height: 32px;
+  width: 32px;
+  background-color: #313a46;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 32px;
+}
+.jq-toast-loader {
+  height: 3px;
+  border-radius: 0;
+}
+

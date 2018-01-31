@@ -1,0 +1,107 @@
+<div class='resources'>
+
+  <h1 class='h2'>
+    <%= @audience.name %>
+    <%= render_with "_audience_switcher.html", assigns %>
+  </h1>
+
+  <%= render_with "_audience_menu.html", assigns %>
+
+  <div class='after-middle'>
+    <div class="middle-header">
+      <div class="btn-group">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <%= gettext "Toggle Columns" %> <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li>
+            <a href="#" class='active'><%= gettext "First Name" %></a>
+          </li>
+          <li>
+            <a href="#" class='active'><%= gettext "Last Name" %></a>
+          </li>
+        </ul>
+      </div>
+      <div class="btn-group">
+        <a href='#' type="button" class="btn btn-default disabled"><%= gettext "Export List" %></a>
+      </div>
+      <div class="btn-group">
+        <a href='#' type="button" class="btn btn-default" data-toggle="modal" data-target=".syncSubscribers"><%= gettext "Sync Subscribers" %></a>
+      </div>
+      <div class="btn-group">
+        <button type="button" class="btn btn-default dropdown-toggle disabled" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <%= gettext "Actions" %> <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li>
+            <a href="#"><%= gettext "Unsubscribe" %></a>
+          </li>
+          <li>
+            <a href="#"><%= gettext "Move to list" %></a>
+          </li>
+          <li>
+            <a href="#"><%= gettext "Copy to list" %></a>
+          </li>
+          <!--
+          <li>
+            <a href="#"><%= gettext "VIP" %></a>
+          </li>
+          -->
+        </ul>
+      </div>
+      <div class="btn-group">
+        <%= link gettext("Delete"), to: subscriber_path(@conn, :delete_relation, @audience, ""),
+              class: "delete-subscribers btn btn-danger", method: :delete, data: [confirm: gettext("Are you sure?")] %>
+      </div>
+    </div>
+
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th><input type="checkbox" class="check" id="checkAll"></th>
+          <th><%= gettext "Email Address" %></th>
+          <th><%= gettext "First Name" %></th>
+          <th><%= gettext "Last Name" %></th>
+          <th><%= gettext "Audience Rating" %></th>
+          <th><%= gettext "Last Changed" %></th>
+          <th><%= gettext "Date Added" %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= for subscriber <- @subscribers do %>
+          <tr>
+            <td><input name='ids[]' class="check" type='checkbox' value='<%= subscriber.subscriber_id %>'></td>
+            <td url-for='<%= subscriber_path @conn, :show, @audience.id, subscriber.subscriber_id %>'><%= subscriber.email %></td>
+            <td url-for='<%= subscriber_path @conn, :show, @audience.id, subscriber.subscriber_id %>'><%= subscriber.first_name %></td>
+            <td url-for='<%= subscriber_path @conn, :show, @audience.id, subscriber.subscriber_id %>'><%= subscriber.last_name %></td>
+            <td url-for='<%= subscriber_path @conn, :show, @audience.id, subscriber.subscriber_id %>'>★★★★</td>
+            <td url-for='<%= subscriber_path @conn, :show, @audience.id, subscriber.subscriber_id %>'><%= gettext "%{time} ago", time: time_ago_in_words(subscriber.updated_at) %></td>
+            <td url-for='<%= subscriber_path @conn, :show, @audience.id, subscriber.subscriber_id %>'><%= gettext "%{time} ago", time: time_ago_in_words(subscriber.inserted_at) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <div class='clearfix'></div>
+
+    <div class='wrap-pagination'>
+      <% params = take_params @conn,
+                              carried_params(),
+                              distance: 7,
+                              first: false, last: false,
+                              previous: Phoenix.HTML.raw("&leftarrow;"), next: Phoenix.HTML.raw("&rightarrow;") %>
+
+      <%= pagination_links @subscribers, to_keylist(params) %>
+    </div>
+    <div class='clearfix'></div>
+
+  </div>
+</div>
+
+<div class="modal fade syncSubscribers" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <%= render_with __MODULE__, "sync_calcifer.html", assigns %>
+    </div>
+  </div>
+</div>

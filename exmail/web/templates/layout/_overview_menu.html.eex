@@ -1,0 +1,64 @@
+<%
+active_sent   = current_page? @conn, "report.activity_sent:#{@report.id}"
+active_open   = current_page? @conn, "report.activity_open:#{@report.id}"
+active_click  = current_page? @conn, "report.activity_click:#{@report.id}"
+active_bounce = current_page? @conn, "report.activity_bounce:#{@report.id}"
+%>
+
+<div class='middle'>
+  <ul class="nav nav-tabs">
+
+    <li role='presentation' class='<%= if current_page?(@conn, "report.overview:#{@report.id}"), do: "active" %>'>
+      <a href='<%= report_path @conn, :overview, @report %>'><%= gettext "Overview" %></a>
+    </li>
+
+    <li role='presentation' class='dropdown <%= if active_sent or active_open or active_click or active_bounce, do: "active" %>'>
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+        <%= gettext "Activity" %> <span class="caret"></span>
+      </a>
+      <ul class="dropdown-menu">
+        <li class='<%= if active_sent, do: "active" %>'>
+          <a href='<%= report_path @conn, :activity_sent, @report %>'>
+            <%= gettext "Sent to" %>
+          </a>
+        </li>
+        <li class='<%= if active_open, do: "active" %>'>
+          <a href='<%= report_path @conn, :activity_open, @report %>'>
+            <%= gettext "Opened" %>
+          </a>
+        </li>
+        <li class='<%= if active_click, do: "active" %>'>
+          <a href='<%= report_path @conn, :activity_click, @report %>'>
+            <%= gettext "Cliked" %>
+          </a>
+        </li>
+        <li class='<%= if active_bounce, do: "active" %>'>
+          <a href='<%= report_path @conn, :activity_bounce, @report %>'>
+            <%= gettext "Bounced" %>
+          </a>
+        </li>
+      </ul>
+    </li>
+
+    <li role='presentation' class='<%= if current_page?(@conn, "report.links:#{@report.id}"), do: "active" %>'>
+      <a href="<%= report_path @conn, :links, @report %>"><%= gettext "Links" %></a>
+    </li>
+
+    <li role='presentation' class='disabled'>
+      <a disabled href="#"><%= gettext "Social" %></a>
+    </li>
+
+    <li role='presentation' class='disabled'>
+      <a disabled href="#"><%= gettext "E-commerce" %></a>
+    </li>
+
+    <li role='presentation' class='disabled'>
+      <a disabled href="#"><%= gettext "Conversations" %></a>
+    </li>
+
+    <li role='presentation' class='disabled'>
+      <a disabled href="#"><%= gettext "Analytics360" %></a>
+    </li>
+
+  </ul>
+</div>

@@ -1,0 +1,17 @@
+<div class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+    <%= gettext "Switch report" %> <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" aria-labelledby="dLabel">
+    <%= for r <- @switchers do %>
+      <li class='two-columns'>
+        <a href="<%= report_path @conn, :overview, r %>" >
+          <span><%= r.campaign.name %></span>
+          <span><%= view_time(r.inserted_at) %></span>
+        </a>
+      </li>
+    <% end %>
+    <li role="separator" class="divider"></li>
+    <li><a href="<%= report_path @conn, :index %>"><%= gettext "View All" %></a></li>
+  </ul>
+</div>

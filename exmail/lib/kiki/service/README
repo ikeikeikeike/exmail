@@ -1,0 +1,2 @@
+In favor of that won't issue database query using Exmail.Ecto in 'web/models/*'
+which there's just relevent Ecto.Query and Ecto.Changeset operation only, so I created this module.

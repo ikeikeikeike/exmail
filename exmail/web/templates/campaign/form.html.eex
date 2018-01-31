@@ -1,0 +1,198 @@
+<%
+reltype = Exmail.Campaign.reltype @changeset.data, module: true
+%>
+
+<%= form_for @changeset, @action, fn f -> %>
+  <%= hidden_input f, :id %>
+
+  <%= if @changeset.action do %>
+    <%= render_with "_flash_errors.html", Map.merge(assigns, %{form: f}) %>
+  <% end %>
+
+  <div>
+    <div class='col-md-6'>
+      <div class="form-group">
+        <%= label f, :name, gettext("Campaign name"), class: "control-label" %>
+        <%= text_input f, :name, class: "form-control" %>
+        <%= error_tag f, :name %>
+        <p class='help-block'><%= gettext "Internal use only. Ex: 'Newsletter Test#4'" %></p>
+      </div>
+
+      <%= case @changeset do
+            # TODO: checking edit or create pages.
+            %{params: %{"type" => "Regular"}} -> render "form_regular.html", Map.merge(assigns, %{f: f})
+            %{params: %{"type" => "Text"}} -> render "form_text.html", Map.merge(assigns, %{f: f})
+            %{params: %{"type" => "ABTest"}} -> render "form_abtest.html", Map.merge(assigns, %{f: f})
+            %{params: %{"type" => "RSS"}} -> render "form_rss.html", Map.merge(assigns, %{f: f})
+
+            %{data: %{type: "Regular"}} -> render "form_regular.html", Map.merge(assigns, %{f: f})
+            %{data: %{type: "Text"}} -> render "form_text.html", Map.merge(assigns, %{f: f})
+            %{data: %{type: "ABTest"}} -> render "form_abtest.html", Map.merge(assigns, %{f: f})
+            %{data: %{type: "RSS"}} -> render "form_rss.html", Map.merge(assigns, %{f: f})
+        end
+      %>
+    </div>
+
+    <div class='col-md-6'></div>
+  </div>
+
+  <div class='clearfix'></div><hr />
+
+  <div>
+
+    <h3 class='h4'>
+      <em><%= gettext "Tracking" %></em>
+    </h3>
+
+    <div class='col-md-6 row'>
+      <div class="form-header checkbox">
+        <div class="switcher">
+          <div class="presentation">
+            <%= checkbox f, :track_open, class: "js-switch", checked: reltype.track_open, disabled: !reltype.track_open %>
+
+            <%= gettext "Track opens" %> <span class='label label-default'>
+              <%= if reltype.track_open, do: gettext("Required"), else: gettext("Not available for %{name} campaigns", name: Exmail.Func.thename(reltype)) %>
+            </span>
+          </div>
+
+          <div class="help-block">
+            <%= gettext "Discover who opens your campaigns by tracking the number of times an invisible web beacon embedded in the campaign is downloaded." %>
+          </div>
+        </div>
+
+        <div class="switcher">
+          <div class="presentation">
+            <%= checkbox f, :track_html_click, class: "js-switch",  checked: reltype.track_html_click, disabled: !reltype.track_html_click %>
+
+            <%= gettext "Track clicks" %> <span class='label label-default'>
+              <%= if reltype.track_html_click, do: gettext("Required"), else: gettext("Not available for %{name} campaigns", name: Exmail.Func.thename(reltype)) %>
+            </span>
+          </div>
+
+          <div class="help-block"><%= gettext "Discover which campaign links were clicked, how many times they were clicked, and who did the clicking." %></div>
+        </div>
+
+        <div class="switcher">
+          <div class="presentation">
+            <%= checkbox f, :track_text_click, class: "js-switch", checked: reltype.track_text_click %>
+
+            <%= gettext "Track plain-text clicks" %> <span class='label label-default'>
+              <%= if reltype.track_text_click, do: gettext("Required"), else: gettext("Not available for %{name} campaigns", name: Exmail.Func.thename(reltype)) %>
+            </span>
+          </div>
+
+          <div class="help-block"><%= gettext "Track clicks in the plain-text version of your email by replacing all links with tracking URLs." %></div>
+        </div>
+
+        <div class="switcher">
+          <div class="presentation">
+            <input name="tracking[]" id="optionsRadios2" type="checkbox" class="js-switch" role="checkbox" aria-checked="false" tabindex="0" value="track_google_analytics" style="user-select: none;" disabled>
+            <%= gettext "Google Analytics link tracking" %>
+          </div>
+
+          <div class="help-block">
+            <%= gettext "Track clicks from your campaigns all the way to purchases on your website." %><br />
+            <%= gettext "Requires Google Analytics on your website or Shopify Integration.  E-commerce link tracking." %>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class='col-md-6'>
+
+      <div class="form-header checkbox">
+        <div class="switcher">
+          <div role="presentation">
+            <input name="tracking[]" id="optionsRadios1" type="checkbox" class='js-switch' role="checkbox" aria-checked="false" tabindex="0" value="e-commerce" style="user-select: none;" disabled>
+            <%= gettext "E-commerce link tracking" %>
+          </div>
+
+          <div class="help-block"><%= gettext "Track visitors to your website from your campaigns, capture order information, and pass that information back to us. Then you can view purchase details, conversions, and total sales on the reports page. You can also set up segments based on your subscribers’ purchase activity." %></div>
+        </div>
+
+        <div class="switcher">
+          <div role="presentation">
+            <input name="tracking[]" id="optionsRadios2" type="checkbox" role="checkbox" class='js-switch' aria-checked="false" tabindex="0" value="clicktale" style="user-select: none;" disabled>
+            <%= gettext "ClickTale link tracking" %>
+          </div>
+
+          <div class="help-block"><%= gettext "Gain insight to how subscribers interact with your email content." %></div>
+        </div>
+
+        <div class="switcher">
+          <div role="presentation">
+            <input name="tracking[]" id="optionsRadios2" type="checkbox" role="checkbox" class="js-switch" aria-checked="false" tabindex="0" value="goal" style="user-select: none;" disabled>
+            <%= gettext "Goal tracking" %>
+          </div>
+
+          <div class="help-block"><%= gettext "Track clicks in the plain-text version of your email by replacing all links with tracking URLs." %></div>
+        </div>
+
+        <div class="switcher">
+          <div role="presentation">
+            <input name="tracking[]" id="optionsRadios2" type="checkbox" role="checkbox" class="js-switch" aria-checked="false" tabindex="0" value="salesforce or something" style="user-select: none;" disabled>
+            <%= gettext "Track stats in Salesforce or Highrise" %>
+          </div>
+
+          <div class="help-block">
+            <%= gettext "no explaining" %><br />
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <div class='clearfix'></div><hr />
+
+  <div>
+
+    <h3 class='h4'>
+      <em><%= gettext "Social" %></em>
+    </h3>
+
+    <div class='col-md-6'>
+      <div class="form-header checkbox">
+        <label class="checkbox">
+          <div role="presentation">
+            <%= checkbox f, :post_twitter, disabled: true %>
+          </div>
+
+          <%= gettext "Auto-Tweet after sending" %>
+        </label>
+
+        <button type='button' class='btn btn-default disabled'>
+          <%= gettext "Connect To Twitter" %>
+        </button>
+      </div>
+    </div>
+
+    <div class='col-md-6'>
+
+      <div class="form-header checkbox">
+        <label class="checkbox">
+          <div role="presentation">
+            <%= checkbox f, :post_facebook, disabled: true %>
+          </div>
+
+          <%= gettext "Auto-post to Facebook after sending" %>
+        </label>
+
+        <button type='button' class='btn btn-default disabled'>
+          <%= gettext "Connect To Facebook" %>
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class='clearfix'></div>
+
+  <div class="form-group">
+    <%= submit gettext("Save"), class: "btn btn-primary" %>
+  </div>
+
+<% end %>

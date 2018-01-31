@@ -1,0 +1,21 @@
+<%
+#active_subnew = current_page? @conn, "subscriber.new:#{@audience.id}"
+%>
+
+<div class='middle'>
+  <ul class="nav nav-tabs">
+
+    <li role='presentation'>
+      <a href="#"><%= gettext "Campaigns" %></a>
+    </li>
+
+    <li role='presentation'>
+      <a href='#'><%= gettext "Comparative" %></a>
+    </li>
+
+    <li role='presentation' class='disabled'>
+      <a disabled href="#"><%= gettext "Automation" %></a>
+    </li>
+
+  </ul>
+</div>

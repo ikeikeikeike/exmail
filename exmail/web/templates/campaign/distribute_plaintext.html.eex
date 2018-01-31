@@ -1,0 +1,211 @@
+<div class='resources distribute'>
+  <div class='col-md-12 full-element'>
+
+    <%= texteditor_attributes @conn, @campaign %>
+
+    <form id='texteditor' method="POST" action="<%= campaign_path @conn, :distribute %>">
+      <input type='hidden' name='id' value='<%= @campaign.id %>' />
+      <input type='hidden' name='relid' value='<%= @reltype.id %>' />
+      <input type='hidden' name='_method' value='PUT' />
+      <input type='hidden' name='_csrf_token' value='<%= get_csrf_token() %>' />
+      <input type='hidden' name='wizard' value='SaveDesign' />
+
+      <div class='col-xs-6 left-plain-text full-element'>
+        <textarea id='texteditor-textarea' class='full-width' rows="50"></textarea>
+      </div>
+
+      <div class='col-xs-6 right-plain-text full-element'>
+        <div id="texteditor-preview">
+
+
+
+          <div id="merges-list" class="merges" style="display: block;">
+            <table class="mc-table scroll-small">
+              <thead>
+                <tr class="odd">
+                  <th>To insert...</th>
+                  <th class="persistent">Use this *|MERGETAG|*</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="odd">
+                  <td>Email Address</td>
+                  <td id="mergetag-0">
+                    <input type="text" value="*|EMAIL|*" onclick="this.select();" readonly="" class="av-text">
+                  </td>
+                </tr>
+                <tr class="even">
+                  <td>First Name</td>
+                  <td id="mergetag-1">
+                    <input type="text" value="*|FNAME|*" onclick="this.select();" readonly="" class="av-text">
+                  </td>
+                </tr>
+                <tr class="odd">
+                  <td>Last Name</td>
+                  <td id="mergetag-2">
+                    <input type="text" value="*|LNAME|*" onclick="this.select();" readonly="" class="av-text">
+                  </td>
+                </tr>
+                <tr class="odd">
+                  <td>Audience Name</td>
+                  <td id="mergetag-2">
+                    <input type="text" value="*|AUDIENCE:NAME|*" onclick="this.select();" readonly="" class="av-text">
+                  </td>
+                </tr>
+                <tr class="odd">
+                  <td>Audience Explain</td>
+                  <td id="mergetag-2">
+                    <input type="text" value="*|AUDIENCE:EXPLAIN|*" onclick="this.select();" readonly="" class="av-text">
+                  </td>
+                </tr>
+                <tr class="odd">
+                  <td>Audience Phone</td>
+                  <td id="mergetag-2">
+                    <input type="text" value="*|AUDIENCE:PHONE|*" onclick="this.select();" readonly="" class="av-text" disabled>
+                  </td>
+                </tr>
+                <tr class="odd">
+                  <td>Audience Address</td>
+                  <td id="mergetag-2">
+                    <input type="text" value="*|AUDIENCE:ADDRESS|*" onclick="this.select();" readonly="" class="av-text" disabled>
+                  </td>
+                </tr>
+                <tr class="odd">
+                  <td>Campaign Name</td>
+                  <td id="mergetag-2">
+                    <input type="text" value="*|CAMPAIGN:NAME|*" onclick="this.select();" readonly="" class="av-text">
+                  </td>
+                </tr>
+                <tr class="odd">
+                  <td>Campaign Subject</td>
+                  <td id="mergetag-2">
+                    <input type="text" value="*|CAMPAIGN:SUBJECT|*" onclick="this.select();" readonly="" class="av-text">
+                  </td>
+                </tr>
+                <tr class="odd">
+                  <td>Campaign From Name</td>
+                  <td id="mergetag-2">
+                    <input type="text" value="*|CAMPAIGN:FROM_NAME|*" onclick="this.select();" readonly="" class="av-text">
+                  </td>
+                </tr>
+                <tr class="odd">
+                  <td>Campaign From Email</td>
+                  <td id="mergetag-2">
+                    <input type="text" value="*|CAMPAIGN:FROM_EMAIL|*" onclick="this.select();" readonly="" class="av-text">
+                  </td>
+                </tr>
+                <tr id="start-builtin-merges" class="builtin-merge odd">
+                  <td>Unsubscribe link</td>
+                  <td id="mergetag-unsub">
+                    <input type="text" value="*|UNSUB|*" onclick="this.select();" readonly="" class="av-text" disabled>
+                  </td>
+                </tr>
+                <tr class="builtin-merge even">
+                  <td>Forward to a friend link</td>
+                  <td id="mergetag-forward">
+                    <input type="text" value="*|FORWARD|*" onclick="this.select();" readonly="" class="av-text" disabled>
+                  </td>
+                </tr>
+                <tr class="builtin-merge odd">
+                  <td>Update profile link</td>
+                  <td id="mergetag-profile">
+                    <input type="text" value="*|UPDATE_PROFILE|*" onclick="this.select();" readonly="" class="av-text" disabled>
+                  </td>
+                </tr>
+                <tr class="builtin-merge even">
+                  <td>Archive link</td>
+                  <td id="mergetag-profile">
+                    <input type="text" value="*|ARCHIVE|*" onclick="this.select();" readonly="" class="av-text" disabled>
+                  </td>
+                </tr>
+                <tr class="builtin-merge odd">
+                  <td>MonkeyRewards affiliate link</td>
+                  <td id="mergetag-rewards">
+                    <input type="text" value="*|REWARDS_TEXT|*" onclick="this.select();" readonly="" class="av-text" disabled>
+                  </td>
+                </tr>
+                <tr class="builtin-merge even">
+                  <td>Facebook Like button</td>
+                  <td id="mergetag-rewards">
+                    <input type="text" value="*|FACEBOOK:LIKE|*" onclick="this.select();" readonly="" class="av-text" disabled>
+                  </td>
+                </tr>
+                <tr class="builtin-merge odd">
+                  <td>Facebook Comments button</td>
+                  <td id="mergetag-rewards">
+                    <input type="text" value="*|FACEBOOK:COMMENTS|*" onclick="this.select();" readonly="" class="av-text" disabled>
+                  </td>
+                </tr>
+                <tr class="builtin-merge even">
+                  <td>Facebook profile + 5 most recent wall posts</td>
+                  <td id="mergetag-rewards">
+                    <input type="text" value="*|FACEBOOK:FULLPROFILE|*" onclick="this.select();" readonly="" class="av-text" disabled>
+                  </td>
+                </tr>
+                <tr class="builtin-merge odd">
+                  <td>Facebook profile</td>
+                  <td id="mergetag-rewards">
+                    <input type="text" value="*|FACEBOOK:PROFILE|*" onclick="this.select();" readonly="" class="av-text" disabled>
+                  </td>
+                </tr>
+                <tr class="builtin-merge even">
+                  <td>Facebook posts</td>
+                  <td id="mergetag-rewards">
+                    <input type="text" value="*|FACEBOOK:POSTS3|*" onclick="this.select();" readonly="" class="av-text" disabled>
+                  </td>
+                </tr>
+                <tr class="builtin-merge odd">
+                  <td>Twitter profile + 5 most recent tweets</td>
+                  <td id="mergetag-rewards">
+                    <input type="text" value="*|TWITTER:FULLPROFILE|*" onclick="this.select();" readonly="" class="av-text" disabled>
+                  </td>
+                </tr>
+                <tr class="builtin-merge even">
+                  <td>Twitter profile</td>
+                  <td id="mergetag-rewards">
+                    <input type="text" value="*|TWITTER:PROFILE|*" onclick="this.select();" readonly="" class="av-text" disabled>
+                  </td>
+                </tr>
+                <tr class="builtin-merge odd">
+                  <td>Twitter tweets</td>
+                  <td id="mergetag-rewards">
+                    <input type="text" value="*|TWITTER:TWEETS3|*" onclick="this.select();" readonly="" class="av-text" disabled>
+                  </td>
+                </tr>
+                <tr class="builtin-merge even">
+                  <td>Send a tweet</td>
+                  <td id="mergetag-rewards">
+                    <input type="text" value="*|TWITTER:TWEET|*" onclick="this.select();" readonly="" class="av-text" disabled>
+                  </td>
+                </tr>
+                <tr class="builtin-merge odd">
+                  <td>Social Share links</td>
+                  <td id="mergetag-rewards">
+                    <input type="text" value="*|MC:SHARE|*" onclick="this.select();" readonly="" class="av-text" disabled>
+                  </td>
+                </tr>
+                <tr class="builtin-merge even">
+                  <td>Send to Google +1</td>
+                  <td id="mergetag-rewards">
+                    <input type="text" value="*|GOOGLE:PLUSONE|*" onclick="this.select();" readonly="" class="av-text" disabled>
+                  </td>
+                </tr>
+                <tr class="builtin-merge odd">
+                  <td>Share on Tumblr</td>
+                  <td id="mergetag-rewards">
+                    <input type="text" value="*|TUMBLR:SHARE|*" onclick="this.select();" readonly="" class="av-text" disabled>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <%= render_with __MODULE__, "_distribute_navigation.html", assigns %>
+
+</div>

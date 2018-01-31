@@ -1,0 +1,15 @@
+<div class='resources'>
+
+  <h1 class='h2'>
+    <%= gettext "Edit audience" %>
+  </h1>
+
+  <%= render "form.html", Map.merge(assigns, %{
+        changeset: @changeset,
+        action: audience_path(@conn, :update, @audience)
+      })
+  %>
+
+  <%= link "Back", to: audience_path(@conn, :index) %>
+
+</div>

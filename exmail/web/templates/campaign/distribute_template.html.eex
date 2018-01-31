@@ -1,0 +1,41 @@
+<div class='resources template distribute'>
+
+  <h1 class='h2'>
+    <%= gettext "Select a template" %> <small>TODO: Pop up image or to transfer html source page when user covers mouse pointer to each template is that creates by Javascript is better.</small>
+  </h1>
+
+  <div>
+    <ul class="nav nav-tabs" id="myTabs" role="tablist">
+      <li role="presentation" class="active">
+        <a href="#basic" role="tab" id="basic-tab" data-toggle="tab" aria-controls="basic" aria-expanded="true"><%= gettext "Basic" %></a>
+      </li>
+      <li role="presentation" class='disabled'>
+        <a <%# href="#themes" role="tab" id="themes-tab" data-toggle="tab" aria-controls="themes" aria-expanded="true" %>><%= gettext "Themes" %></a>
+      </li>
+      <li role="presentation">
+        <a href="#SavedTemplate" role="tab" id="SavedTemplate-tab" data-toggle="tab" aria-controls="SavedTemplate" aria-expanded="true"><%= gettext "Saved template" %></a>
+      </li>
+      <li role="presentation" class='disabled'>
+        <a <%# href="#CodeYourOwn" role="tab" id="CodeYourOwn-tab" data-toggle="tab" aria-controls="CodeYourOwn" aria-expanded="true" %>><%= gettext "Code your own" %></a>
+      </li>
+    </ul>
+
+    <div class="tab-content">
+
+      <div class="tab-pane active in" role="tabpanel" id="basic" aria-labelledby="basic-tab">
+        <%= render_with __MODULE__, "_screenshot_portfolio.html", Map.merge(assigns, %{templates: @seeds}) %>
+      </div>
+
+      <div class="tab-pane" role="tabpanel" id="themes" aria-labelledby="thrmes-tab"></div>
+
+      <div class="tab-pane" role="tabpanel" id="SavedTemplate" aria-labelledby="SavedTemplate-tab">
+        <%= render_with __MODULE__, "_screenshot_portfolio.html", assigns %>
+      </div>
+
+      <div class="tab-pane" role="tabpanel" id="CodeYourOwn" aria-labelledby="CodeYourOwn-tab"></div>
+    </div>
+
+  </div>
+
+  <%= render_with __MODULE__, "_distribute_navigation.html", assigns %>
+</div>

@@ -1,0 +1,6 @@
+<%= if present? @subscriber.bouncemsg do %>
+  <div style='margin-top: -45px;' class="pointer alert alert-warning alert-dismissible text-center button-boder-line" role="alert" data-toggle="modal" data-target=".bounce-messages">
+    <%= gettext "Bounce mail found that is reason of " %> <strong><%= @subscriber.bouncemsg %></strong>
+  </div>
+  <div class='clearfix'></div>
+<% end %>

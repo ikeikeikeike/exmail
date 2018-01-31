@@ -1,0 +1,35 @@
+<%= form_for @changeset, @action, fn f -> %>
+
+  <%= if @changeset.action do %>
+    <%= render_with "_flash_errors.html", Map.merge(assigns, %{form: f}) %>
+  <% end %>
+
+  <div class="form-group required">
+    <%= label f, :name, gettext("Audience name"), class: "control-label" %>
+    <%= text_input f, :name, class: "form-control", required: true %>
+    <%= error_tag f, :name %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :from_email, gettext("Default From email address"), class: "control-label" %>
+    <%= email_input f, :from_email, class: "form-control" %>
+    <%= error_tag f, :from_email %>
+    <p class='help-block'><%= gettext "This input form is not working currently. From mailaddress is fixed by Amazon SES." %></a>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :from_name, gettext("Default From name"), class: "control-label" %>
+    <%= text_input f, :from_name, class: "form-control" %>
+    <%= error_tag f, :from_name %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :explain, gettext("Explaining for this audience"), class: "control-label" %>
+    <%= textarea f, :explain, class: "form-control" %>
+    <%= error_tag f, :explain %>
+  </div>
+
+  <div class="form-group">
+    <%= submit gettext("Save"), class: "btn btn-primary" %>
+  </div>
+<% end %>

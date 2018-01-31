@@ -1,0 +1,10 @@
+<%= if @form.errors != [] do %>
+  <div class="alert alert-danger">
+    <p><%= gettext "Oops, something went wrong! Please check the errors below:" %></p>
+    <ul>
+      <%= for {attr, message} <- @form.errors do %>
+        <li><%= translate_default humanize(attr) %> <%= translate_error message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

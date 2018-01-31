@@ -1,0 +1,217 @@
+<div class="navbar-default navbar-inverse navbar-fixed-bottom">
+  <div class="container text-center">
+
+    <%= if @campaign.type == "Regular" do %>
+      <ol class="breadcrumb">
+        <li><%= cond do
+                  distribute_path?(@conn, @campaign, @reltype, "Setup") ->
+                    #to = distribute_path @conn, @campaign.id, assigns[:reltype], wizard: "Recipient"
+                    to = "#"
+                    link gettext("Prev"), to: to, class: "btn btn-link"
+
+                  distribute_path?(@conn, @campaign, @reltype, "Template") ->
+                    to = distribute_path @conn, @campaign, @reltype, "Setup"
+                    link gettext("Prev"), to: to, class: "btn btn-link"
+
+                  distribute_path?(@conn, @campaign, @reltype, "Design") ->
+                    to = distribute_path @conn, @campaign, @reltype, "Template"
+                    link gettext("Prev"), to: to, class: "btn btn-link"
+
+                  distribute_path?(@conn, @campaign, @reltype, "Confirm") ->
+                    to = distribute_path @conn, @campaign, @reltype, "Design"
+                    link gettext("Prev"), to: to, class: "btn btn-link"
+
+                  true ->
+                    "　&nbsp;　"
+                  #distribute_path?(@conn, @campaign, "Confirm") ->
+                  #  to =
+                  #  link gettext("Next "), to: to, class: "btn btn-info"
+                end
+            %>
+        </li>
+
+        <li class=''><a href=''><%= gettext "Recipients" %></a></li>
+
+        <li class='<%= if distribute_path?(@conn, @campaign, @reltype, "Setup"), do: "active" %>'>
+          <a href='<%= distribute_path @conn, @campaign, @reltype, "Setup" %>'><%= gettext "Setup" %></a>
+        </li>
+        <li class='<%= if distribute_path?(@conn, @campaign, @reltype, "Template"), do: "active" %>'>
+          <a href='<%= distribute_path @conn, @campaign, @reltype, "Template" %>'><%= gettext "Template" %></a>
+        </li>
+        <li class='<%= if distribute_path?(@conn, @campaign, @reltype, "Design"), do: "active" %>'>
+          <a href='<%= distribute_path @conn, @campaign, @reltype, "Design" %>'><%= gettext "Design" %></a>
+        </li>
+        <li class='<%= if distribute_path?(@conn, @campaign, @reltype, "Confirm"), do: "active" %>'>
+          <a href='<%= distribute_path @conn, @campaign, @reltype, "Confirm" %>'><%= gettext "Confirm" %></a>
+        </li>
+
+        <li><%= cond do
+                  distribute_path?(@conn, @campaign, "Recipient") ->
+                    to = distribute_path @conn, @campaign, "Setup"
+                    link gettext("Next "), to: to, class: "btn btn-info"
+
+                  distribute_path?(@conn, @campaign, @reltype, "Setup") ->
+                    to = distribute_path @conn, @campaign, @reltype, "Template"
+                    link gettext("Next "), to: to, class: "btn btn-info"
+
+                  distribute_path?(@conn, @campaign, @reltype, "Template") ->
+                    to = distribute_path @conn, @campaign, @reltype, "Design"
+                    link gettext("Next "), to: to, class: "btn btn-info"
+
+                  distribute_path?(@conn, @campaign, @reltype, "Design") ->
+                    to = distribute_path @conn, @campaign, @reltype, "Confirm"
+                    link gettext("Next "), to: to, class: "btn btn-info"
+
+                  true ->
+                    "　&nbsp;　"
+                  #distribute_path?(@conn, @campaign, "Confirm") ->
+                  #  to =
+                  #  link gettext("Next "), to: to, class: "btn btn-info"
+                end
+            %>
+        </li>
+      </ol>
+    <% end %>
+
+    <%= if @campaign.type == "Text" do %>
+      <ol class="breadcrumb">
+        <li><%= cond do
+                  distribute_path?(@conn, @campaign, @reltype, "Setup") ->
+                    #to = distribute_path @conn, @campaign, "Recipient"
+                    to = "#"
+                    link gettext("Prev"), to: to, class: "btn btn-link"
+
+                  distribute_path?(@conn, @campaign, @reltype, "PlainText") ->
+                    to = distribute_path @conn, @campaign, @reltype, "Setup"
+                    link gettext("Prev"), to: to, class: "btn btn-link"
+
+                  distribute_path?(@conn, @campaign, @reltype, "Confirm") ->
+                    to = distribute_path @conn, @campaign, @reltype, "PlainText"
+                    link gettext("Prev"), to: to, class: "btn btn-link"
+
+                  true ->
+                    "　&nbsp;　"
+                end
+            %>
+        </li>
+
+        <li class=''><a href=''><%= gettext "Recipients" %></a></li>
+        <li class='<%= if distribute_path?(@conn, @campaign, @reltype, "Setup"), do: "active" %>'>
+          <a href='<%= distribute_path @conn, @campaign, @reltype, "Setup" %>'><%= gettext "Setup" %></a>
+        </li>
+        <li class='<%= if distribute_path?(@conn, @campaign, @reltype, "PlainText"), do: "active" %>'>
+          <a href='<%= distribute_path @conn, @campaign, @reltype, "PlainText" %>'><%= gettext "Plain-Text" %></a>
+        </li>
+        <li class='<%= if distribute_path?(@conn, @campaign, @reltype, "Confirm"), do: "active" %>'>
+          <a href='<%= distribute_path @conn, @campaign, @reltype, "Confirm" %>'><%= gettext "Confirm" %></a>
+        </li>
+
+        <li><%= cond do
+                  distribute_path?(@conn, @campaign, @reltype, "Recipient") ->
+                    to = distribute_path @conn, @campaign, @reltype, "Setup"
+                    link gettext("Next "), to: to, class: "btn btn-info"
+
+                  distribute_path?(@conn, @campaign, @reltype, "Setup") ->
+                    to = distribute_path @conn, @campaign, @reltype, "PlainText"
+                    link gettext("Next "), to: to, class: "btn btn-info"
+
+                  distribute_path?(@conn, @campaign, @reltype, "PlainText") ->
+                    to = distribute_path @conn, @campaign, @reltype, "Confirm"
+                    link gettext("Next "), to: to, class: "btn btn-info"
+
+                  true ->
+                    "　&nbsp;　"
+                  #distribute_path?(@conn, @campaign, "Confirm") ->
+                  #  to =
+                  #  link gettext("Next "), to: to, class: "btn btn-info"
+                end
+            %>
+        </li>
+      </ol>
+    <% end %>
+
+    <%= if @campaign.type == "ABTest" do %>
+      <ol class="breadcrumb">
+        <li><%= cond do
+                  distribute_path?(@conn, @campaign, "Setup") ->
+                    #to = distribute_path @conn, @campaign, "Recipient"
+                    to = "#"
+                    link gettext("Prev"), to: to, class: "btn btn-link"
+
+                  present?(reltpl(@campaign)) && distribute_path?(@conn, @campaign, "Contents") ->
+                    to = distribute_path @conn, @campaign, "Setup"
+                    link gettext("Prev"), to: to, class: "btn btn-link"
+
+                  present?(reltpl(@campaign)) && distribute_path?(@conn, @campaign, assigns[:reltype], "Template") ->
+                    to = distribute_path @conn, @campaign, "Contents"
+                    link gettext("Prev"), to: to, class: "btn btn-link"
+
+                  distribute_path?(@conn, @campaign, assigns[:reltype], "Design") ->
+                    to = distribute_path @conn, @campaign, @reltype, "Template"
+                    link gettext("Prev"), to: to, class: "btn btn-link"
+
+                  distribute_path?(@conn, @campaign, "Confirm") ->
+                    to = distribute_path @conn, @campaign, "Design"
+                    link gettext("Prev"), to: to, class: "btn btn-link"
+
+                  true ->
+                    "　&nbsp;　"
+                  #distribute_path?(@conn, @campaign, "Confirm") ->
+                  #  to =
+                  #  link gettext("Next "), to: to, class: "btn btn-info"
+                end
+            %>
+        </li>
+
+        <li class=''><a href=''><%= gettext "Recipients" %></a></li>
+        <li class='<%= if distribute_path?(@conn, @campaign, "Setup"), do: "active" %>'>
+          <a href='<%= distribute_path @conn, @campaign, "Setup" %>'><%= gettext "Setup" %></a>
+        </li>
+        <% able = distribute_path?(@conn, @campaign, "Contents") or (
+             assigns[:reltype] && (
+               distribute_path?(@conn, @campaign, @reltype, "Template")
+               || distribute_path?(@conn, @campaign, @reltype, "Design")
+             )
+           )
+        %>
+        <li class='<%= if able, do: "active" %>'>
+          <a href='<%= distribute_path @conn, @campaign, "Contents" %>'><%= gettext "Contents" %></a>
+        </li>
+        <li class='<%= if distribute_path?(@conn, @campaign, "Confirm"), do: "active" %>'>
+          <a href='<%= distribute_path @conn, @campaign, "Confirm" %>'><%= gettext "Confirm" %></a>
+        </li>
+
+        <li><%= cond do
+                  distribute_path?(@conn, @campaign, "Recipient") ->
+                    to = distribute_path @conn, @campaign, "Setup"
+                    link gettext("Next "), to: to, class: "btn btn-info"
+
+                  distribute_path?(@conn, @campaign, "Setup") ->
+                    to = distribute_path @conn, @campaign, "Contents"
+                    link gettext("Next "), to: to, class: "btn btn-info"
+
+                  present?(reltpl(@campaign)) && distribute_path?(@conn, @campaign, "Contents") ->
+                    to = distribute_path @conn, @campaign, "Confirm"
+                    link gettext("Next "), to: to, class: "btn btn-info"
+
+                  present?(reltpl(@campaign)) && distribute_path?(@conn, @campaign, assigns[:reltype], "Template") ->
+                    to = distribute_path @conn, @campaign, @reltype, "Design"
+                    link gettext("Next "), to: to, class: "btn btn-info"
+
+                  distribute_path?(@conn, @campaign, assigns[:reltype], "Design") ->
+                    to = distribute_path @conn, @campaign, "Contents"
+                    link gettext("Next "), to: to, class: "btn btn-info"
+
+                  true ->
+                    "　&nbsp;　"
+                  #distribute_path?(@conn, @campaign, "Confirm") ->
+                  #  to =
+                  #  link gettext("Next "), to: to, class: "btn btn-info"
+                end
+            %>
+        </li>
+      </ol>
+    <% end %>
+
+  </div>
+</div>

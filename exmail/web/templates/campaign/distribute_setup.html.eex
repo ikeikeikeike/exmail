@@ -1,0 +1,20 @@
+<div class='resources'>
+
+  <h1 class='h2'>
+    <%= gettext "Campaign Info" %>
+  </h1>
+
+  <%= render "form.html", Map.merge(assigns, %{
+        changeset: @changeset,
+        action: campaign_path(@conn, :distribute, wizard: "SaveSetup")
+      })
+  %>
+
+  <%= if present?(@campaign) do
+        render_with __MODULE__, "_distribute_navigation.html", assigns
+      end %>
+
+  <%#= link "Cancel", to: subscriber_path(@conn, :index) %>
+
+
+</div>

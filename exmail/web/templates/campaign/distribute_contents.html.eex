@@ -1,0 +1,35 @@
+<div class='resources template distribute'>
+
+  <h1 class='h2'>
+    <%= gettext "Content setup" %> <small><%= gettext "Test different messages or templates within your campaign." %></small>
+  </h1>
+
+  <div>
+    <% reltypes = Campaign.reltype @campaign %>
+    <%= for reltype <- if(is_list(reltypes), do: reltypes, else: [reltypes]) do %>
+      <div class='col-sm-3 col-md-2'>
+        <div class="thumbnail">
+          <%= if reltype.tpl do %>
+            <img class="media-object" data-holder-rendered="true" src="<%= Exmail.TemplateUploader.url({reltype.tpl, reltype}, :screenshot) %>"
+                 style="width: 100%; height: 340px;"
+                 alt="<%= name_tempalte reltype.subject %>">
+          <% else %>
+            <img class="media-object" data-holder-rendered="true" src="https://placehold.it/300x340&text=NO CONTENT"
+                 style="width: 100%; height: 340px;"
+                 alt="Starting Image" />
+          <% end %>
+          <div class="caption text-center">
+            <p>
+              <a href='<%= campaign_path @conn, :distribute, id: @campaign.id, relid: reltype.id, wizard: "Template" %>'
+                 class="raised btn btn-<%= if reltype.tpl, do: "default", else: "primary" %>" role="button">
+                <%= if reltype.tpl, do: gettext("Edit Content"), else: gettext("Add Content") %>
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <%= render_with __MODULE__, "_distribute_navigation.html", assigns %>
+</div>

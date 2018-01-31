@@ -1,0 +1,38 @@
+<%
+active_detail   = current_page?(@conn, "subscriber.show:#{@audience.id}:#{@subscriber.subscriber_id}")
+active_activity = current_page?(@conn, "subscriber.show_activity:#{@audience.id}:#{@subscriber.subscriber_id}")
+%>
+
+<div class='middle'>
+  <ul class="nav nav-tabs">
+
+    <li role='presentation' class="<%= if active_detail, do: "active" %>">
+      <a href="<%= subscriber_path @conn, :show, @audience.id, @subscriber.subscriber_id %>#menu-target"><%= gettext "Detail" %></a>
+    </li>
+
+    <li role='presentation' class='<%= if active_activity, do: "active" %>'>
+      <a href='<%= subscriber_path @conn, :show_activity, @audience.id, @subscriber.subscriber_id %>#menu-target'><%= gettext "Activity" %></a>
+    </li>
+
+    <li role='presentation' class='disabled'>
+      <a class='disabled' href="#"><%= gettext "Notes" %></a>
+    </li>
+
+    <li role='presentation' class='disabled'>
+      <a class='disabled' href="#"><%= gettext "Conversations" %></a>
+    </li>
+
+    <li role='presentation' class='disabled'>
+      <a class='disabled' href="#"><%= gettext "E-commerce" %></a>
+    </li>
+
+    <li role='presentation' class='disabled'>
+      <a class='disabled' href="#"><%= gettext "Goals" %></a>
+    </li>
+
+    <li role='presentation' class='disabled'>
+      <a class='disabled' href="#"><%= gettext "Social Profiles" %></a>
+    </li>
+
+  </ul>
+</div>

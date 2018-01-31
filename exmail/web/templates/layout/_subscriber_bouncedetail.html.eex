@@ -1,0 +1,189 @@
+<div class="modal bounce-messages" tabindex="-1" role="dialog" aria-labelledby="BounceMessage">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+        <div class="table-responsive">
+          <table class="table table-hover table-condensed">
+            <thead>
+              <tr>
+                <th class="ctext"></th>
+                <th class="ltext">Reason Name</th>
+                <th class="ctext">Hard Bounce</th>
+                <th class="ctext">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="row-as-a-link">
+                <td class="ltext"><i class="fa fa-user-times" title="By Address"></i></td>
+                <td class="ltext"><strong><span>Host Unknown</span></strong></td>
+                <td><strong>Yes</strong></td>
+                <td class="ltext">Destination host name does not exist</td>
+              </tr>
+              <tr class="row-as-a-link">
+                <td class="ltext"><i class="fa fa-user-times" title="By Address"></i></td>
+                <td class="ltext"><strong><span>User Unknown</span></strong></td>
+                <td><strong>Yes</strong></td>
+                <td class="ltext">Recipient's address does not exist</td>
+              </tr>
+              <tr class="row-as-a-link">
+                <td class="ltext"><i class="fa fa-user-times" title="By Address"></i></td>
+                <td class="ltext"><strong><span>Filtered</span></strong></td>
+                <td>No</td>
+                <td class="ltext">Rejected after DATA command</td>
+              </tr>
+              <tr class="row-as-a-link">
+                <td class="ltext"><i class="fa fa-user-times" title="By Address"></i></td>
+                <td class="ltext"><strong><span>Has Moved</span></strong></td>
+                <td><strong>Yes</strong></td>
+                <td class="ltext">Destination mail addrees has moved</td>
+              </tr>
+              <tr class="row-as-a-link">
+                <td class="ltext"><i class="fa fa-user-times" title="By Address"></i></td>
+                <td class="ltext"><strong><span>Rejected</span></strong></td>
+                <td>No</td>
+                <td class="ltext">Rejected due to envelope from address</td>
+              </tr>
+              <tr class="row-as-a-link">
+                <td class="ltext"><i class="fa fa-user-times" title="By Address"></i></td>
+                <td class="ltext"><strong><span>Mailbox Full</span></strong></td>
+                <td>No</td>
+                <td class="ltext">Recipient's mailbox is full</td>
+              </tr>
+              <tr class="row-as-a-link">
+                <td class="ltext"><i class="fa fa-user-times" title="By Address"></i></td>
+                <td class="ltext"><strong><span>Suspend</span></strong></td>
+                <td>No</td>
+                <td class="ltext">Recipient's account is suspended</td>
+              </tr>
+              <tr class="row-as-a-link">
+                <td class="ltext"><i class="fa fa-user-times" title="By Address"></i></td>
+                <td class="ltext"><strong><span>Vacation</span></strong></td>
+                <td>No</td>
+                <td class="ltext">Auto replied message (recipient is away)</td>
+              </tr>
+
+              <tr class="row-as-a-link">
+                <td class="ltext"><i class="fa fa-file-text-o" title="By Content"></i></td>
+                <td class="ltext"><strong><span>Content Error</span></strong></td>
+                <td>No</td>
+                <td class="ltext">Email body or header is invalid format</td>
+              </tr>
+              <tr class="row-as-a-link">
+                <td class="ltext"><i class="fa fa-file-text-o" title="By Content"></i></td>
+                <td class="ltext"><strong><span>Exceed Limit</span></strong></td>
+                <td>No</td>
+                <td class="ltext">Message size exceeded the limit(5.2.3)</td>
+              </tr>
+              <tr class="row-as-a-link">
+                <td class="ltext"><i class="fa fa-file-text-o" title="By Content"></i></td>
+                <td class="ltext"><strong><span>Feedback</span></strong></td>
+                <td>No</td>
+                <td class="ltext">Bounced for a complaint of the message(FBL)</td>
+              </tr>
+              <tr class="row-as-a-link">
+                <td class="ltext"><i class="fa fa-file-text-o" title="By Content"></i></td>
+                <td class="ltext"><strong><span>Mesg Too Big</span></strong></td>
+                <td>No</td>
+                <td class="ltext">Message size is too big(5.3.4)</td>
+              </tr>
+              <tr class="row-as-a-link">
+                <td class="ltext"><i class="fa fa-file-text-o" title="By Content"></i></td>
+                <td class="ltext"><strong><span>Security Error</span></strong></td>
+                <td>No</td>
+                <td class="ltext">Virus detected or authentication error</td>
+              </tr>
+              <tr class="row-as-a-link">
+                <td class="ltext"><i class="fa fa-file-text-o" title="By Content"></i></td>
+                <td class="ltext"><strong><span>Spam Detected</span></strong></td>
+                <td>No</td>
+                <td class="ltext">Detected a message as spam</td>
+              </tr>
+
+              <tr class="row-as-a-link">
+                <td class="ltext"><i class="fa fa-server" title="By Server"></i></td>
+                <td class="ltext"><strong><span>Blocked</span></strong></td>
+                <td>No</td>
+                <td class="ltext">Blocked due to client IP address or hostname</td>
+              </tr>
+              <tr class="row-as-a-link">
+                <td class="ltext"><i class="fa fa-server" title="By Server"></i></td>
+                <td class="ltext"><strong><span>Expired</span></strong></td>
+                <td>No</td>
+                <td class="ltext">Delivery time expired</td>
+              </tr>
+              <tr class="row-as-a-link">
+                <td class="ltext"><i class="fa fa-server" title="By Server"></i></td>
+                <td class="ltext"><strong><span>Mailer Error</span></strong></td>
+                <td>No</td>
+                <td class="ltext">Mailer program error on remote host</td>
+              </tr>
+              <tr class="row-as-a-link">
+                <td class="ltext"><i class="fa fa-server" title="By Server"></i></td>
+                <td class="ltext"><strong><span>Network Error</span></strong></td>
+                <td>No</td>
+                <td class="ltext">Network error: DNS or routing</td>
+              </tr>
+              <tr class="row-as-a-link">
+                <td class="ltext"><i class="fa fa-server" title="By Server"></i></td>
+                <td class="ltext"><strong><span>No Relaying</span></strong></td>
+                <td>No</td>
+                <td class="ltext">Relay access denied</td>
+              </tr>
+              <tr class="row-as-a-link">
+                <td class="ltext"><i class="fa fa-server" title="By Server"></i></td>
+                <td class="ltext"><strong><span>Not Accept</span></strong></td>
+                <td>No</td>
+                <td class="ltext">Destinaion does not accept any message</td>
+              </tr>
+              <tr class="row-as-a-link">
+                <td class="ltext"><i class="fa fa-server" title="By Server"></i></td>
+                <td class="ltext"><strong><span>System Error</span></strong></td>
+                <td>No</td>
+                <td class="ltext">Some error on the destination host</td>
+              </tr>
+              <tr class="row-as-a-link">
+                <td class="ltext"><i class="fa fa-server" title="By Server"></i></td>
+                <td class="ltext"><strong><span>System Full</span></strong></td>
+                <td>No</td>
+                <td class="ltext">Disk full on the destination host</td>
+              </tr>
+              <tr class="row-as-a-link">
+                <td class="ltext"><i class="fa fa-server" title="By Server"></i></td>
+                <td class="ltext"><strong><span>Too Many Conn</span></strong></td>
+                <td>No</td>
+                <td class="ltext">Connection rate limit exceeded</td>
+              </tr>
+
+              <tr class="row-as-a-link">
+                <td class="ltext"><i class="fa fa-question-circle" title="Others"></i></td>
+                <td class="ltext"><strong><span>Delivered</span></strong></td>
+                <td>No</td>
+                <td class="ltext">Successfully delivered</td>
+              </tr>
+              <tr class="row-as-a-link">
+                <td class="ltext"><i class="fa fa-question-circle" title="Others"></i></td>
+                <td class="ltext"><strong><span>Syntax Error</span></strong></td>
+                <td>No</td>
+                <td class="ltext">syntax error in SMTP</td>
+              </tr>
+              <tr class="row-as-a-link">
+                <td class="ltext"><i class="fa fa-question-circle" title="Others"></i></td>
+                <td class="ltext"><strong><span>On Hold</span></strong></td>
+                <td>No</td>
+                <td class="ltext">Deciding the bounce reason is on hold</td>
+              </tr>
+              <tr class="row-as-a-link">
+                <td class="ltext"><i class="fa fa-question-circle" title="Others"></i></td>
+                <td class="ltext"><strong><span>Undefined</span></strong></td>
+                <td>No</td>
+                <td class="ltext">Could not decide an error reason</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

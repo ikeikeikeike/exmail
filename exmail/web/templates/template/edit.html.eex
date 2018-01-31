@@ -1,0 +1,30 @@
+<div class='resources distribute'>
+  <div class='col-md-12'>
+
+    <i id='tinyeditor-config' <%= tinyeditor_attributes @conn, @template %>></i>
+    <form id='tinyeditor' method="POST" action="<%= template_path @conn, :update, @template %>">
+      <input type='hidden' name='_method' value='PUT' />
+      <input type='hidden' name='_csrf_token' value='<%= get_csrf_token() %>' />
+      <input type='hidden' name='id' value='<%= @template.id %>' />
+
+      <div class='col-md-6'>
+        <textarea id='tinyeditor-textarea'></textarea>
+      </div>
+    </form>
+
+    <div class='col-md-6'>
+      <div id="tinyeditor-preview"></div>
+    </div>
+  </div>
+
+  <%# TODO: Don't fetch js file form external %>
+  <script src='//cdn.tinymce.com/4/tinymce.min.js'></script>
+
+</div>
+
+<form id='upload-file' method="POST" action="<%= template_path @conn, :upload %>">
+  <input type='hidden' name='_csrf_token' value='<%= get_csrf_token() %>' />
+  <input type='hidden' name='id' value='<%= @template.id %>' />
+
+  <input name="image" type="file" class="hide" onchange="" />
+</form>

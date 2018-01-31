@@ -1,0 +1,55 @@
+defmodule Exmail.Repo.Migrations.ChangeCharsetForEmojiIntoSubjects do
+  use Ecto.Migration
+
+  defp dbname do
+    Application.get_env(:exmail, Exmail.Repo)[:database]
+  end
+
+  defp tables do
+    ~w"""
+    abtesttypes
+    abtesttypes_images
+    activities
+    activities_links
+    audiences
+    audiences_subscribers
+    authorizations
+    campaigns
+    guardian_tokens
+    images
+    mailboxes
+    mailboxes_receipts
+    regulartypes
+    regulartypes_images
+    reports
+    schema_migrations
+    shortens
+    subscribers
+    templates
+    templates_images
+    texttypes
+    texttypes_images
+    users
+    """
+  end
+
+  def up do
+    db = dbname()
+
+    execute "ALTER DATABASE #{db} DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci"
+
+    Enum.each tables(), fn table ->
+      execute "ALTER TABLE #{table} CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci"
+    end
+  end
+
+  def down do
+    db = dbname()
+
+    execute "ALTER DATABASE #{db} CHARACTER SET utf8 COLLATE utf8_unicode_ci"
+
+    Enum.each tables(), fn table ->
+      execute "ALTER TABLE #{table} CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci"
+    end
+  end
+end

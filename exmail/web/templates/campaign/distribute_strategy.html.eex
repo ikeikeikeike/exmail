@@ -1,0 +1,174 @@
+<div class='resources template distribute'>
+
+  <h1 class='h2'>
+    <%= gettext "Content setup" %> <small><%= gettext "Test different messages or templates within your campaign." %></small>
+  </h1>
+
+  <div class="">
+    <div class="col-md-8">
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="hero-widget well well-sm">
+            <div class="icon">
+              <i class="glyphicon glyphicon-tree-conifer"></i>
+            </div>
+            <div class="text">
+              <var>0</var>
+              <label class="text-muted"><%= gettext "Subject line" %></label>
+            </div>
+            <div class="options">
+              <a href="javascript:;" class="add-strategy btn btn-default btn-lg"><i class="glyphicon glyphicon-plus"></i> <%= gettext "Add a subject" %></a>
+              <div class="increment-strategy input-group hide">
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="auant" style='padding: 20px 22px;'>
+                    <span class="glyphicon glyphicon-minus"></span>
+                  </button>
+                </span>
+
+                <input type="text" name="auant" class="btn btn-default btn-lg input-number" value="0" min="0" max="10" style='width: 100%;'>
+
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="auant" style='padding: 20px 22px;'>
+                    <span class="glyphicon glyphicon-plus"></span>
+                  </button>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="hero-widget well well-sm">
+            <div class="icon">
+              <i class="glyphicon glyphicon-leaf"></i>
+            </div>
+            <div class="text">
+              <var>0</var>
+              <label class="text-muted"><%= gettext "From name" %></label>
+            </div>
+            <div class="options">
+              <a href="javascript:;" class="add-strategy btn btn-default btn-lg"><i class="glyphicon glyphicon-plus"></i> <%= gettext "Add a name" %></a>
+              <div class="increment-strategy input-group hide">
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="auant" style='padding: 20px 22px;'>
+                    <span class="glyphicon glyphicon-minus"></span>
+                  </button>
+                </span>
+
+                <input type="text" name="auant" class="btn btn-default btn-lg input-number" value="0" min="0" max="10" style='width: 100%;'>
+
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="auant" style='padding: 20px 22px;'>
+                    <span class="glyphicon glyphicon-plus"></span>
+                  </button>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="hero-widget well well-sm">
+            <div class="icon">
+              <i class="glyphicon glyphicon-list-alt"></i>
+            </div>
+            <div class="text">
+              <var>0</var>
+              <label class="text-muted"><%= gettext "Content" %></label>
+            </div>
+            <div class="options">
+              <a href="javascript:;" class="add-strategy btn btn-default btn-lg"><i class="glyphicon glyphicon-plus"></i> <%= gettext "Add a content" %></a>
+              <div class="increment-strategy input-group hide">
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="auant" style='padding: 20px 22px;'>
+                    <span class="glyphicon glyphicon-minus"></span>
+                  </button>
+                </span>
+
+                <input type="text" name="auant" class="btn btn-default btn-lg input-number" value="0" min="0" max="10" style='width: 100%;'>
+
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="auant" style='padding: 20px 22px;'>
+                    <span class="glyphicon glyphicon-plus"></span>
+                  </button>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="hero-widget well well-sm">
+            <div class="icon">
+              <i class="glyphicon glyphicon-hourglass"></i>
+            </div>
+            <div class="text">
+              <var>0</var>
+              <label class="text-muted"><%= gettext "Send time" %></label>
+            </div>
+            <div class="options">
+              <a href="javascript:;" class="add-strategy btn btn-default btn-lg"><i class="glyphicon glyphicon-plus"></i> <%= gettext "Add a time" %></a>
+              <div class="increment-strategy input-group hide">
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="auant" style='padding: 20px 22px;'>
+                    <span class="glyphicon glyphicon-minus"></span>
+                  </button>
+                </span>
+
+                <input type="text" name="auant" class="btn btn-default btn-lg input-number" value="0" min="0" max="10" style='width: 100%;'>
+
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="auant" style='padding: 20px 22px;'>
+                    <span class="glyphicon glyphicon-plus"></span>
+                  </button>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h4><%= gettext "What percentage of your recipients should receive your test combinations?" %></h4>
+
+        <input id="chance" class="chance text" type="text" name="chance" value="0">
+        <input id="chanceSlider" type="range" min="0" max="10" step="1" value="0">
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="panel panel-default">
+
+        <div class="panel-heading text-center">
+          <%= gettext "Summary" %>
+        </div>
+
+        <div class="panel-body">
+          <div class="conbination-graph text-center">
+            <p><strong><i><%= gettext "Combinations" %></i></strong></p>
+            <div class="knob-wrapper" style=''>
+              <input class="dial" type="text" value="0" data-max="10" data-thickness=".07" data-skin='tron' style='' readonly>
+            </div>
+          </div>
+        </div>
+
+        <ul class="list-group">
+          <li class="list-group-item" style="line-height: 37px"><span class="badge" style="background-color: inherit; color: inherit;">
+              <span class='percent'>0%</span><br/><span class='lead'>0</span></span><%= gettext "Recipients per combination" %>
+          </li>
+          <li class="list-group-item" style="line-height: 37px"><span class="badge" style="background-color: inherit; color: inherit;">
+              <span class='percent'>0%</span><br/><span class='lead'>0</span></span><%= gettext "We recommend at least 5,000 recipients per combination." %>
+          </li>
+          <li class="list-group-item" style="line-height: 37px"><span class="badge" style="background-color: inherit; color: inherit;">
+              <span class='percent'>0%</span><br/><span class='lead'>0</span></span><%= gettext "Test segment" %>
+          </li>
+          <li class="list-group-item" style="line-height: 37px"><span class="badge" style="background-color: inherit; color: inherit;">
+              <span class='percent'>0%</span><br/><span class='lead'>0</span></span><%= gettext "Winning segment" %>
+          </li>
+          <li class="list-group-item" style="line-height: 37px"><span class="badge" style="background-color: inherit; color: inherit;">
+              <span class='percent'>0%</span><br/><span class='lead'>0</span></span><strong><%= gettext "Total recipients" %></strong>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </div>
+
+  <%#= render_with __MODULE__, "_distribute_navigation.html", assigns %>
+</div>

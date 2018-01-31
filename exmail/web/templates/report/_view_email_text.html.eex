@@ -1,0 +1,65 @@
+<%
+camp                  = @report.campaign
+reltype               = Campaign.reltype camp
+%>
+
+<div class='middle'>
+  <ul class="nav nav-tabs" role="tablist">
+    <li role='presentation' class="active">
+      <a href="#plain-text" aria-controls="plain-text" role="tab" data-toggle="tab"><%= gettext "Plain-Text" %></a>
+    </li>
+    <li role='presentation' class=''>
+      <a href="#details" aria-controls="details" role="tab" data-toggle="tab"><%= gettext "Details" %></a>
+    </li>
+  </ul>
+</div>
+
+<div class='after-middle'>
+  <div class="tab-content">
+    <% tpl_uri = TemplateUploader.develop_url {reltype.tpl, reltype} %>
+
+    <div role="tabpanel" class="tab-pane active" id="plain-text">
+      <div class="middle-header">
+        <div class='col-md-12'>
+          <div class="embed-responsive embed-responsive-4by3">
+            <pre class='bg-white'><%= if present?(tpl_uri), do: codeable tpl_uri %></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="details">
+      <div class="middle-header">
+        <div class='col-md-12'>
+          <div><strong>Still Sample: </strong></div>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Extra small devices <small>Phones (&lt;768px)</small></th>
+                <th>Small devices <small>Tablets (&acirc;&permil;&yen;768px)</small></th>
+                <th>Medium devices <small>Desktops (&acirc;&permil;&yen;992px)</small></th>
+                <th>Large devices <small>Desktops (&acirc;&permil;&yen;1200px)</small></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th class="text-nowrap" scope="row">Campaign URL</th>
+                <td>Horizontal at all times</td>
+                <td colspan="3">Collapsed to start, horizontal above breakpoints</td>
+              </tr>
+              <tr>
+                <th class="text-nowrap" scope="row">Container width</th>
+                <td>None (auto)</td>
+                <td>750px</td>
+                <td>970px</td>
+                <td>1170px</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class='clearfix'></div>
+</div>

@@ -1,0 +1,23 @@
+<div class='resources'>
+
+  <h1 class='h2'>
+    <%= @audience.name %>
+    <%= render_with "_audience_switcher.html", assigns %>
+  </h1>
+
+  <%= render_with "_audience_menu.html", assigns %>
+
+  <h2 class='h3'>
+    <%= gettext "Add subscriber" %>
+  </h2>
+
+  <%= render "form.html", Map.merge(assigns, %{
+        changeset: @changeset,
+        action: subscriber_path(@conn, :create, @audience)
+      })
+  %>
+
+  <%#= link "Cancel", to: subscriber_path(@conn, :index) %>
+
+
+</div>

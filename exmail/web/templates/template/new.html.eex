@@ -1,0 +1,171 @@
+<div class='resources template'>
+
+  <h1 class='h2'>
+    <%= gettext "Select a starting point for your template Basic Themes Code your own" %>
+  </h1>
+
+  <div>
+
+    <ul class="nav nav-tabs" id="myTabs" role="tablist">
+      <li role="presentation" class="active">
+        <a href="#basic" role="tab" id="basic-tab" data-toggle="tab" aria-controls="basic" aria-expanded="true"><%= gettext "Basic" %></a>
+      </li>
+      <li role="presentation" class='disabled'>
+        <a <%# href="#themes" role="tab" id="themes-tab" data-toggle="tab" aria-controls="themes" aria-expanded="true" %>><%= gettext "Themes" %></a>
+      </li>
+      <li role="presentation">
+        <a href="#CodeYourOwn" role="tab" id="CodeYourOwn-tab" data-toggle="tab" aria-controls="CodeYourOwn" aria-expanded="true"><%= gettext "Code your own" %></a>
+      </li>
+    </ul>
+
+    <div class="tab-content">
+
+      <div class="tab-pane active in" role="tabpanel" id="basic" aria-labelledby="basic-tab">
+        <%= for tpl <- @seeds do %>
+          <div class='col-sm-3 col-md-2'>
+            <a href='#'>
+              <div class="thumbnail">
+                <img alt="<%= tpl.title %>" class="media-object" data-holder-rendered="true" style="width: 100%; height: 240px;"
+                     src="<%= Exmail.TemplateUploader.url({tpl.tpl, tpl}, :screenshot) || "https://placehold.it/300x240&text=No Photo" %>" >
+                <div class="caption">
+                  <h3 class='h4'><%= name_tempalte tpl.title %></h3>
+                  <p><%= gettext "No explain yet" %></p>
+                  <p><%= link gettext("Select"), to: template_path(@conn, :create, tid: tpl.id, type: "Basic"),
+                          class: "btn btn-default", method: "POST" %></p>
+                </div>
+              </div>
+            </a>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="tab-pane" role="tabpanel" id="themes" aria-labelledby="thrmes-tab"></div>
+
+      <div class="tab-pane" role="tabpanel" id="CodeYourOwn" aria-labelledby="CodeYourOwn-tab">
+
+        <div class='col-sm-3 col-md-2'>
+          <div class="thumbnail">
+            <img src="https://placehold.it/300x340&text=PASTE IN CODE">
+            <div class="caption">
+              <h3 class='h4'><%= gettext "Paste in code" %></h3>
+              <p><%= gettext "Create a template by pasting your custom coded design." %></p>
+              <p><a href="javascript:;" class="btn btn-default" data-toggle="modal" data-target=".paste-html-modal" role="button">Select</a></p>
+            </div>
+          </div>
+        </div>
+
+        <div class='col-sm-3 col-md-2'>
+          <div class="thumbnail">
+            <img src="https://placehold.it/300x340&text=IMPORT HTML">
+            <div class="caption">
+              <h3 class='h4'><%= gettext "Import HTML" %></h3>
+              <p><%= gettext "Create a template by uploading an HTML file with your template code." %></p>
+              <p><a href='javascript:;' class="btn btn-default" data-toggle="modal" data-target=".import-html-modal">Select</a></p>
+            </div>
+          </div>
+        </div>
+
+        <div class='col-sm-3 col-md-2'>
+          <div class="thumbnail">
+            <img src="https://placehold.it/300x340&text=IMPORT ZIP">
+            <div class="caption">
+              <h3 class='h4'><%= gettext "Import zip" %></h3>
+              <p><%= gettext "Create a template by uploading a zip file with your template code." %></p>
+              <p><a href="#" class="btn btn-default disabled" role="button">Select</a></p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- Example Acceptable file types using modal below -->
+<div class="modal import-html-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel"><%= gettext "Import HTML" %></h4>
+      </div>
+      <div class="modal-body">
+        <%= form_for @changeset, template_path(@conn, :import), [multipart: true], fn f -> %>
+          <%= hidden_input f, :type, value: "CodeYourOwn" %>
+
+          <div class="form-group">
+            <label for="tpl-name"><%= gettext "Template name(Optional)" %></label>
+            <%= text_input f, :title, class: "form-control", id: "tpl-name" %>
+          </div>
+
+          <div class='form-header' id="lefile">
+            <%= file_input f, :tpl, class: "hide", required: true %>
+
+            <label for="tpl_file"><%= gettext "Template file" %><small><%= gettext "(HTML file only)" %></small></label>
+            <div class="input-group">
+              <%= text_input f, :tpl_file, class: "form-control", id: "tpl_file", placeholder: "select html file...", required: true %>
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default">Browse</button>
+              </span>
+            </div>
+
+            <p class="help-block">
+              <%= gettext "Acceptable file content: " %>
+              <a href="https://templates.mailchimp.com/resources/inline-css/" target="_blank">
+                Inline css based html.
+              </a>
+              <br />NOTE: We're gonna come to support that any css converts from external soon.
+            </p>
+          </div>
+
+          <%= submit gettext("Upload"), class: "btn" %>
+          <a href='#' data-dismiss="modal"><%= gettext("Cancel") %></a>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Paste in code -->
+<div class="modal paste-html-modal" tabindex="-1" role="dialog" aria-labelledby="PasteLargeModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="pasteModalLabel"><%= gettext "Paste in code" %></h4>
+      </div>
+      <div class="modal-body">
+        <%= form_for @changeset, template_path(@conn, :import), fn f -> %>
+          <%= hidden_input f, :type, value: "CodeYourOwn" %>
+
+          <div class="form-group">
+            <label for="paste-name"><%= gettext "Template name(Optional)" %></label>
+            <%= text_input f, :title, class: "form-control", id: "paste-name" %>
+          </div>
+
+          <div class="form-group">
+            <label for="paste_code"><%= gettext "Pasting code" %><small><%= gettext "(HTML file only)" %></small></label>
+
+            <%= textarea f, :paste, class: "form-control", id: "paste_code", rows: "20", placeholder: "Please fill out inline css based html...", required: true %>
+
+            <p class="help-block">
+              <%= gettext "Acceptable file content: " %>
+              <a href="https://templates.mailchimp.com/resources/inline-css/" target="_blank">
+                Inline css based html.
+              </a>
+              <br />NOTE: We're gonna come to support that any css converts from external soon.
+            </p>
+          </div>
+
+          <%= submit gettext("Upload"), class: "btn" %>
+          <a href='#' data-dismiss="modal"><%= gettext("Cancel") %></a>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>

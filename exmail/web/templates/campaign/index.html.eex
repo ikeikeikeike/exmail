@@ -1,0 +1,114 @@
+<div class='resources campaign'>
+
+  <h1 class='h2'>
+
+    <%= gettext "Campaigns" %>
+
+    <div class="btn-group  pull-right">
+      <%= link gettext("Create Campaign"), to: campaign_path(@conn, :distribute), class: "btn btn-default" %>
+      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span class="caret"></span>
+        <span class="sr-only"><%= gettext "Toggle Dropdown for Campaigns" %></span>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a href="#"><%= gettext "Regular Campaign" %></a></li>
+        <li class='disabled'><a href="#"><%= gettext "Plain-Text Campaign" %></a></li>
+        <li class='disabled'><a href="#"><%= gettext "A/B Testing Campaign" %></a></li>
+        <li class='disabled'><a href="#"><%= gettext "Automated Campaign" %></a></li>
+        <li class='disabled'><a href="#"><%= gettext "RSS Campaign" %></a></li>
+      </ul>
+    </div>
+  </h1>
+
+  <div class="middle state-icon">
+    <%= for camp <- @campaigns do %>
+      <% reltype = Campaign.reltype camp %>
+      <hr class='clearfix' />
+
+      <div class="media">
+        <div class="media-body pointer" aria-controls="recipient-radio" aria-expanded="true" data-target="#recipient-radio-<%= camp.id %>" data-toggle="collapse">
+          <div class="media-heading">
+            <h3>
+              <%= if present?(camp.report) and not cancelable?(camp) do %>
+                <i class="fa fa-check-square-o fa-2x text-success" aria-hidden="true"> </i>
+              <% end %>
+              <%= if present?(camp.report) and cancelable?(camp) do %>
+                <i class="fa fa-clock-o fa-2x text-warning" aria-hidden="true"> </i>
+              <% end %>
+              <%= unless present?(camp.report) do %>
+                <i class="fa fa-edit fa-2x" aria-hidden="true"> </i>
+              <% end %>
+              <div><%= camp.name || gettext("Untitled") %></div>
+            </h3>
+          </div>
+          <p><strong><%= camp.type %></strong>: <%= camp.audience.name %></p>
+          <p>
+            <%= if present?(camp.report) and not cancelable?(camp) do %>
+              <strong><%= gettext "Sent" %></strong><%= gettext " on %{date} ago by %{name}", date: time_ago_in_words(camp.report.inserted_at), name: camp.user.email %>
+            <% end %>
+            <%= if present?(camp.report) and cancelable?(camp) do %>
+              <strong><%= gettext "Scheduled" %></strong><%= gettext " at %{date}, which will send email", date: view_time(reltype.schedule) %>
+            <% end %>
+            <%= unless present?(camp.report) do %>
+              <strong><%= gettext "Edited" %></strong><%= gettext " on %{date} ago by %{name}", date: time_ago_in_words(camp.updated_at), name: camp.user.email %>
+            <% end %>
+          </p>
+        </div>
+        <div class="media-right vmiddle"  aria-controls="recipient-radio" aria-expanded="true" data-target="#recipient-radio-<%= camp.id %>" data-toggle="collapse">
+          <div class="btn-group">
+            <%= if present?(camp.report) and not cancelable?(camp) do %>
+              <%= link gettext("View Report"), to: report_path(@conn, :overview, camp.report), class: "btn btn-default" %>
+              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="caret"></span>
+                <span class="sr-only"><%= gettext "Toggle Dropdown for View Report" %></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li class='disabled'><a href="#"><%= gettext "View email" %></a></li>
+                <li class='disabled'><a href="#"><%= gettext "Rename" %></a></li>
+                <li class='disabled'><a href="#"><%= gettext "Replaciate" %></a></li>
+                <li class='disabled'><a href="#"><%= gettext "Social Share" %></a></li>
+              </ul>
+            <% end %>
+
+            <%= if present?(camp.report) and cancelable?(camp) do %>
+              <%= link gettext("Cancel"), to: campaign_path(@conn, :cancel_email, id: camp.id, rid: camp.report.id), class: "btn btn-default", method: "delete" %>
+              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="caret"></span>
+                <span class="sr-only"><%= gettext "Toggle Dropdown for Campaigns" %></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li class='disabled'><a href="#"><%= gettext "Replaciate" %></a></li>
+              </ul>
+            <% end %>
+
+            <%= unless present?(camp.report) do %>
+              <%= link gettext("Edit"), to: distribute_path(@conn, camp, reltype, "Setup"), class: "btn btn-default" %>
+              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="caret"></span>
+                <span class="sr-only"><%= gettext "Toggle Dropdown for Campaigns" %></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li class='disabled'><a href="#"><%= gettext "Replaciate" %></a></li>
+              </ul>
+            <% end %>
+
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+    <div class='clearfix'></div>
+    <div class='wrap-pagination'>
+      <% params = take_params @conn,
+                              carried_params(),
+                              distance: 7,
+                              first: false, last: false,
+                              previous: Phoenix.HTML.raw("&leftarrow;"), next: Phoenix.HTML.raw("&rightarrow;") %>
+
+      <%= pagination_links @conn, @campaigns, to_keylist(params) %>
+    </div>
+    <div class='clearfix'></div>
+
+  </div>
+
+</div>

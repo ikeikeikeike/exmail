@@ -1,0 +1,64 @@
+#wrap {
+    margin-top: 110px;
+    margin-bottom: 70px;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.vmiddle {
+    vertical-align: middle
+}
+
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
+
+.thumbnail .caption h3.h4 {
+    height: 25px;
+}
+
+/* modals */
+.modal.paste-html-modal div.modal-lg {
+    width: 1100px;
+}
+
+.full-height {
+    height: 100%;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.full-element {
+    margin: 0;
+    padding: 0;
+}
+
+.av-text[disabled] {
+    cursor: not-allowed;
+    color: #e2e2e2;
+}
+
+.not-allowed {
+    text-decoration: line-through;
+}
+
+.not-allowed * {
+    cursor: not-allowed;
+}
+
+.font-normal {
+    font-weight: normal !important;
+}
+
+.font-bold {
+    font-weight: bold !important;
+}
+
+.bg-white {
+    background-color: white;
+}

@@ -1,0 +1,284 @@
+<%
+reltype     = Campaign.reltype @campaign
+subscribers = @campaign.audience.subscribers
+checkicon   = fn
+  true -> "fa fa-check-square-o fa-2x text-success"
+  _    -> "fa fa-exclamation-triangle fa-2x text-danger"
+end
+%>
+
+<%# configuration for javascript %>
+<%= confirm_attributes @conn, @campaign %>
+
+
+<div class='resources narrow'>
+
+  <h1 class='h2 text-center'>
+
+    <%= if present?(reltpl(@campaign)) do %>
+      <%= gettext "You’re all set to send!" %>
+    <% else %>
+      <%= gettext "Looks like there’s a problem" %>
+    <% end %>
+
+    <p><small><%= gettext "Review the feedback below before sending your campaign" %></small></p>
+  </h1>
+
+  <div class="middle state-icon">
+
+      <hr class='clearfix' />
+
+      <div class="media" data-check='audience'>
+        <div class="media-body">
+          <div class="media-heading">
+            <h3><i class="<%= checkicon.(length(subscribers) > 0) %>" aria-hidden="true"> </i> <div><%= gettext "Audience" %></div></h3>
+          </div>
+          <p><%= gettext "Exmail will deliver this to the `%{type}` in test list. (`%{num}` recipients)", type: @campaign.type, num: length(subscribers) %></p>
+        </div>
+        <div class="media-right vmiddle">
+          <%= link gettext("Edit"), to: distribute_path(@conn, @campaign, reltype, "Replies"), class: "btn btn-default disabled" %>
+        </div>
+      </div>
+
+      <hr class='clearfix' />
+
+      <div class="media" data-check='synchronize-subscribers'>
+        <div class="media-body">
+          <div class="media-heading">
+            <h3><i class="<%= checkicon.(true) %>" aria-hidden="true"> </i> <div><%= gettext "Synchronize Subscribers" %></div></h3>
+          </div>
+          <p><%= gettext "Synchronize subscribers from %{syncpath}", syncpath: "javascript:;" %></p>
+        </div>
+        <div class="media-right vmiddle">
+          <a href='#' type="button" class="btn btn-default" data-toggle="modal" data-target=".syncSubscribers"><%= gettext "Edit" %></a>
+        </div>
+      </div>
+
+      <% elems = uniquify(reltype, [:from_name, :from_email]) %>
+      <%= for {rel, num} <- Enum.with_index elems, 1 do %>
+        <hr class='clearfix' />
+
+        <div class="media" data-check='replies'>
+          <div class="media-body">
+            <div class="media-heading">
+              <h3><i class="<%= checkicon.(true) %>" aria-hidden="true"> </i> <div><%= gettext "Replies" %><%= if length(elems) > 1, do: " #{num}" %></div></h3>
+            </div>
+            <p><%= gettext "All replies will go to `%{name}` `%{email}`", name: rel.from_name, email: rel.from_email %></p>
+          </div>
+          <div class="media-right vmiddle">
+            <%= link gettext("Edit"), to: distribute_path(@conn, @campaign, rel, "Setup"), class: "btn btn-default" %>
+          </div>
+        </div>
+      <% end %>
+
+      <hr class='clearfix' />
+
+      <div class="media" data-check='tracking'>
+        <div class="media-body">
+          <div class="media-heading">
+            <h3><i class="<%= checkicon.(true) %>" aria-hidden="true"> </i> <div><%= gettext "Tracking" %></div></h3>
+          </div>
+          <%
+          tracks = ""
+          tracks = tracks <> if @campaign.track_html_click, do: "`clicks`", else: ""
+          tracks = tracks <> if @campaign.track_open, do: " and `opens`", else: ""
+          %>
+          <%= if present?(tracks) do %><p><%= gettext "You chose to track %{tracks} in the HTML email.", tracks: tracks %></p><% end %>
+
+          <%
+          tracks = ""
+          tracks = tracks <> if @campaign.track_text_click, do: "`plain-text email`", else: ""
+          %>
+          <%= if present?(tracks) do %><p><%= gettext "Clicks in the plain-text email will be tracked. " %></p><% end %>
+        </div>
+        <div class="media-right vmiddle">
+          <%= link gettext("Edit"), to: distribute_path(@conn, @campaign, reltype, "Setup"), class: "btn btn-default" %>
+        </div>
+      </div>
+
+      <hr class='clearfix' />
+
+      <% elems = uniquify(reltype, :subject) %>
+      <%= for {rel, num} <- Enum.with_index elems, 1 do %>
+        <div class="media" data-check='subject-line'>
+          <div class="media-body">
+            <div class="media-heading">
+              <h3><i class="<%= checkicon.(present? rel.subject) %>" aria-hidden="true"> </i> <div><%= gettext "Subject line" %><%= if length(elems) > 1, do: " #{num}" %></div></h3>
+            </div>
+            <p>"<%= rel.subject || gettext("No subjct right now") %>"</p>
+          </div>
+          <div class="media-right vmiddle">
+            <%= link gettext("Edit"), to: distribute_path(@conn, @campaign, rel, "Setup"), class: "btn btn-default" %>
+          </div>
+        </div>
+      <% end %>
+
+      <%= if @campaign.type == "Regular" do %>
+        <hr class='clearfix' />
+
+        <div class="media" data-check='html-email'>
+          <div class="media-body">
+            <div class="media-heading">
+              <h3><i class="<%= checkicon.(true) %>" aria-hidden="true"> </i> <div><%= gettext "HTML email" %></div></h3>
+            </div>
+            <p><%= gettext "You're sending an HTML email using the custom template." %></p>
+          </div>
+          <div class="media-right vmiddle">
+            <%= link gettext("Edit"), to: distribute_path(@conn, @campaign, reltype, "Template"), class: "btn btn-default" %>
+          </div>
+        </div>
+
+        <% elems = uniquify reltype %>
+        <%= for {_rel, num} <- Enum.with_index elems, 1 do %>
+
+          <hr class='clearfix' />
+
+          <div class="media" data-check='plan-text-email'>
+            <div class="media-body">
+              <div class="media-heading">
+                <h3><i class="<%= checkicon.(true) %>" aria-hidden="true"> </i> <div><%= gettext "Plain-text email" %></div></h3>
+              </div>
+              <p><%= gettext "plain-text version of this email will be generated and included automatically." %> <a href='#'>Learn more</a></p>
+            </div>
+            <div class="media-right vmiddle">
+              <a href='#' type="button" class="btn btn-default" data-toggle="modal" data-target="<%= ".fallbackText#{num}" %>"><%= gettext "Edit" %></a>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+      <%= if @campaign.type == "Text" do %>
+        <hr class='clearfix' />
+
+        <div class="media" data-check='plan-text-email'>
+          <div class="media-body">
+            <div class="media-heading">
+              <h3><i class="<%= checkicon.(true) %>" aria-hidden="true"> </i> <div><%= gettext "Plain-text email" %></div></h3>
+            </div>
+            <p><%= gettext "You chose to track plain-text clicks in the email." %>
+          </div>
+          <div class="media-right vmiddle">
+            <%= link gettext("Edit"), to: distribute_path(@conn, @campaign, reltype, "PlainText"), class: "btn btn-default" %>
+          </div>
+        </div>
+      <% end %>
+
+      <%= if @campaign.type == "ABTest" do %>
+        <hr class='clearfix' />
+
+        <% elems = uniquify reltype %>
+        <%= for {_rel, num} <- Enum.with_index elems, 1 do %>
+
+          <div class="media" data-check='plan-text-email'>
+            <div class="media-body">
+              <div class="media-heading">
+                <h3><i class="<%= checkicon.(true) %>" aria-hidden="true"> </i> <div><%= gettext "Plain-text email" %><%= if length(elems) > 1, do: " #{num}" %></div></h3>
+              </div>
+              <p><%= gettext "plain-text version of this email will be generated and included automatically." %> <a href='#'>Learn more</a></p>
+            </div>
+            <div class="media-right vmiddle">
+              <a href='#' type="button" class="btn btn-default" data-toggle="modal" data-target="<%= ".fallbackText#{num}" %>"><%= gettext "Edit" %></a>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+
+      <hr class='clearfix' />
+
+      <% elems = uniquify(reltype, :id) %>
+      <%= for {rel, num} <- Enum.with_index elems, 1 do %>
+        <div class="media" data-check='default-text-content'>
+          <div class="media-body">
+            <div class="media-heading">
+              <h3><i class="<%= checkicon.(present? rel.tpl) %>" aria-hidden="true"> </i> <div><%= gettext "Default e-mail content" %><%= if length(elems) > 1, do: " #{num}" %></div></h3>
+            </div>
+            <p><%= if rel.tpl, do: gettext("Edited content already"), else: gettext("No editing content yet") %></p>
+          </div>
+          <div class="media-right vmiddle">
+            <%= if @campaign.type == "Text" do %>
+              <%= link gettext("Edit"), to: distribute_path(@conn, @campaign, rel, "PlainText"), class: "btn btn-default" %>
+            <% else %>
+              <%= link gettext("Edit"), to: distribute_path(@conn, @campaign, rel, "Design"), class: "btn btn-default" %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+  </div>
+
+  <div class='clearfix'></div>
+  <%= render_with __MODULE__, "_distribute_navigation.html", assigns %>
+  <div class='clearfix'></div>
+
+  <%= form_tag distribute_path(@conn, @campaign, reltype, "SendMail"), method: "POST" do %>
+    <div class="middle state-icon">
+      <div class="collapse" id="scheduler">
+        <div class='clearfix'></div><hr class='clearfix' /><div class='clearfix'></div>
+
+        <div class="media">
+          <div class="media-body">
+            <div class="media-heading">
+              <h3><i class="fa fa-clock-o fa-2x" aria-hidden="true"> </i> <div><%= gettext "Set up your schedule" %></div></h3>
+            </div>
+            <p><%= gettext("Delivery date") %></p>
+            <p>
+              <input name='schedule' class="flatpickr flatpickr-input input-lg" type="text" placeholder="<%= gettext "Select Date.." %>" data-id="datetime" readonly="readonly">
+              <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+            </p>
+            <p>Would be changing, like <a href='https://dl.dropboxusercontent.com/spa/ohj2tplmz3dn81a/na2chpr2.png'>this</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class='text-right'>
+      <button type="button" class='btn btn-lg btn-default' data-toggle="collapse" data-target="#scheduler" aria-expanded="false" aria-controls="scheduler"><%= gettext "Schedule" %></button>
+
+      <%
+      data = [confirm: gettext("You're about to send a campaign to: %{type} in %{num} subscribers. Are you sure that sends email right now?",
+                                type: @campaign.type, num: length(@campaign.audience.subscribers))]
+      %>
+      <%= link gettext("Send"), to: "", id: "send-button", class: "btn btn-lg btn-primary inline-block", method: "POST", data: data %>
+    </div>
+  <% end %>
+</div>
+
+<div class="modal fade syncSubscribers" tabindex="-1" role="dialog" aria-labelledby="SyncSubscriberModal">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <%= render_with __MODULE__, "_synchronize_from_calcifer.html", assigns %>
+    </div>
+  </div>
+</div>
+
+<% elems = uniquify reltype %>
+<%= for {rel, num} <- Enum.with_index elems, 1 do %>
+  <% alt_uri = AlternativeUploader.develop_url {rel.alt, rel} %>
+
+  <div class="modal fade <%= "fallbackText#{num}" %>" tabindex="-1" role="dialog" aria-labelledby="<%= "fallbackTextModal#{num}" %>">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <form class='fallback-form' method="POST" action="<%= campaign_path @conn, :distribute %>">
+          <input type='hidden' name='id' value='<%= @campaign.id %>' />
+          <input type='hidden' name='relid' value='<%= rel.id %>' />
+          <input type='hidden' name='_method' value='PUT' />
+          <input type='hidden' name='_csrf_token' value='<%= get_csrf_token() %>' />
+          <input type='hidden' name='wizard' value='SaveFallback' />
+
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title text-center"><%= gettext "Edit Plain-Text" %></h4>
+          </div>
+          <div class="modal-body">
+            <textarea class="form-control fallback-area" rows="25"><%= if present?(alt_uri), do: codeable alt_uri %></textarea>
+          </div>
+          <div class="modal-footer">
+            <div class='pull-left'>
+              <button type="button" class="btn btn-primary fallback-submit"><%= gettext "Save changes" %></button>
+              <button type="button" class="btn btn-link" data-dismiss="modal"><%= gettext "Cancel" %></button>
+            </div>
+            <button type="button" class="btn btn-default fallback-regenerate" value="" data-toggle="tooltip" data-placement="top" title="TODO: Bugfix"><%= gettext "Regenerate From HTML" %></button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+<% end %>

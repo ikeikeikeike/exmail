@@ -1,0 +1,38 @@
+<div class='resources distribute'>
+  <div class='col-md-12 full-element'>
+
+    <i id='tinyeditor-config' <%= tinyeditor_attributes @conn, @campaign, @reltype %>></i>
+    <form id='tinyeditor' method="POST" action="<%= campaign_path @conn, :distribute %>">
+      <input type='hidden' name='id' value='<%= @campaign.id %>' />
+      <input type='hidden' name='relid' value='<%= @reltype.id %>' />
+      <input type='hidden' name='_method' value='PUT' />
+      <input type='hidden' name='_csrf_token' value='<%= get_csrf_token() %>' />
+      <input type='hidden' name='wizard' value='SaveDesign' />
+
+      <div class='col-xs-6 full-element'>
+        <textarea id='tinyeditor-textarea'></textarea>
+      </div>
+    </form>
+
+    <div class='col-xs-6 full-element'>
+      <div id="tinyeditor-preview"></div>
+    </div>
+  </div>
+
+  <%# TODO: Don't fetch js file form external %>
+  <script src='//cdn.tinymce.com/4/tinymce.min.js'></script>
+
+  <%= render_with __MODULE__, "_distribute_navigation.html", assigns %>
+
+</div>
+
+<form id='upload-file' method="POST" action="<%= campaign_path @conn, :distribute %>">
+  <input type='hidden' name='id' value='<%= @campaign.id %>' />
+  <input type='hidden' name='relid' value='<%= @reltype.id %>' />
+  <input type='hidden' name='_method' value='PUT' />
+  <input type='hidden' name='_csrf_token' value='<%= get_csrf_token() %>' />
+  <input type='hidden' name='wizard' value='SaveFile' />
+
+  <input name="image" type="file" class="hide" onchange="" />
+
+</form>

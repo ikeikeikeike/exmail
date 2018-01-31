@@ -1,0 +1,42 @@
+# App artifacts
+/exmail/_build
+/exmail/db
+/exmail/deps
+/exmail/*.ez
+
+# Generated on crash by the VM
+erl_crash.dump
+
+# Static artifacts
+/exmail/node_modules
+/exmail/bower_components
+
+# Since we are building assets from web/static,
+# we ignore priv/static. You may want to comment
+# this depending on your deployment strategy.
+/exmail/priv/static/
+
+# The config/prod.secret.exs file by default contains sensitive
+# data and you should not commit it into version control.
+#
+# Alternatively, you may comment the line below and commit the
+# secrets file as long as you replace its contents by environment
+# variables.
+/exmail/config/prod.secret.exs
+
+# for editor, tags files
+tags
+
+# For ansible
+/environment/*.retry
+/environment/.vagrant
+/environment/venv
+
+# user defiens...
+/.exenv-version
+/exmail/uploads
+/exmail/.bundle/
+/exmail/Gemfile
+/exmail/Gemfile.lock
+/exmail/vendor/
+/exmail/sitemaps/

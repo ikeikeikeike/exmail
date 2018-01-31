@@ -1,0 +1,35 @@
+<div class="jumbotron">
+  <p class="lead">A productive web framework that logged in with<br /><%= if @current_user, do: @current_user.email, else: "none" %></p>
+</div>
+
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-10">
+      <div class="text-left">
+        <p class="emoji-picker-container">
+          <input type="email" class="form-control" placeholder="Input field" data-emojiable="true">
+        </p>
+        <p class="lead emoji-picker-container">
+          <input type="email" class="form-control" placeholder="Input with max length of 10" data-emojiable="true" maxlength="10">
+        </p>
+        <p class="lead emoji-picker-container">
+          <textarea class="form-control textarea-control" rows="3" placeholder="Textarea with emoji image input" data-emojiable="true"></textarea>
+        </p>
+        <p class="lead emoji-picker-container">
+          <textarea class="form-control textarea-control" rows="3" placeholder="Textarea with emoji Unicode input" data-emojiable="true" data-emoji-input="unicode"></textarea>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-center">
+    <p style="font-family: Source Sans Pro', 'Segoe UI', 'Droid Sans', Tahoma, Arial, sans-serif;">
+      <strong><i><%= gettext "Combinations" %></i></strong>
+    </p>
+    <div style='min-height: 207px;'>
+      <input type="text" value="14" class="dial" data-thickness=".07" data-skin='tron' style='border: none; background-color: white; color: white;' readonly>
+    </div>
+  </div>
+
+</div>

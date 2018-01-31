@@ -1,0 +1,13 @@
+#!/bin/bash
+source ~/.bash_profile
+
+git checkout master
+git pull
+
+# mix release.clean --implode --no-confirm
+mix deps.get
+
+MIX_ENV=prod bower install
+MIX_ENV=prod node node_modules/brunch/bin/brunch build
+MIX_ENV=prod mix do phoenix.digest, compile, sentry_recompile
+MIX_ENV=prod mix release --env=prod --upgrade --verbose

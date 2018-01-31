@@ -1,0 +1,237 @@
+<%
+camp                  = @report.campaign
+reltype               = Campaign.reltype camp
+
+total_subscribers     = length(camp.audience.subscribers)
+total_open            = fint!(@stats_total[:open] || 0)
+total_click           = fint!(@stats_total[:click] || 0)
+
+click_per_unique_open = avg total_click, (if total_open > 0, do: total_open, else: 1)
+
+open_rate             = avg @stats_per_user[:open], total_subscribers
+click_rate            = avg @stats_per_user[:click], total_subscribers
+%>
+
+<div class='resources'>
+
+  <h1 class='h2'>
+    <%= camp.name %>
+    <%= render_with "_report_switcher.html", assigns %>
+  </h1>
+
+  <%= render_with "_overview_menu.html", assigns %>
+
+  <div class='after-middle'>
+    <div class="middle-header">
+
+      <section class='col-md-12'>
+        <h3 class="h4">
+          <a href='<%= report_path @conn, :activity_sent, @report %>'><%= total_subscribers %> </a><%= gettext "Recipients" %>
+        </h3>
+
+        <div class='col-md-6 row temporary-adjust-wide-right'>
+          <p>
+            <strong><%= camp.type %></strong>: <%= camp.audience.name %>
+          </p>
+          <p>
+            <strong><%= gettext "Subject" %></strong>: <%= reltype.subject %>
+          </p>
+        </div>
+
+        <div class='col-md-6'>
+          <p>
+            <strong><%= gettext "Delivered" %></strong><%= gettext " on %{date} by %{name}", date: view_time(@report.inserted_at, :detail), name: @report.user.email %>
+          </p>
+          <ul class='list-inline'>
+            <li><a href="<%= report_path @conn, :view_email, @report %>">View email</a></li>
+            <li><a href="#">Download</a></li>
+            <li><a href="#" onclick="window.print();">Print</a></li>
+            <li><a href="#">Share</a></li>
+          </ul>
+        </div>
+      </section>
+
+
+
+      <section class='col-md-12 row'>
+        <div class='col-md-6'>
+          <p><strong><%= gettext "Open rate" %></strong>: <span class='pull-right'><%= link gettext("Link"), to: report_path(@conn, :activity_open, @report) %></span></p>
+          <div class="progress">
+            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="<%= open_rate %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= open_rate %>%">
+              <span class="sr-only"><%= gettext "%{percent} Complete", percent: "#{open_rate}%" %></span><%= open_rate %>%
+            </div>
+          </div>
+        </div>
+        <div class='col-md-6'>
+          <p><strong><%= gettext "Click rate" %></strong>: <span class='pull-right'><%= link gettext("Link"), to: report_path(@conn, :activity_click, @report) %></span></p>
+          <div class="progress">
+            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="<%= click_rate %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= click_rate %>%">
+              <span class="sr-only"><%= gettext "%{percent} Complete", percent: "#{click_rate}%" %></span><%= click_rate %>%
+            </div>
+          </div>
+        </div>
+
+        <div class='col-md-6'>
+          <div class=''>
+            <p><%= gettext "Audience average" %>: <span class='pull-right'><strong><%= open_rate %>%</strong></span></p>
+            <p><%= gettext "Industry average" %>: <span class='pull-right'><%= link gettext("(Select your industry)"), to: "#" %></span></p>
+          </div>
+        </div>
+        <div class='col-md-6'>
+          <div class=''>
+            <p><%= gettext "Audience average" %>: <span class='pull-right'><strong><%= click_rate %>%</strong></span></p>
+            <p><%= gettext "Industry average" %>: <span class='pull-right'><%= link gettext("(Select your industry)"), to: "#" %></span></p>
+          </div>
+        </div>
+      </section>
+
+
+
+      <section class='col-md-12'>
+        <div class="btn-group btn-group-justified" role="group" aria-label="Justified button group">
+          <a href="<%= report_path(@conn, :activity_open, @report) %>" class="btn btn-default" role="button">
+            <%= @stats_per_user[:open] || 0 %><br/><%= gettext "Opened" %>
+          </a>
+          <a href="<%= report_path(@conn, :activity_click, @report) %>" class="btn btn-default" role="button">
+            <%= @stats_per_user[:click] || 0 %><br/><%= gettext "Clicked" %>
+          </a>
+          <a href="<%= report_path(@conn, :activity_bounce, @report) %>" class="btn btn-default" role="button">
+            <%= (@stats_per_user[:soft_bounce] || 0) + (@stats_per_user[:hard_bounce] || 0) %><br/><%= gettext "Bounced" %>
+          </a>
+          <a href="#" class="btn btn-default" role="button">
+            0<br/><%= gettext "Unsubscribed" %>
+          </a>
+        </div>
+      </section>
+
+
+
+      <section class='col-md-12'>
+        <div class='col-md-6 row'>
+          <div class='col-md-12 row'>
+            <p><%= gettext "Successful deliveries" %>: <span class='pull-right'><strong><%= total_subscribers %></strong>　100%</span></p>
+            <p><%= gettext "Total opens" %>: <span class='pull-right'><%= link total_open, to: report_path(@conn, :activity_open, @report) %></span></p>
+            <p><%= gettext "Last opened" %>: <span class='pull-right'><%#= view_time(Timex.now) %>Not yet</span></p>
+            <p><%= gettext "Forwarded" %>: <span class='pull-right'><strong><%#= 0 %>Not yet</strong></span></p>
+          </div>
+        </div>
+        <div class='col-md-6 row'>
+          <div class='col-md-12 row'>
+            <p><%= gettext "Clicks per unique opens" %>: <span class='pull-right'><%= link "#{click_per_unique_open}%", to: report_path(@conn, :links, @report) %></span></p>
+            <p><%= gettext "Total clicks" %>: <span class='pull-right'><%= link total_click, to: report_path(@conn, :activity_open, @report) %></span></p>
+            <p><%= gettext "Last clicked" %>: <span class='pull-right'><%#= view_time(Timex.now) %>Not yet</span></p>
+            <p><%= gettext "Abuse reports" %>: <span class='pull-right'><strong><%#= 0 %>Not yet</strong></span></p>
+          </div>
+        </div>
+      </section>
+
+
+
+      <section class='col-md-12 row'>
+        <img src="https://dl.dropboxusercontent.com/spa/ohj2tplmz3dn81a/s_0-3aiw.png" data-toggle="tooltip" data-placement="top" title="Sample Image" />
+      </section>
+
+
+
+      <section class='col-md-12'>
+        <h3 class="h4">
+          <%= gettext "Top links clicked" %>
+        </h3>
+
+        <%= if present?(@links_total) do %>
+          <div class="list-group">
+            <%= for {link, total} <- @links_total do %>
+              <a class="list-group-item" target="_blank" href="<%= link %>"><%= link %> <span class="badge"><%= total %></span></a>
+            <% end %>
+            <a class="list-group-item" href="<%= report_path @conn, :links, @report %>"><%= gettext "View more" %></a></li>
+          </div>
+        <% else %>
+          <%= gettext "This is still nothing" %>
+        <% end %>
+      </section>
+
+
+      <section class='col-md-12'>
+        <h3 class="h4">
+          <%= gettext "Subscribers with most opens" %>
+        </h3>
+
+        <div class="list-group">
+          <%= for %{audience_id: audience_id, subscriber_id: subscriber_id, email: email, count: count} <- @users_mostly[:open] do %>
+            <a class="list-group-item" href="<%= report_path @conn, :activity_open_subscriber, @report, audience_id, subscriber_id %>">
+              <%= email %> <span class="badge"><%= count %></span>
+            </a>
+          <% end %>
+        </div>
+      </section>
+
+
+      <section class='col-md-12'>
+        <h3 class="h4">
+          <%= gettext "Subscribers with most clicks" %>
+        </h3>
+
+        <div class="list-group">
+          <%= for %{audience_id: audience_id, subscriber_id: subscriber_id, email: email, count: count} <- @users_mostly[:click] do %>
+            <a class="list-group-item" href="<%= report_path @conn, :activity_click_subscriber, @report, audience_id, subscriber_id %>">
+              <%= email %> <span class="badge"><%= count %></span>
+            </a>
+          <% end %>
+        </div>
+      </section>
+
+
+      <section class='col-md-12'>
+        <h3 class="h4">
+          <%= gettext "Social performance" %>
+        </h3>
+
+        <div class="btn-group btn-group-justified" role="group" aria-label="Justified button group">
+          <a href="#" class="btn btn-default" role="button">
+            0<br/><%= gettext "Tweets" %>
+          </a>
+          <a href="#" class="btn btn-default" role="button">
+            0<br/><%= gettext "Campaign URL click" %>
+          </a>
+          <a href="#" class="btn btn-default" role="button">
+            0<br/><%= gettext "Likes" %>
+          </a>
+        </div>
+      </section>
+
+
+
+      <section class='col-md-12'>
+        <h3 class="h4">
+          <%= gettext "Top locations by opens" %>
+        </h3>
+
+        <div class='col-md-5 row'>
+          <ul class="list-group">
+            <li class="list-group-item">
+              <span class="pull-left">
+                <span class="flag-icon flag-icon-jp"></span>
+              </span>　Japan
+              <span class='pull-right'>2　<strong>66.7%</strong></span>
+            </li>
+            <li class="list-group-item">
+              <span class="pull-left">
+                <span class="flag-icon flag-icon-us"></span>
+              </span>　USA
+              <span class='pull-right'>1　<strong>33.3%</strong></span>
+            </li>
+          </ul>
+        </div>
+        <div class='col-md-7'>
+          <img src='https://dl.dropboxusercontent.com/spa/ohj2tplmz3dn81a/6hq00z89.png' data-toggle="tooltip" data-placement="top" title="Sample Image" />
+        </div>
+      </section>
+
+
+
+    </div>
+
+    <div class='clearfix'></div>
+  </div>
+
+</div>

@@ -1,0 +1,1 @@
+<%= render_with __MODULE__, "_synchronize_from_calcifer.html", assigns %>

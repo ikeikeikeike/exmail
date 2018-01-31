@@ -1,0 +1,53 @@
+<div class='profile'>
+  <div class="media">
+    <div class="media-left">
+      <img class="media-object" src="<%= gravatar @subscriber.email %>">
+    </div>
+    <div class="media-body">
+      <nav aria-label="<%= gettext "Move next subscriber" %>">
+        <ul class="pager">
+          <li><%= gettext "%{current} of %{all}", current: @subscriber.id, all: "Unknown" %></li>
+          <li>
+            <%= if @pager_prev do %>
+              <a href="<%= subscriber_path @conn, :show, @pager_prev.audience_id, @pager_prev.subscriber_id %>">
+                &leftarrow;
+              </a>
+            <% else %>
+              <span>&leftarrow;</span>
+            <% end %>
+          </li>
+          <li>
+            <%= if @pager_next do %>
+              <a href="<%= subscriber_path @conn, :show, @pager_next.audience_id, @pager_next.subscriber_id %>">
+                &rightarrow;
+              </a>
+            <% else %>
+              <span>&rightarrow;</span>
+            <% end %>
+          </li>
+        </ul>
+      </nav>
+      <p><strong><%= @subscriber.email %></strong></p>
+      <p><%= @subscriber.first_name %> <%= @subscriber.last_name %></p>
+      <p>Not yet, e.g. (Subscribed Jan 23, 2017 11:56 pm)</p>
+    </div>
+  </div>
+
+  <div class='profile-buttons' id='menu-target'>
+    <div class="btn-group">
+      <button type="button" class="btn btn-default btn-sm on-off-able" data-loading-text="Changing..." autocomplete="off" data-on="/vip/on" data-off="/vip/off">
+        <span class="glyphicon glyphicon-star" aria-hidden="true"></span> <%= gettext "VIP" %>
+      </button>
+    </div>
+    <div class="btn-group">
+      <button type="button" class="btn btn-default btn-sm on-off-able" data-loading-text="Changing..." autocomplete="off" data-on="/unsubscribe/on" data-off="/unsubscribe/off">
+        <%= gettext "Unsubscribe" %>
+      </button>
+    </div>
+    <div class="btn-group">
+      <button type="button" class="btn btn-default btn-sm on-off-able" data-loading-text="Changing..." autocomplete="off" data-on="/delete/on" data-off="/delete/off">
+        <%= gettext "Delete" %>
+      </button>
+    </div>
+  </div>
+</div>

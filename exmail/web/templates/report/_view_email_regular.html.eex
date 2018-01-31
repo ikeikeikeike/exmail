@@ -1,0 +1,104 @@
+<%
+camp                  = @report.campaign
+reltype               = Campaign.reltype camp
+%>
+
+<div class='middle'>
+  <ul class="nav nav-tabs" role="tablist">
+    <li role='presentation' class="active">
+      <a href="#preview" aria-controls="preview" role="tab" data-toggle="tab"><%= gettext "Preview" %></a>
+    </li>
+    <li role='presentation' class=''>
+      <a href="#html-source" aria-controls="html-source" role="tab" data-toggle="tab"><%= gettext "HTML Source" %></a>
+    </li>
+    <li role='presentation' class=''>
+      <a href="#plain-text" aria-controls="plain-text" role="tab" data-toggle="tab"><%= gettext "Plain-Text" %></a>
+    </li>
+    <li role='presentation' class=''>
+      <a href="#details" aria-controls="details" role="tab" data-toggle="tab"><%= gettext "Details" %></a>
+    </li>
+  </ul>
+</div>
+
+<div class='after-middle'>
+
+  <div class="tab-content">
+    <% tpl_uri = TemplateUploader.develop_url {reltype.tpl, reltype} %>
+    <% alt_uri = AlternativeUploader.develop_url {reltype.alt, reltype} %>
+
+    <div role="tabpanel" class="tab-pane active" id="preview">
+      <div class="middle-header">
+        <div class='col-md-12'>
+          <div class="embed-responsive embed-responsive-4by3">
+            <iframe class="embed-responsive-item" src='data:text/html;base64,<%= Base.encode64 codeable(tpl_uri) %>'></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="html-source">
+      <div class="middle-header">
+        <div class='col-md-12'>
+          <ul class="nav nav-pills">
+            <li role="presentation" class='active'><a aria-controls="original-source" role="tab" data-toggle="tab" href="#original-source"><%= gettext "ENTIRE" %></a></li>
+            <li role="presentation"><a aria-controls="prettify-source" role="tab" data-toggle="tab" href="#prettify-source"><%= gettext "BODY" %></a></li>
+          </ul>
+        </div>
+        <div class="tab-content">
+          <div role="tabpanel" class="tab-pane active" id="original-source">
+            <div class='col-md-12'>
+              <pre class="line-numbers"><code class="language-html"><%= codeable tpl_uri %></code></pre>
+            </div>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="prettify-source">
+            <div class='col-md-12'>
+              <pre class="line-numbers"><code class="language-html"><%= "<body>\n#{tidy_format tpl_uri}</body>" %></code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="plain-text">
+      <div class="middle-header">
+        <div class='col-md-12'>
+          <div class="embed-responsive embed-responsive-4by3">
+            <pre class='bg-white'><%= if present?(alt_uri), do: codeable alt_uri %></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="details">
+      <div class="middle-header">
+        <div class='col-md-12'>
+          <div><strong>Still Sample: </strong></div>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Extra small devices <small>Phones (&lt;768px)</small></th>
+                <th>Small devices <small>Tablets (&acirc;&permil;&yen;768px)</small></th>
+                <th>Medium devices <small>Desktops (&acirc;&permil;&yen;992px)</small></th>
+                <th>Large devices <small>Desktops (&acirc;&permil;&yen;1200px)</small></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th class="text-nowrap" scope="row">Campaign URL</th>
+                <td>Horizontal at all times</td>
+                <td colspan="3">Collapsed to start, horizontal above breakpoints</td>
+              </tr>
+              <tr>
+                <th class="text-nowrap" scope="row">Container width</th>
+                <td>None (auto)</td>
+                <td>750px</td>
+                <td>970px</td>
+                <td>1170px</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class='clearfix'></div>
+</div>

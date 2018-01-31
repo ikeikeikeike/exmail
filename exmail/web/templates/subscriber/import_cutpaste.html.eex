@@ -1,0 +1,31 @@
+<div class='resources'>
+
+  <h1 class='h3'>
+    <%= gettext "Where do you want to import subscribers from?" %>
+  </h1>
+
+  <div class="radio">
+    <label class="radio">
+      <div role="presentation">
+        <input name="type" id="optionsRadios1" type="radio" role="radio" aria-checked="false" tabindex="0" value="File" style="user-select: none;" checked>
+      </div>
+
+      <%= gettext "CSV or tab-delimited text file" %>
+
+      <div class="help-block"><%= gettext "Import contacts from .csv or .txt files" %></div>
+    </label>
+
+    <label class="radio">
+      <div role="presentation">
+        <input name="type" id="optionsRadios2" type="radio" role="radio" aria-checked="false" tabindex="0" value="CutPaste" style="user-select: none;">
+      </div>
+
+      <%= gettext "Copy/paste from file" %>
+
+      <div class="help-block"><%= gettext "Copy and paste contacts from .xls or .xlsx files" %></div>
+    </label>
+  </div>
+
+  <a href='' class="btn btn-primary"><%= gettext("Next　>>") %></a>
+
+</div>

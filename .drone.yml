@@ -1,0 +1,59 @@
+# http://packages.ubuntu.com/
+# https://hub.docker.com/r/library/elixir/tags/
+#
+pipeline:
+  build:
+    image: elixir:1.4.2-slim
+    commands:
+      - uname -a && cat /etc/*-release
+
+      - apt-get update &&
+        apt-get upgrade -y &&
+        apt-get install -y zip curl wget git make sudo openssl libssl-dev build-essential libc6-dev
+
+      - apt-get install -y nodejs npm &&
+        npm cache clean &&
+        npm install n -g &&
+        npm update npm -g &&
+        n stable &&
+        ln -sf /usr/local/bin/node /usr/bin/node &&
+        ln -sf /usr/local/bin/npm /usr/bin/npm
+
+      - cd exmail
+
+      - mix archive.install --force http://github.com/phoenixframework/archives/raw/master/phoenix_new-1.2.1.ez &&
+        yes | MIX_ENV=prod mix do deps.get, compile
+
+      - hash -r &&
+        npm install && npm install bower &&
+        node node_modules/bower/bin/bower install --allow-root &&
+        node node_modules/brunch/bin/brunch build
+
+      - MIX_ENV=prod mix do phoenix.digest, compile &&
+        MIX_ENV=prod mix sentry_recompile &&
+        MIX_ENV=prod mix release --env=prod --upgrade --verbose
+
+      - mv _build/prod/rel/exmail/releases/*/exmail.tar.gz ../
+
+  packaging:
+    image: plugins/s3:1.0
+    acl: private
+    endpoint: ${AWS_ENDPOINT}
+    region: ${AWS_REGION}
+    bucket: ${AWS_BUCKET}
+    access_key: ${AWS_ACCESS_KEY_ID}
+    secret_key: ${AWS_SECRET_ACCESS_KEY}
+    source: exmail.tar.gz
+    target: /${DRONE_REPO_NAME}/${DRONE_BRANCH}/
+
+  notify:
+    image: plugins/slack
+    webhook: ${SLACK_WEBHOOK}
+    channel: ${SLACK_CHANNEL}
+    username: ${DRONE_REPO_NAME}
+    template: >
+      *{{ build.status }}* <{{ build.link }}|{{ repo.owner }}/{{ repo.name }}#{{ build.commit }}> ({{ build.ref }}) by {{ build.author }}
+      tag={{ build.tag }} branch={{ build.branch }} message={{ build.message }}
+    when:
+      event: [ push, pull_request ]
+      # status: [ success, failure ]

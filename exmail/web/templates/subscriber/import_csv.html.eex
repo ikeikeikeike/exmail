@@ -1,0 +1,70 @@
+<div class='resources'>
+  <h1 class='h3'>
+    <%= gettext "Import from CSV file" %>
+  </h1>
+
+  <form method='POST' enctype="multipart/form-data">
+    <input type='hidden' name='_csrf_token' value='<%= get_csrf_token() %>'>
+    <input name='wizard' value='Save' type="hidden">
+    <%# TODO: <input name='wizard' value='Review' type="hidden"> %>
+
+    <div class='form-header' id="lefile">
+      <input name='csv' type="file" style="display:none" required>
+
+      <div class="input-group">
+        <input name='csvname' type="text" class="form-control" placeholder="select file..." required>
+        <span class="input-group-btn">
+          <button type="button" class="btn btn-default">Browse</button>
+        </span>
+      </div>
+
+      <p class="help-block">
+        Acceptable file types: CSV or
+        <a href="https://en.wikipedia.org/wiki/Tab-separated_values" target="_blank">
+          tab-delimited text files.
+        </a>
+        Example <a href='javascript:;' data-toggle="modal" data-target=".bs-example-modal-lg">here.</a>
+      </p>
+    </div>
+
+    <%= submit gettext("<<　Back"), class: "btn btn-primary disabled" %>
+    <%= submit gettext("Import, right now!"), class: "btn btn-primary" %>
+    <%#= submit gettext("Next　>>"), class: "btn btn-primary" %>
+  </form>
+</div>
+
+<!-- Example Acceptable file types using modal below -->
+<div class="modal bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Acceptable file types</h4>
+      </div>
+      <div class="modal-body">
+
+        <div class="page-header">
+          <h3 class='h4'>Example for <small>CSV</small></h3>
+        </div>
+        <pre class="line-numbers"><code class="language-python">Email Address,First Name,Last Name
+Email Address,First Name,Last Name
+Email Address,First Name,Last Name
+Email Address,First Name,Last Name
+Email Address,First Name,Last Name</code></pre>
+
+        <div class="page-header">
+          <h3 class='h4'>Example for <small>Tab-separated text</small></s></h3>
+        </div>
+        <pre class="line-numbers"><code class="language-python">Email Address&#60;&#84;&#65;&#66;&#62;First Name&#60;&#84;&#65;&#66;&#62;Last Name
+Email Address&#60;&#84;&#65;&#66;&#62;First Name&#60;&#84;&#65;&#66;&#62;Last Name
+Email Address&#60;&#84;&#65;&#66;&#62;First Name&#60;&#84;&#65;&#66;&#62;Last Name
+Email Address&#60;&#84;&#65;&#66;&#62;First Name&#60;&#84;&#65;&#66;&#62;Last Name
+Email Address&#60;&#84;&#65;&#66;&#62;First Name&#60;&#84;&#65;&#66;&#62;Last Name</code></pre>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

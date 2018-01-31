@@ -1,0 +1,45 @@
+<div class='resources'>
+  <h1 class='h3'>
+    <%= gettext "Synchronize from Something" %>
+  </h1>
+
+  <form method='POST'>
+    <input type='hidden' name='_csrf_token' value='<%= get_csrf_token() %>'>
+    <input name='wizard' value='Save' type="hidden">
+
+    <div class='form-header'>
+
+      <div class="form-group">
+        <label><%= gettext "Endpoint" %></label>
+        <input name='endpoint' type="url" class="form-control input-sm" value="javascript:;" required readonly>
+      </div>
+
+      <div class="form-group">
+        <label><%= gettext "API Key" %></label>
+        <input name="apikey" type="password" class="form-control input-sm" value="something" required readonly>
+      </div>
+
+      <div class="form-group">
+        <label><%= gettext "Download Path" %></label>
+        <%= if false && @audience.syncfrom do %>
+          <input name="path" type="text" class="form-control input-lg" value='<%= @audience.syncfrom %>' placeholder="e.g. /downloader/csv/123" required readonly>
+        <% else %>
+          <input name="path" type="text" class="form-control input-lg" placeholder="e.g. /downloader/csv/123" required>
+          <p class="help-block">
+            Make sure Subscribers' list from
+            <a href="javascript:;" target="_blank">
+              Something.
+            </a>
+          </p>
+        <% end %>
+      </div>
+
+      <div class="checkbox">
+        <input name="behavior" type="checkbox" value='before_delete' class='js-switch'> <small> Delete all of subscribers before synchronize subscribers</small>
+      </div>
+
+    </div>
+
+    <%= submit gettext("Sync!"), class: "btn btn-primary" %>
+  </form>
+</div>

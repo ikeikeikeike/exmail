@@ -1,0 +1,22 @@
+<footer class="padding">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <a href="/" title="<%#= sitemeta @conn.private[:subdomain], :title %>">
+          <%= if false do %>
+            <img src='<%= static_path @conn, "/images/icons/f-logo.png" %>' alt="Add alt tag">
+          <% end %>
+        </a>
+        <p>Something </p>
+        <small>&copy; Copyright 2014-<%= Timex.now.year %> <%#= sitemeta @conn.private[:subdomain], :title %>. All rights reserved.</small>
+        <hr class="mini central light-grey-dk">
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid text-left">
+    <div class="clearfix">
+      <%#= render_with "_footer-inner.html", assigns %>
+    </div>
+  </div>
+</footer>

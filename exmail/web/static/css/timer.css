@@ -1,0 +1,21 @@
+.timer, .timer-done, .timer-loop {
+    padding: 10px;
+}
+.timer.is-complete {
+    color: gainsboro;
+}
+.timer .jst-hours {
+    float: left;
+}
+.timer .jst-minutes {
+    float: left;
+}
+.timer .jst-seconds {
+    float: left;
+}
+.timer .jst-clearDiv {
+    clear: both;
+}
+.timer .jst-timeout {
+    color: red;
+}

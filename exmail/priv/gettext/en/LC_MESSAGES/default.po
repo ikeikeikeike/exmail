@@ -1,0 +1,1537 @@
+## `msgid`s in this file come from POT (.pot) files.
+##
+## Do not add, change, or remove `msgid`s manually here as
+## they're tied to the ones in the corresponding POT file
+## (with the same domain).
+##
+## Use `mix gettext.extract --merge` or `mix gettext.merge`
+## to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: en\n"
+
+#: web/models/audience_subscriber.ex:43 web/models/subscriber.ex:42
+#: web/models/user.ex:23
+msgid "Email format is not valid"
+msgstr ""
+
+#: web/controllers/error_controller.ex:6
+msgid "You must be logged in to access that page"
+msgstr ""
+
+#: web/controllers/auth_controller.ex:27
+msgid "Could not authenticate: %{reason}"
+msgstr ""
+
+#: web/controllers/auth_controller.ex:56
+msgid "Not logged in"
+msgstr ""
+
+#: web/controllers/auth_controller.ex:22
+msgid "Signed in as %{id}"
+msgstr ""
+
+#: web/controllers/auth_controller.ex:52
+msgid "Signed out"
+msgstr ""
+
+#: web/controllers/auth_controller.ex:35
+msgid "not_authenticated"
+msgstr ""
+
+#: web/templates/layout/_audience_menu.html.eex:25
+#: web/templates/subscriber/new.html.eex:11
+msgid "Add subscriber"
+msgstr ""
+
+#: web/templates/layout/_audience_menu.html.eex:20
+msgid "Add subscribers"
+msgstr ""
+
+#: web/templates/audience/index.html.eex:30
+#: web/templates/subscriber/index.html.eex:54
+msgid "Are you sure?"
+msgstr ""
+
+#: web/controllers/audience_controller.ex:89
+msgid "Audience deleted successfully."
+msgstr ""
+
+#: web/templates/audience/form.html.eex:8
+msgid "Audience name"
+msgstr ""
+
+#: web/controllers/audience_controller.ex:75
+msgid "Audience updated successfully."
+msgstr ""
+
+#: web/templates/layout/_header.html.eex:24
+msgid "Audiences"
+msgstr ""
+
+#: web/templates/audience/show.html.eex:36
+#: web/templates/report/view_email.html.eex:15
+msgid "Back"
+msgstr ""
+
+#: web/templates/campaign/index.html.eex:5
+#: web/templates/layout/_header.html.eex:18
+#: web/templates/layout/_report_menu.html.eex:9
+msgid "Campaigns"
+msgstr ""
+
+#: web/templates/audience/index.html.eex:5
+msgid "Create Audience"
+msgstr ""
+
+#: web/templates/audience/form.html.eex:14
+msgid "Default From email address"
+msgstr ""
+
+#: web/templates/audience/form.html.eex:21
+msgid "Default From name"
+msgstr ""
+
+#: web/templates/audience/index.html.eex:29
+#: web/templates/layout/_subscriber_profile.html.eex:49
+#: web/templates/subscriber/index.html.eex:53
+msgid "Delete"
+msgstr ""
+
+#: web/templates/audience/index.html.eex:28
+#: web/templates/audience/show.html.eex:35
+#: web/templates/campaign/distribute_confirm.html.eex:40
+#: web/templates/campaign/distribute_confirm.html.eex:54
+#: web/templates/campaign/distribute_confirm.html.eex:68
+#: web/templates/campaign/distribute_confirm.html.eex:82
+#: web/templates/campaign/distribute_confirm.html.eex:107
+#: web/templates/campaign/distribute_confirm.html.eex:122
+#: web/templates/campaign/distribute_confirm.html.eex:136
+#: web/templates/campaign/distribute_confirm.html.eex:151
+#: web/templates/campaign/distribute_confirm.html.eex:167
+#: web/templates/campaign/distribute_confirm.html.eex:169
+#: web/templates/campaign/index.html.eex:84
+#: web/templates/template/index.html.eex:37
+msgid "Edit"
+msgstr ""
+
+#: web/templates/audience/edit.html.eex:4
+#: web/templates/subscriber/edit.html.eex:4
+msgid "Edit audience"
+msgstr ""
+
+#: web/templates/report/activity_bounce.html.eex:31
+#: web/templates/report/activity_click.html.eex:31
+#: web/templates/report/activity_open.html.eex:31
+#: web/templates/report/activity_sent.html.eex:31
+#: web/templates/subscriber/form.html.eex:8
+#: web/templates/subscriber/index.html.eex:62
+#: web/templates/subscriber/show.html.eex:31
+msgid "Email Address"
+msgstr ""
+
+#: web/templates/audience/index.html.eex:12
+msgid "Email from"
+msgstr ""
+
+#: web/templates/audience/index.html.eex:14
+msgid "Explain"
+msgstr ""
+
+#: web/templates/audience/form.html.eex:27
+msgid "Explaining for this audience"
+msgstr ""
+
+#: web/templates/report/activity_bounce.html.eex:33
+#: web/templates/report/activity_click.html.eex:33
+#: web/templates/report/activity_open.html.eex:33
+#: web/templates/report/activity_sent.html.eex:32
+#: web/templates/subscriber/form.html.eex:14
+#: web/templates/subscriber/index.html.eex:18
+#: web/templates/subscriber/index.html.eex:63
+#: web/templates/subscriber/show.html.eex:37
+msgid "First Name"
+msgstr ""
+
+#: web/templates/subscriber/form.html.eex:26
+msgid "If this person is already on my list, update their profile."
+msgstr ""
+
+#: web/templates/layout/_audience_menu.html.eex:30
+msgid "Import subscribers"
+msgstr ""
+
+#: web/templates/report/activity_bounce.html.eex:34
+#: web/templates/report/activity_click.html.eex:34
+#: web/templates/report/activity_open.html.eex:34
+#: web/templates/report/activity_sent.html.eex:33
+#: web/templates/subscriber/form.html.eex:20
+#: web/templates/subscriber/index.html.eex:21
+#: web/templates/subscriber/index.html.eex:64
+#: web/templates/subscriber/show.html.eex:46
+msgid "Last Name"
+msgstr ""
+
+#: web/templates/audience/index.html.eex:4
+msgid "Listing audiences"
+msgstr ""
+
+#: web/templates/layout/_audience_menu.html.eex:15
+msgid "Manage subscribers"
+msgstr ""
+
+#: web/templates/audience/index.html.eex:11
+msgid "Name"
+msgstr ""
+
+#: web/templates/audience/index.html.eex:13
+msgid "Name from"
+msgstr ""
+
+#: web/templates/layout/_header.html.eex:5
+msgid "Navigation"
+msgstr ""
+
+#: web/templates/audience/new.html.eex:4
+msgid "New audience"
+msgstr ""
+
+#: web/templates/layout/_header.html.eex:27
+#: web/templates/report/index.html.eex:4
+msgid "Reports"
+msgstr ""
+
+#: web/templates/audience/form.html.eex:33
+#: web/templates/campaign/form.html.eex:195
+#: web/templates/subscriber/form.html.eex:30
+msgid "Save"
+msgstr ""
+
+#: web/templates/layout/_header.html.eex:41
+msgid "Sign In"
+msgstr ""
+
+#: web/templates/layout/_header.html.eex:35
+msgid "Sign Out"
+msgstr ""
+
+#: web/templates/layout/_audience_menu.html.eex:42
+msgid "Signup form"
+msgstr ""
+
+#: web/templates/layout/_audience_menu.html.eex:11
+msgid "Stats"
+msgstr ""
+
+#: web/controllers/audience_controller.ex:50
+msgid "Sweet! You have exactly a brand new audience."
+msgstr ""
+
+#: web/templates/layout/_header.html.eex:21
+#: web/templates/template/index.html.eex:5
+msgid "Templates"
+msgstr ""
+
+#: web/controllers/subscriber_controller.ex:164
+msgid "View Profile"
+msgstr ""
+
+#: web/templates/campaign/index.html.eex:46
+#: web/templates/campaign/index.html.eex:52
+#: web/templates/report/index.html.eex:20
+#: web/templates/template/index.html.eex:32
+msgid " on %{date} ago by %{name}"
+msgstr ""
+
+#: web/templates/subscriber/index.html.eex:78
+#: web/templates/subscriber/index.html.eex:79
+msgid "%{time} ago"
+msgstr ""
+
+#: web/templates/campaign/distribute_recipient.html.eex:42
+msgid "%{total} recipients. Everyone in your list will receive this email."
+msgstr ""
+
+#: web/templates/subscriber/import_csv.html.eex:30
+msgid "<<　Back"
+msgstr ""
+
+#: web/templates/campaign/index.html.eex:16
+msgid "A/B Testing Campaign"
+msgstr ""
+
+#: web/templates/campaign/distribute_type.html.eex:31
+msgid "A/B testing campaign"
+msgstr ""
+
+#: web/templates/subscriber/index.html.eex:33
+msgid "Actions"
+msgstr ""
+
+#: web/templates/campaign/distribute_confirm.html.eex:79
+msgid "All replies will go to `%{name}` `%{email}`"
+msgstr ""
+
+#: web/templates/campaign/distribute_confirm.html.eex:35
+msgid "Audience"
+msgstr ""
+
+#: web/templates/subscriber/index.html.eex:65
+msgid "Audience Rating"
+msgstr ""
+
+#: web/templates/campaign/form.html.eex:163
+msgid "Auto-Tweet after sending"
+msgstr ""
+
+#: web/templates/campaign/form.html.eex:180
+msgid "Auto-post to Facebook after sending"
+msgstr ""
+
+#: web/templates/campaign/distribute_template.html.eex:10
+#: web/templates/template/new.html.eex:11
+msgid "Basic"
+msgstr ""
+
+#: web/templates/subscriber/import.html.eex:16
+#: web/templates/subscriber/import_cutpaste.html.eex:13
+msgid "CSV or tab-delimited text file"
+msgstr ""
+
+#: web/templates/campaign/distribute_setup.html.eex:4
+msgid "Campaign Info"
+msgstr ""
+
+#: web/templates/campaign/form.html.eex:15
+msgid "Campaign name"
+msgstr ""
+
+#: web/templates/campaign/form.html.eex:117
+msgid "ClickTale link tracking"
+msgstr ""
+
+#: web/templates/campaign/distribute_confirm.html.eex:104
+msgid "Clicks in the plain-text email will be tracked. "
+msgstr ""
+
+#: web/templates/campaign/distribute_template.html.eex:19
+#: web/templates/template/new.html.eex:17
+msgid "Code your own"
+msgstr ""
+
+#: web/templates/campaign/_distribute_navigation.html.eex:44
+#: web/templates/campaign/_distribute_navigation.html.eex:105
+#: web/templates/campaign/_distribute_navigation.html.eex:173
+msgid "Confirm"
+msgstr ""
+
+#: web/templates/campaign/form.html.eex:184
+msgid "Connect To Facebook"
+msgstr ""
+
+#: web/templates/campaign/form.html.eex:167
+msgid "Connect To Twitter"
+msgstr ""
+
+#: web/templates/subscriber/import.html.eex:28
+#: web/templates/subscriber/import_cutpaste.html.eex:25
+msgid "Copy and paste contacts from .xls or .xlsx files"
+msgstr ""
+
+#: web/templates/subscriber/index.html.eex:43
+msgid "Copy to list"
+msgstr ""
+
+#: web/templates/subscriber/import.html.eex:26
+#: web/templates/subscriber/import_cutpaste.html.eex:23
+msgid "Copy/paste from file"
+msgstr ""
+
+#: web/templates/campaign/index.html.eex:8
+#: web/templates/template/index.html.eex:44
+msgid "Create Campaign"
+msgstr ""
+
+#: web/templates/template/index.html.eex:8
+msgid "Create Template"
+msgstr ""
+
+#: web/templates/template/new.html.eex:51
+msgid "Create a template by pasting your custom coded design."
+msgstr ""
+
+#: web/templates/template/new.html.eex:73
+msgid "Create a template by uploading a zip file with your template code."
+msgstr ""
+
+#: web/templates/template/new.html.eex:62
+msgid "Create a template by uploading an HTML file with your template code."
+msgstr ""
+
+#: web/templates/subscriber/index.html.eex:67
+msgid "Date Added"
+msgstr ""
+
+#: web/templates/campaign/distribute_recipient.html.eex:13
+msgid "Default E-Mail: %{email}"
+msgstr ""
+
+#: web/templates/campaign/distribute_recipient.html.eex:16
+msgid "Default Name: %{name}"
+msgstr ""
+
+#: web/templates/campaign/distribute_confirm.html.eex:161
+msgid "Default text content"
+msgstr ""
+
+#: web/templates/campaign/_distribute_navigation.html.eex:41
+msgid "Design"
+msgstr ""
+
+#: web/templates/campaign/form.html.eex:72
+msgid "Discover which campaign links were clicked, how many times they were clicked, and who did the clicking."
+msgstr ""
+
+#: web/templates/campaign/form.html.eex:59
+msgid "Discover who opens your campaigns by tracking the number of times an invisible web beacon embedded in the campaign is downloaded."
+msgstr ""
+
+#: web/templates/campaign/form.html.eex:108
+msgid "E-commerce link tracking"
+msgstr ""
+
+#: web/templates/campaign/index.html.eex:52
+msgid "Edited"
+msgstr ""
+
+#: web/templates/campaign/form_regular.html.eex:17
+#: web/templates/campaign/form_text.html.eex:17
+msgid "Email subject"
+msgstr ""
+
+#: web/templates/campaign/distribute_recipient.html.eex:29
+msgid "Entire list"
+msgstr ""
+
+#: web/templates/subscriber/index.html.eex:26
+msgid "Export List"
+msgstr ""
+
+#: web/templates/template/index.html.eex:14
+msgid "File Manager"
+msgstr ""
+
+#: web/templates/campaign/form_abtest.html.eex:34
+#: web/templates/campaign/form_regular.html.eex:3
+#: web/templates/campaign/form_text.html.eex:3
+msgid "From email address"
+msgstr ""
+
+#: web/templates/campaign/form_abtest.html.eex:26
+#: web/templates/campaign/form_regular.html.eex:10
+#: web/templates/campaign/form_text.html.eex:10
+msgid "From name"
+msgstr ""
+
+#: web/templates/campaign/form.html.eex:120
+msgid "Gain insight to how subscribers interact with your email content."
+msgstr ""
+
+#: web/templates/campaign/form.html.eex:126
+msgid "Goal tracking"
+msgstr ""
+
+#: web/templates/campaign/form.html.eex:90
+msgid "Google Analytics link tracking"
+msgstr ""
+
+#: web/templates/campaign/distribute_recipient.html.eex:35
+msgid "Group or new segment"
+msgstr ""
+
+#: web/templates/campaign/distribute_confirm.html.eex:117
+msgid "HTML email"
+msgstr ""
+
+#: web/templates/template/new.html.eex:61 web/templates/template/new.html.eex:92
+msgid "Import HTML"
+msgstr ""
+
+#: web/controllers/subscriber_controller.ex:117
+msgid "Import accomplished. Saves `%{name}` successfully `%{score} lines` added to your list right now, Please check it out later. "
+msgstr ""
+
+#: web/templates/subscriber/import.html.eex:18
+#: web/templates/subscriber/import_cutpaste.html.eex:15
+msgid "Import contacts from .csv or .txt files"
+msgstr ""
+
+#: web/templates/subscriber/import_csv.html.eex:3
+msgid "Import from CSV file"
+msgstr ""
+
+#: web/templates/template/new.html.eex:72
+msgid "Import zip"
+msgstr ""
+
+#: web/templates/subscriber/import_csv.html.eex:31
+msgid "Import, right now!"
+msgstr ""
+
+#: web/templates/campaign/form.html.eex:18
+msgid "Internal use only. Ex: 'Newsletter Test#4'"
+msgstr ""
+
+#: web/templates/campaign/distribute_confirm.html.eex:37
+msgid "Exmail will deliver this to the `%{type}` in test list. (`%{num}` recipients)"
+msgstr ""
+
+#: web/templates/report/activity_bounce.html.eex:36
+#: web/templates/report/activity_click.html.eex:36
+#: web/templates/report/activity_open.html.eex:36
+#: web/templates/report/activity_sent.html.eex:35
+#: web/templates/subscriber/index.html.eex:66
+msgid "Last Changed"
+msgstr ""
+
+#: web/templates/template/index.html.eex:32
+msgid "Last edited"
+msgstr ""
+
+#: web/templates/campaign/distribute_confirm.html.eex:21
+msgid "Looks like there’s a problem"
+msgstr ""
+
+#: web/templates/subscriber/index.html.eex:40
+msgid "Move to list"
+msgstr ""
+
+#: web/templates/campaign/distribute_recipient.html.eex:38
+#: web/templates/subscriber/import.html.eex:32
+#: web/templates/subscriber/import_cutpaste.html.eex:29
+#: web/templates/subscriber/sync.html.eex:32
+msgid "Next　>>"
+msgstr ""
+
+#: web/templates/campaign/distribute_confirm.html.eex:163
+msgid "No editing content yet"
+msgstr ""
+
+#: web/templates/campaign/distribute_recipient.html.eex:18
+msgid "No explaining yet"
+msgstr ""
+
+#: web/templates/campaign/distribute_confirm.html.eex:65
+msgid "No subjct right now"
+msgstr ""
+
+#: web/templates/layout/_flash_errors.html.eex:3
+msgid "Oops, something went wrong! Please check the errors below:"
+msgstr ""
+
+#: web/templates/template/new.html.eex:50
+#: web/templates/template/new.html.eex:139
+msgid "Paste in code"
+msgstr ""
+
+#: web/templates/campaign/index.html.eex:15
+msgid "Plain-Text Campaign"
+msgstr ""
+
+#: web/templates/campaign/distribute_type.html.eex:21
+msgid "Plain-text campaign"
+msgstr ""
+
+#: web/templates/campaign/distribute_confirm.html.eex:131
+#: web/templates/campaign/distribute_confirm.html.eex:146
+msgid "Plain-text email"
+msgstr ""
+
+#: web/templates/campaign/index.html.eex:18
+msgid "RSS Campaign"
+msgstr ""
+
+#: web/templates/campaign/distribute_type.html.eex:51
+msgid "RSS campaign"
+msgstr ""
+
+#: web/templates/campaign/_distribute_navigation.html.eex:33
+#: web/templates/campaign/_distribute_navigation.html.eex:97
+#: web/templates/campaign/_distribute_navigation.html.eex:165
+#: web/templates/report/overview.html.eex:29
+msgid "Recipients"
+msgstr ""
+
+#: web/controllers/subscriber_controller.ex:161
+msgid "Registers accomplished. %{email} was successfully added to your list. "
+msgstr ""
+
+#: web/templates/campaign/index.html.eex:14
+msgid "Regular Campaign"
+msgstr ""
+
+#: web/templates/campaign/distribute_type.html.eex:11
+msgid "Regular campaign"
+msgstr ""
+
+#: web/templates/campaign/index.html.eex:67
+#: web/templates/campaign/index.html.eex:79
+#: web/templates/campaign/index.html.eex:90
+#: web/templates/report/index.html.eex:34
+#: web/templates/template/index.html.eex:48
+msgid "Replaciate"
+msgstr ""
+
+#: web/templates/campaign/distribute_confirm.html.eex:77
+msgid "Replies"
+msgstr ""
+
+#: web/templates/campaign/form.html.eex:54
+#: web/templates/campaign/form.html.eex:68
+#: web/templates/campaign/form.html.eex:80
+msgid "Required"
+msgstr ""
+
+#: web/templates/campaign/form.html.eex:95
+msgid "Requires Google Analytics on your website or Shopify Integration.  E-commerce link tracking."
+msgstr ""
+
+#: web/templates/campaign/distribute_confirm.html.eex:24
+msgid "Review the feedback below before sending your campaign"
+msgstr ""
+
+#: web/templates/campaign/distribute_recipient.html.eex:32
+msgid "Saved or pre-built segment"
+msgstr ""
+
+#: web/templates/campaign/distribute_confirm.html.eex:196
+msgid "Schedule"
+msgstr ""
+
+#: web/templates/campaign/_screenshot_portfolio.html.eex:27
+#: web/templates/campaign/_screenshot_portfolio.html.eex:30
+#: web/templates/campaign/distribute_recipient.html.eex:22
+#: web/templates/campaign/distribute_type.html.eex:15
+#: web/templates/campaign/distribute_type.html.eex:25
+#: web/templates/campaign/distribute_type.html.eex:35
+#: web/templates/campaign/distribute_type.html.eex:45
+#: web/templates/campaign/distribute_type.html.eex:55
+#: web/templates/template/new.html.eex:33
+msgid "Select"
+msgstr ""
+
+#: web/templates/campaign/distribute_type.html.eex:4
+msgid "Select A Type Of Campaign To Send:"
+msgstr ""
+
+#: web/templates/template/new.html.eex:4
+msgid "Select a starting point for your template Basic Themes Code your own"
+msgstr ""
+
+#: web/templates/campaign/distribute_confirm.html.eex:202
+msgid "Send"
+msgstr ""
+
+#: web/templates/campaign/distribute_type.html.eex:12
+msgid "Send a lovely HTML email along with a plain-text alternative version."
+msgstr ""
+
+#: web/templates/campaign/distribute_type.html.eex:22
+msgid "Send a simple plain-text email with no pictures or formatting."
+msgstr ""
+
+#: web/templates/campaign/distribute_type.html.eex:52
+msgid "Send content from an RSS feed to a list."
+msgstr ""
+
+#: web/templates/campaign/distribute_type.html.eex:32
+msgid "Send up to three variations of a campaign to test the best subject line, from name, email content, or time/day to send campaigns."
+msgstr ""
+
+#: web/templates/campaign/_distribute_navigation.html.eex:35
+#: web/templates/campaign/_distribute_navigation.html.eex:99
+#: web/templates/campaign/_distribute_navigation.html.eex:167
+msgid "Setup"
+msgstr ""
+
+#: web/templates/campaign/form.html.eex:153
+#: web/templates/layout/_overview_menu.html.eex:48
+msgid "Social"
+msgstr ""
+
+#: web/templates/subscriber/import_review.html.eex:4
+msgid "Something Wrong"
+msgstr ""
+
+#: web/templates/campaign/distribute_confirm.html.eex:63
+msgid "Subject line"
+msgstr ""
+
+#: web/controllers/subscriber_controller.ex:218
+msgid "Subscriber deleted failure."
+msgstr ""
+
+#: web/controllers/subscriber_controller.ex:213
+msgid "Subscriber deleted successfully."
+msgstr ""
+
+#: web/controllers/subscriber_controller.ex:198
+msgid "Subscribers deleted successfully."
+msgstr ""
+
+#: web/templates/campaign/_distribute_navigation.html.eex:38
+msgid "Template"
+msgstr ""
+
+#: web/templates/campaign/distribute_template.html.eex:13
+#: web/templates/template/new.html.eex:14
+msgid "Themes"
+msgstr ""
+
+#: web/templates/subscriber/index.html.eex:14
+msgid "Toggle Columns"
+msgstr ""
+
+#: web/templates/campaign/index.html.eex:11
+#: web/templates/campaign/index.html.eex:76
+#: web/templates/campaign/index.html.eex:87
+msgid "Toggle Dropdown for Campaigns"
+msgstr ""
+
+#: web/templates/template/index.html.eex:11
+#: web/templates/template/index.html.eex:40
+msgid "Toggle Dropdown for Templates"
+msgstr ""
+
+#: web/templates/campaign/form.html.eex:67
+msgid "Track clicks"
+msgstr ""
+
+#: web/templates/campaign/form.html.eex:94
+msgid "Track clicks from your campaigns all the way to purchases on your website."
+msgstr ""
+
+#: web/templates/campaign/form.html.eex:84
+#: web/templates/campaign/form.html.eex:129
+msgid "Track clicks in the plain-text version of your email by replacing all links with tracking URLs."
+msgstr ""
+
+#: web/templates/campaign/form.html.eex:53
+msgid "Track opens"
+msgstr ""
+
+#: web/templates/campaign/form.html.eex:79
+msgid "Track plain-text clicks"
+msgstr ""
+
+#: web/templates/campaign/form.html.eex:135
+msgid "Track stats in Salesforce or Highrise"
+msgstr ""
+
+#: web/templates/campaign/form.html.eex:111
+msgid "Track visitors to your website from your MailChimp campaigns, capture order information, and pass that information back to MailChimp. Then you can view purchase details, conversions, and total sales on the reports page. You can also set up segments based on your subscribers’ purchase activity."
+msgstr ""
+
+#: web/templates/campaign/distribute_confirm.html.eex:91
+#: web/templates/campaign/form.html.eex:44
+msgid "Tracking"
+msgstr ""
+
+#: web/templates/layout/_subscriber_profile.html.eex:44
+#: web/templates/subscriber/index.html.eex:37
+msgid "Unsubscribe"
+msgstr ""
+
+#: web/templates/campaign/index.html.eex:40
+#: web/templates/report/index.html.eex:17
+msgid "Untitled"
+msgstr ""
+
+#: web/templates/campaign/form_regular.html.eex:13
+#: web/templates/campaign/form_text.html.eex:13
+msgid "Use something subscribers will instantly recognize, like your company name."
+msgstr ""
+
+#: web/templates/layout/_subscriber_profile.html.eex:39
+#: web/templates/subscriber/index.html.eex:47
+msgid "VIP"
+msgstr ""
+
+#: web/templates/subscriber/import.html.eex:4
+#: web/templates/subscriber/import_cutpaste.html.eex:4
+msgid "Where do you want to import subscribers from?"
+msgstr ""
+
+#: web/templates/campaign/distribute_recipient.html.eex:4
+msgid "Who are you sending to?"
+msgstr ""
+
+#: web/templates/campaign/distribute_confirm.html.eex:98
+msgid "You chose to track %{tracks} in the HTML email."
+msgstr ""
+
+#: web/templates/campaign/distribute_confirm.html.eex:119
+msgid "You're sending an HTML email using the custom template."
+msgstr ""
+
+#: web/templates/campaign/form.html.eex:139
+msgid "no explaining"
+msgstr ""
+
+#: web/templates/campaign/distribute_confirm.html.eex:133
+msgid "plain-text version of this email will be generated and included automatically."
+msgstr ""
+
+#: web/models/campaign.ex:163 web/models/campaign.ex:164
+msgid "please accept"
+msgstr ""
+
+#: web/templates/campaign/distribute_sent.html.eex:13
+msgid "'%{name}' will be sent to %{num} subscribers from the list, '%{type}'."
+msgstr ""
+
+#: web/templates/template/new.html.eex:106
+#: web/templates/template/new.html.eex:151
+msgid "(HTML file only)"
+msgstr ""
+
+#: web/templates/template/new.html.eex:115
+#: web/templates/template/new.html.eex:156
+msgid "Acceptable file content: "
+msgstr ""
+
+#: web/templates/campaign/distribute_confirm.html.eex:235
+#: web/templates/campaign/index.html.eex:73
+#: web/templates/template/new.html.eex:124
+#: web/templates/template/new.html.eex:165
+msgid "Cancel"
+msgstr ""
+
+#: web/templates/template/index.html.eex:46
+msgid "Export as HTML"
+msgstr ""
+
+#: web/controllers/template_controller.ex:61
+#: web/controllers/template_controller.ex:81
+msgid "Import HTML errors below:"
+msgstr ""
+
+#: web/templates/template/index.html.eex:31
+msgid "No Title"
+msgstr ""
+
+#: web/templates/campaign/_screenshot_portfolio.html.eex:25
+#: web/templates/template/new.html.eex:32
+msgid "No explain yet"
+msgstr ""
+
+#: web/templates/report/_view_email_regular.html.eex:9
+#: web/templates/template/index.html.eex:45
+msgid "Preview"
+msgstr ""
+
+#: web/templates/campaign/index.html.eex:66
+#: web/templates/report/index.html.eex:33
+msgid "Rename"
+msgstr ""
+
+#: web/templates/campaign/distribute_template.html.eex:16
+msgid "Saved template"
+msgstr ""
+
+#: web/templates/campaign/distribute_template.html.eex:4
+msgid "Select a template"
+msgstr ""
+
+#: web/templates/campaign/distribute_sent.html.eex:4
+msgid "Send emails accomplished"
+msgstr ""
+
+#: web/templates/campaign/index.html.eex:46
+#: web/templates/report/index.html.eex:20
+msgid "Sent"
+msgstr ""
+
+#: web/templates/template/index.html.eex:47
+msgid "Share"
+msgstr ""
+
+#: web/templates/campaign/index.html.eex:68
+#: web/templates/report/index.html.eex:35
+msgid "Social Share"
+msgstr ""
+
+#: web/controllers/template_controller.ex:73
+msgid "Sweet! You have exactly a brand new template."
+msgstr ""
+
+#: web/templates/template/new.html.eex:106
+msgid "Template file"
+msgstr ""
+
+#: web/templates/campaign/index.html.eex:62
+#: web/templates/report/index.html.eex:29
+msgid "Toggle Dropdown for View Report"
+msgstr ""
+
+#: web/templates/campaign/distribute_sent.html.eex:28
+msgid "Track performance in mobile app"
+msgstr ""
+
+#: web/templates/campaign/distribute_sent.html.eex:27
+msgid "Track performance in reports"
+msgstr ""
+
+#: web/templates/template/new.html.eex:123
+#: web/templates/template/new.html.eex:164
+msgid "Upload"
+msgstr ""
+
+#: web/templates/campaign/index.html.eex:59
+#: web/templates/report/index.html.eex:25
+msgid "View Report"
+msgstr ""
+
+#: web/templates/campaign/index.html.eex:65
+#: web/templates/report/index.html.eex:32
+msgid "View email"
+msgstr ""
+
+#: web/templates/campaign/_screenshot_portfolio.html.eex:7
+#: web/templates/campaign/_screenshot_portfolio.html.eex:11
+msgid "You have a mail content already. Are you sure that deletes current state of it?"
+msgstr ""
+
+#: web/templates/campaign/distribute_confirm.html.eex:199
+msgid "You're about to send a campaign to: %{type} in %{num} subscribers. Are you sure that sends email right now?"
+msgstr ""
+
+#: web/templates/campaign/distribute_sent.html.eex:8
+msgid "Your campaign is in the send queue and will go out shortly."
+msgstr ""
+
+#: web/templates/audience/form.html.eex:17
+#: web/templates/campaign/form_regular.html.eex:6
+#: web/templates/campaign/form_text.html.eex:6
+msgid "This input form is not working currently. From mailaddress is fixed by Amazon SES."
+msgstr ""
+
+#: web/templates/campaign/form_abtest.html.eex:4
+msgid "ABTest Email subject"
+msgstr ""
+
+#: web/templates/campaign/form_abtest.html.eex:6
+msgid "ABTest From emailaddress"
+msgstr ""
+
+#: web/templates/campaign/form_abtest.html.eex:5
+msgid "ABTest From name"
+msgstr ""
+
+#: web/templates/campaign/form_abtest.html.eex:16
+msgid "Email subject %{num}"
+msgstr ""
+
+#: web/templates/campaign/form_regular.html.eex:6
+#: web/templates/campaign/form_text.html.eex:6
+msgid "e.g. `exmaple name` <this-email@address>"
+msgstr ""
+
+#: web/templates/campaign/form_regular.html.eex:13
+#: web/templates/campaign/form_text.html.eex:13
+msgid "e.g. `this name` <examplre@gmail.com>"
+msgstr ""
+
+#: web/templates/template/index.html.eex:43
+msgid "Copy this one"
+msgstr ""
+
+#: web/controllers/subscriber_controller.ex:124
+msgid "Import all of failed. Doesn't save `%{name}` successfully `%{score} lines` "
+msgstr ""
+
+#: web/templates/template/new.html.eex:151
+msgid "Pasting code"
+msgstr ""
+
+#: web/templates/template/new.html.eex:99
+#: web/templates/template/new.html.eex:146
+msgid "Template name(Optional)"
+msgstr ""
+
+#: web/templates/campaign/_distribute_navigation.html.eex:50
+#: web/templates/campaign/_distribute_navigation.html.eex:54
+#: web/templates/campaign/_distribute_navigation.html.eex:58
+#: web/templates/campaign/_distribute_navigation.html.eex:62
+#: web/templates/campaign/_distribute_navigation.html.eex:111
+#: web/templates/campaign/_distribute_navigation.html.eex:115
+#: web/templates/campaign/_distribute_navigation.html.eex:119
+#: web/templates/campaign/_distribute_navigation.html.eex:179
+#: web/templates/campaign/_distribute_navigation.html.eex:183
+#: web/templates/campaign/_distribute_navigation.html.eex:187
+#: web/templates/campaign/_distribute_navigation.html.eex:191
+#: web/templates/campaign/_distribute_navigation.html.eex:195
+msgid "Next "
+msgstr ""
+
+#: web/templates/campaign/form.html.eex:54
+#: web/templates/campaign/form.html.eex:68
+#: web/templates/campaign/form.html.eex:80
+msgid "Not available for %{name} campaigns"
+msgstr ""
+
+#: web/templates/campaign/_distribute_navigation.html.eex:102
+#: web/templates/report/_view_email_regular.html.eex:15
+#: web/templates/report/_view_email_text.html.eex:9
+msgid "Plain-Text"
+msgstr ""
+
+#: web/templates/campaign/_distribute_navigation.html.eex:10
+#: web/templates/campaign/_distribute_navigation.html.eex:14
+#: web/templates/campaign/_distribute_navigation.html.eex:18
+#: web/templates/campaign/_distribute_navigation.html.eex:22
+#: web/templates/campaign/_distribute_navigation.html.eex:81
+#: web/templates/campaign/_distribute_navigation.html.eex:85
+#: web/templates/campaign/_distribute_navigation.html.eex:89
+#: web/templates/campaign/_distribute_navigation.html.eex:138
+#: web/templates/campaign/_distribute_navigation.html.eex:142
+#: web/templates/campaign/_distribute_navigation.html.eex:146
+#: web/templates/campaign/_distribute_navigation.html.eex:150
+#: web/templates/campaign/_distribute_navigation.html.eex:154
+msgid "Prev"
+msgstr ""
+
+#: web/templates/campaign/distribute_confirm.html.eex:163
+msgid "Edited content already"
+msgstr ""
+
+#: web/templates/campaign/distribute_confirm.html.eex:148
+msgid "You chose to track plain-text clicks in the email."
+msgstr ""
+
+#: web/templates/campaign/distribute_confirm.html.eex:19
+msgid "You’re all set to send!"
+msgstr ""
+
+#: web/templates/campaign/index.html.eex:49
+msgid " at %{date}, which will send email"
+msgstr ""
+
+#: web/templates/report/overview.html.eex:43
+msgid " on %{date} by %{name}"
+msgstr ""
+
+#: lib/exmail/tasks/sendmail.ex:42
+msgid "%{diff} seconds over"
+msgstr ""
+
+#: web/templates/report/overview.html.eex:61
+#: web/templates/report/overview.html.eex:69
+msgid "%{percent} Complete"
+msgstr ""
+
+#: web/templates/report/overview.html.eex:77
+#: web/templates/report/overview.html.eex:83
+msgid "(Select your industry)"
+msgstr ""
+
+#: web/templates/report/overview.html.eex:123
+msgid "Abuse reports"
+msgstr ""
+
+#: web/templates/layout/_overview_menu.html.eex:17
+#: web/templates/layout/_subscriber_menu.html.eex:14
+msgid "Activity"
+msgstr ""
+
+#: web/templates/layout/_overview_menu.html.eex:60
+msgid "Analytics360"
+msgstr ""
+
+#: web/templates/layout/_report_menu.html.eex:17
+msgid "Automation"
+msgstr ""
+
+#: web/templates/layout/_overview_menu.html.eex:37
+#: web/templates/report/activity_bounce.html.eex:15
+#: web/templates/report/overview.html.eex:99
+#: web/templates/subscriber/show_activity.html.eex:37
+msgid "Bounced"
+msgstr ""
+
+#: web/templates/report/overview.html.eex:194
+msgid "Campaign URL click"
+msgstr ""
+
+#: web/templates/campaign/distribute_sent.html.eex:22
+msgid "Cancel Send-Email"
+msgstr ""
+
+#: web/controllers/campaign_controller.ex:263
+msgid "Cancelled send-email successful accomplished."
+msgstr ""
+
+#: web/templates/report/activity_click.html.eex:15
+#: web/templates/report/overview.html.eex:96
+msgid "Clicked"
+msgstr ""
+
+#: web/templates/report/overview.html.eex:120
+msgid "Clicks per unique opens"
+msgstr ""
+
+#: web/templates/layout/_report_menu.html.eex:13
+msgid "Comparative"
+msgstr ""
+
+#: web/templates/layout/_overview_menu.html.eex:56
+#: web/templates/layout/_subscriber_menu.html.eex:22
+msgid "Conversations"
+msgstr ""
+
+#: web/templates/report/overview.html.eex:43
+msgid "Delivered"
+msgstr ""
+
+#: web/templates/campaign/distribute_confirm.html.eex:181
+msgid "Delivery date"
+msgstr ""
+
+#: web/templates/layout/_overview_menu.html.eex:52
+#: web/templates/layout/_subscriber_menu.html.eex:26
+msgid "E-commerce"
+msgstr ""
+
+#: web/templates/report/overview.html.eex:115
+msgid "Forwarded"
+msgstr ""
+
+#: web/templates/report/overview.html.eex:77
+#: web/templates/report/overview.html.eex:83
+msgid "Industry average"
+msgstr ""
+
+#: web/templates/report/overview.html.eex:122
+msgid "Last clicked"
+msgstr ""
+
+#: web/templates/report/overview.html.eex:114
+msgid "Last opened"
+msgstr ""
+
+#: web/templates/report/overview.html.eex:197
+msgid "Likes"
+msgstr ""
+
+#: web/templates/report/overview.html.eex:58
+#: web/templates/report/overview.html.eex:66
+msgid "Link"
+msgstr ""
+
+#: web/templates/layout/_overview_menu.html.eex:44
+msgid "Links"
+msgstr ""
+
+#: web/templates/report/overview.html.eex:58
+msgid "Open rate"
+msgstr ""
+
+#: web/templates/layout/_overview_menu.html.eex:27
+#: web/templates/report/activity_open.html.eex:15
+#: web/templates/report/overview.html.eex:93
+msgid "Opened"
+msgstr ""
+
+#: web/templates/layout/_overview_menu.html.eex:12
+#: web/templates/subscriber/show.html.eex:55
+msgid "Overview"
+msgstr ""
+
+#: web/templates/campaign/index.html.eex:49
+msgid "Scheduled"
+msgstr ""
+
+#: web/templates/campaign/distribute_confirm.html.eex:183
+msgid "Select Date.."
+msgstr ""
+
+#: web/templates/campaign/distribute_confirm.html.eex:179
+msgid "Set up your schedule"
+msgstr ""
+
+#: web/templates/report/overview.html.eex:186
+msgid "Social performance"
+msgstr ""
+
+#: web/templates/report/overview.html.eex:37
+msgid "Subject"
+msgstr ""
+
+#: web/templates/report/overview.html.eex:156
+msgid "Subscribers with most opens"
+msgstr ""
+
+#: web/templates/report/overview.html.eex:112
+msgid "Successful deliveries"
+msgstr ""
+
+#: web/templates/layout/_audience_switcher.html.eex:3
+msgid "Switch audience"
+msgstr ""
+
+#: web/templates/layout/_report_switcher.html.eex:3
+msgid "Switch report"
+msgstr ""
+
+#: web/controllers/campaign_controller.ex:274
+msgid "There's something wrong, please make sure email's data and documentation"
+msgstr ""
+
+#: web/controllers/campaign_controller.ex:268
+msgid "Time was up! Emali sent already, it hasn't cancelled."
+msgstr ""
+
+#: web/templates/report/overview.html.eex:138
+msgid "Top links clicked"
+msgstr ""
+
+#: web/templates/report/overview.html.eex:206
+msgid "Top locations by opens"
+msgstr ""
+
+#: web/templates/report/links.html.eex:32
+#: web/templates/report/overview.html.eex:121
+msgid "Total clicks"
+msgstr ""
+
+#: web/templates/report/overview.html.eex:113
+msgid "Total opens"
+msgstr ""
+
+#: web/templates/report/overview.html.eex:191
+msgid "Tweets"
+msgstr ""
+
+#: web/templates/report/overview.html.eex:102
+msgid "Unsubscribed"
+msgstr ""
+
+#: web/templates/layout/_audience_switcher.html.eex:15
+#: web/templates/layout/_report_switcher.html.eex:15
+msgid "View All"
+msgstr ""
+
+#: web/templates/report/overview.html.eex:146
+msgid "View more"
+msgstr ""
+
+#: web/templates/layout/_synchronize_from_calcifer.html.eex:18
+msgid "API Key"
+msgstr ""
+
+#: web/templates/report/activity_bounce.html.eex:32
+msgid "Bounce"
+msgstr ""
+
+#: web/templates/subscriber/sync.html.eex:16
+msgid "Calcifer contacts"
+msgstr ""
+
+#: web/templates/report/activity_sent.html.eex:15
+msgid "Campaign sent"
+msgstr ""
+
+#: web/templates/report/links.html.eex:15
+msgid "Click Performance"
+msgstr ""
+
+#: web/templates/report/activity_click.html.eex:32
+msgid "Clicks"
+msgstr ""
+
+#: web/templates/layout/_overview_menu.html.eex:32
+msgid "Cliked"
+msgstr ""
+
+#: web/templates/layout/_synchronize_from_calcifer.html.eex:23
+msgid "Download Path"
+msgstr ""
+
+#: web/templates/layout/_synchronize_from_calcifer.html.eex:13
+msgid "Endpoint"
+msgstr ""
+
+#: web/templates/report/activity_bounce.html.eex:22
+#: web/templates/report/activity_click.html.eex:22
+#: web/templates/report/activity_click_subscriber.html.eex:25
+#: web/templates/report/activity_open.html.eex:22
+#: web/templates/report/activity_open_subscriber.html.eex:25
+#: web/templates/report/activity_sent.html.eex:22
+#: web/templates/report/links.html.eex:22
+msgid "Export As CSV"
+msgstr ""
+
+#: web/templates/report/activity_bounce.html.eex:35
+#: web/templates/report/activity_click.html.eex:35
+#: web/templates/report/activity_open.html.eex:35
+#: web/templates/report/activity_sent.html.eex:34
+msgid "Member Rating"
+msgstr ""
+
+#: web/templates/subscriber/sync.html.eex:26
+msgid "Not yet implementation"
+msgstr ""
+
+#: web/templates/report/activity_open.html.eex:32
+msgid "Opens"
+msgstr ""
+
+#: web/templates/layout/_overview_menu.html.eex:22
+msgid "Sent to"
+msgstr ""
+
+#: web/templates/subscriber/sync.html.eex:28
+msgid "Still unsupport another apis"
+msgstr ""
+
+#: web/templates/subscriber/index.html.eex:29
+msgid "Sync Subscribers"
+msgstr ""
+
+#: web/templates/layout/_synchronize_from_calcifer.html.eex:43
+msgid "Sync!"
+msgstr ""
+
+#: web/templates/campaign/distribute_confirm.html.eex:49
+msgid "Synchronize Subscribers"
+msgstr ""
+
+#: web/templates/layout/_synchronize_from_calcifer.html.eex:3
+msgid "Synchronize from Calcifer"
+msgstr ""
+
+#: web/templates/layout/_audience_menu.html.eex:35
+msgid "Synchronize subscribers"
+msgstr ""
+
+#: web/templates/campaign/distribute_confirm.html.eex:51
+msgid "Synchronize subscribers from %{syncpath}"
+msgstr ""
+
+#: web/templates/subscriber/sync.html.eex:18
+msgid "Synchronize subscribers' contacts from Calcifer API"
+msgstr ""
+
+#: web/controllers/subscriber_controller.ex:142
+msgid "Synchronizing right now, aaaaaaa bbbbbb, "
+msgstr ""
+
+#: web/templates/report/overview.html.eex:149
+msgid "This is still nothing"
+msgstr ""
+
+#: web/templates/report/links.html.eex:31
+msgid "URL"
+msgstr ""
+
+#: web/templates/report/links.html.eex:33
+msgid "Unique clicks "
+msgstr ""
+
+#: web/templates/subscriber/sync.html.eex:4
+msgid "Where do you want to synchronize subscribers from?"
+msgstr ""
+
+#: web/templates/campaign/distribute_sent.html.eex:20
+msgid "Your campaign will send from"
+msgstr ""
+
+#: web/templates/campaign/distribute_sent.html.eex:20
+msgid "time over"
+msgstr ""
+
+#: web/templates/report/overview.html.eex:66
+msgid "Click rate"
+msgstr ""
+
+#: web/templates/report/overview.html.eex:76
+#: web/templates/report/overview.html.eex:82
+msgid "Audience average"
+msgstr ""
+
+#: web/templates/report/activity_click_subscriber.html.eex:15
+#: web/templates/report/activity_open_subscriber.html.eex:15
+msgid "Subscriber activity for: "
+msgstr ""
+
+#: web/templates/layout/_subscriber_profile.html.eex:9
+msgid "%{current} of %{all}"
+msgstr ""
+
+#: web/templates/campaign/distribute_type.html.eex:41
+#: web/templates/campaign/index.html.eex:17
+msgid "Automated Campaign"
+msgstr ""
+
+#: web/templates/layout/_subscriber_menu.html.eex:10
+msgid "Detail"
+msgstr ""
+
+#: web/templates/subscriber/show_activity.html.eex:53
+msgid "Email opened"
+msgstr ""
+
+#: web/templates/subscriber/show.html.eex:94
+msgid "Favorite email client"
+msgstr ""
+
+#: web/templates/subscriber/show_activity.html.eex:21
+msgid "Finished sending"
+msgstr ""
+
+#: web/templates/layout/_subscriber_menu.html.eex:30
+msgid "Goals"
+msgstr ""
+
+#: web/templates/subscriber/show.html.eex:88
+msgid "Language"
+msgstr ""
+
+#: web/templates/subscriber/show.html.eex:137
+msgid "Latest email client"
+msgstr ""
+
+#: web/templates/subscriber/show.html.eex:131
+msgid "Latest language"
+msgstr ""
+
+#: web/templates/subscriber/show.html.eex:118
+msgid "Latest location"
+msgstr ""
+
+#: web/templates/subscriber/show.html.eex:106
+msgid "Latest profile updated"
+msgstr ""
+
+#: web/templates/subscriber/show.html.eex:112
+msgid "Latest time zone"
+msgstr ""
+
+#: web/templates/subscriber/show_activity.html.eex:71
+msgid "Link clicked"
+msgstr ""
+
+#: web/templates/subscriber/show.html.eex:75
+msgid "Location"
+msgstr ""
+
+#: web/templates/layout/_subscriber_profile.html.eex:7
+msgid "Move next subscriber"
+msgstr ""
+
+#: web/templates/subscriber/show.html.eex:38
+#: web/templates/subscriber/show.html.eex:47
+msgid "No Edited"
+msgstr ""
+
+#: web/templates/layout/_subscriber_menu.html.eex:18
+msgid "Notes"
+msgstr ""
+
+#: web/templates/subscriber/show.html.eex:63
+msgid "Profile updated"
+msgstr ""
+
+#: web/templates/layout/_subscriber_menu.html.eex:34
+msgid "Social Profiles"
+msgstr ""
+
+#: web/templates/campaign/distribute_type.html.eex:42
+msgid "Streamline your communication and personalize each customer's experience. Use automation to create an email or series of emails that send when triggered by a specific date, event, or contact's activity."
+msgstr ""
+
+#: web/templates/subscriber/show.html.eex:23
+msgid "Subscriber details"
+msgstr ""
+
+#: web/templates/report/overview.html.eex:171
+msgid "Subscribers with most clicks"
+msgstr ""
+
+#: web/templates/subscriber/show.html.eex:69
+msgid "Time zone"
+msgstr ""
+
+#: web/templates/subscriber/show.html.eex:70
+#: web/templates/subscriber/show.html.eex:81
+#: web/templates/subscriber/show.html.eex:89
+#: web/templates/subscriber/show.html.eex:95
+#: web/templates/subscriber/show.html.eex:113
+#: web/templates/subscriber/show.html.eex:124
+#: web/templates/subscriber/show.html.eex:132
+#: web/templates/subscriber/show.html.eex:138
+msgid "Undetected"
+msgstr ""
+
+#: web/templates/campaign/distribute_contents.html.eex:17
+msgid "Add Content"
+msgstr ""
+
+#: web/templates/report/_view_email_regular.html.eex:43
+msgid "BODY"
+msgstr ""
+
+#: web/templates/subscriber/show.html.eex:15
+msgid "Bounce mail found that is reason of "
+msgstr ""
+
+#: web/templates/campaign/distribute_contents.html.eex:4
+msgid "Content setup"
+msgstr ""
+
+#: web/templates/campaign/_distribute_navigation.html.eex:170
+msgid "Contents"
+msgstr ""
+
+#: web/templates/report/_view_email_regular.html.eex:18
+#: web/templates/report/_view_email_text.html.eex:12
+msgid "Details"
+msgstr ""
+
+#: web/templates/report/_view_email_regular.html.eex:42
+msgid "ENTIRE"
+msgstr ""
+
+#: web/templates/campaign/distribute_contents.html.eex:17
+msgid "Edit Content"
+msgstr ""
+
+#: web/templates/campaign/distribute_confirm.html.eex:227
+msgid "Edit Plain-Text"
+msgstr ""
+
+#: web/templates/report/_view_email_regular.html.eex:12
+msgid "HTML Source"
+msgstr ""
+
+#: web/templates/campaign/distribute_confirm.html.eex:237
+msgid "Regenerate From HTML"
+msgstr ""
+
+#: web/templates/campaign/distribute_confirm.html.eex:234
+msgid "Save changes"
+msgstr ""
+
+#: web/controllers/campaign_controller.ex:123
+#: web/controllers/campaign_controller.ex:139
+msgid "Something went wrongs. %{msgs}"
+msgstr ""
+
+#: web/templates/campaign/distribute_contents.html.eex:4
+msgid "Test different messages or templates within your campaign."
+msgstr ""
+
+#, fuzzy
+#: web/templates/campaign/distribute_recipient.html.eex:51
+msgid "There's no audiences, Could you make audience first?"
+msgstr ""

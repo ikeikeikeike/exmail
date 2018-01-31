@@ -1,0 +1,66 @@
+<%
+active_index   = current_page? @conn, "subscriber.index:#{@audience.id}"
+active_subnew  = current_page? @conn, "subscriber.new:#{@audience.id}"
+active_subshow = if assigns[:subscriber], do: current_page?(@conn, "subscriber.show:#{@audience.id}:#{@subscriber.subscriber_id}")
+%>
+
+<div class='middle'>
+  <ul class="nav nav-tabs">
+
+    <li role='presentation' class="disabled">
+      <a class="disabled" href="#"><%= gettext "Stats" %></a>
+    </li>
+
+    <li role='presentation' class='dropdown <%= if active_index || active_subshow, do: "active" %>'>
+      <a href='<%= subscriber_path @conn, :index, @audience %>'><%= gettext "Manage subscribers" %></a>
+    </li>
+
+    <li role='presentation' class='dropdown <%= if active_subnew, do: "active" %>'>
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+        <%= gettext "Add subscribers" %> <span class="caret"></span>
+      </a>
+      <ul class="dropdown-menu">
+        <li class='<%= if active_subnew, do: "active" %>'>
+          <a href='<%= subscriber_path @conn, :new, @audience %>'>
+            <%= gettext "Add subscriber" %>
+          </a>
+        </li>
+        <li>
+          <a href='<%= subscriber_path @conn, :import, @audience %>'>
+            <%= gettext "Import subscribers" %>
+          </a>
+        </li>
+        <li>
+          <a href='<%= subscriber_path @conn, :sync, @audience %>'>
+            <%= gettext "Synchronize subscribers" %>
+          </a>
+        </li>
+      </ul>
+    </li>
+
+    <li role='presentation' class='disabled'>
+      <a class='disabled' href="#"><%= gettext "Signup form" %></a>
+    </li>
+
+    <li role="presentation" class="dropdown disabled">
+      <a href="#" class="dropdown-toggle disabled" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+        Settings <span class="caret"></span>
+      </a>
+      <ul class="dropdown-menu">
+        <li>
+          <a href="#">List name and details</a>
+        </li>
+        <li>
+          <a href="#">Another action</a>
+        </li>
+        <li>
+          <a href="#">Something else here</a>
+        </li>
+        <li role="separator" class="divider"></li>
+        <li>
+          <a href="#">Separated link</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>

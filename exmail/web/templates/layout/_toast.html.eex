@@ -1,0 +1,4 @@
+<%= if get_flash(@conn, :info) do %><script class='notification-message' data-info="<%= raw get_flash(@conn, :info) %>"></script><% end %>
+<%= if get_flash(@conn, :warn) do %><script class='notification-message' data-warn="<%= raw get_flash(@conn, :warn) %>"></script><% end %>
+<%= if get_flash(@conn, :error) do %><script class='notification-message' data-error="<%= raw get_flash(@conn, :error) %>"></script><% end %>
+<%= if get_flash(@conn, :success) do %><script class='notification-message' data-success="<%= raw get_flash(@conn, :success) %>"></script><% end %>

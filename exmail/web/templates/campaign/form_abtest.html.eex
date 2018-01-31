@@ -1,0 +1,40 @@
+<h3 class='h4'>
+  <em>
+    <%= case "subject" do
+          "subject" -> gettext "ABTest Email subject"
+          "from_name" -> gettext "ABTest From name"
+          "from_email" -> gettext "ABTest From emailaddress"
+        end
+     %>
+  </em>
+</h3>
+
+<%= inputs_for @f, :abtesttypes, fn fp -> %>
+
+  <%= if true do %>
+  <div class="form-group required">
+    <%= label fp, :subject, gettext("Email subject %{num}", num: fp.index + 1), class: "control-label required", required: true %>
+    <p class="emoji-picker-container">
+      <%= text_input fp, :subject, class: "form-control", required: true, "data-emojiable": "true" %>
+    </p>
+    <%= error_tag fp, :subject %>
+  </div>
+  <% end %>
+
+  <%= if false do %>
+  <div class="form-group required">
+    <%= label fp, :from_name, gettext("From name"), class: "control-label required", required: true %>
+    <%= text_input fp, :from_name, class: "form-control", required: true %>
+    <%= error_tag fp, :from_name %>
+  </div>
+  <% end %>
+
+  <%= if false do %>
+  <div class="form-group required">
+    <%= label fp, :from_email, gettext("From email address"), class: "control-label required", required: true %>
+    <%= email_input fp, :from_email, class: "form-control", required: true %>
+    <%= error_tag fp, :from_email %>
+  </div>
+  <% end %>
+
+<% end %>

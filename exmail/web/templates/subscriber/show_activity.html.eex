@@ -1,0 +1,94 @@
+<div class='resources subscriber'>
+
+  <h1 class='h2'>
+    <%= @audience.name %>
+    <%= render_with "_audience_switcher.html", assigns %>
+  </h1>
+
+  <%= render_with "_audience_menu.html", assigns %>
+
+  <%= render_with "_subscriber_profile.html", assigns %>
+
+  <%= render_with "_subscriber_bounce.html", assigns %>
+
+  <%= render_with "_subscriber_menu.html", assigns %>
+
+  <ul class="timeline">
+    <%= for ac <- @activities do %>
+      <%= if ac.status == :sent do %>
+        <li>
+          <div class="timeline-badge"><i class="glyphicon glyphicon-send"></i></div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <h4 class="timeline-title"><%= link gettext("Finished sending"), to: report_path(@conn, :activity_sent, ac.report_id) %></h4>
+              <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> <%= view_time ac.timestamp || ac.inserted_at, :detail %></small></p>
+            </div>
+            <div class="timeline-body">
+              <p><a href='<%= report_path(@conn, :overview, ac.report_id) %>'><%= ac.campaign.name %></a></p>
+            </div>
+          </div>
+        </li>
+      <% end %>
+
+
+      <%= if ac.status == :soft_bounce or ac.status == :hard_bounce do %>
+        <li>
+          <div class="timeline-badge danger"><i class="glyphicon glyphicon-remove"></i></div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <h4 class="timeline-title"><%= link gettext("Bounced"), to: report_path(@conn, :activity_bounce, ac.report_id) %></h4>
+              <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> <%= view_time ac.timestamp || ac.inserted_at, :detail %></small></p>
+            </div>
+            <div class="timeline-body">
+              <p><a href='<%= report_path(@conn, :overview, ac.report_id) %>'><%= ac.campaign.name %></a></p>
+            </div>
+          </div>
+        </li>
+      <% end %>
+
+
+      <%= if ac.status == :open do %>
+        <li class="timeline-inverted">
+          <div class="timeline-badge warning"><i class="glyphicon glyphicon-folder-open"></i></div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <h4 class="timeline-title"><%= link gettext("Email opened"), to: report_path(@conn, :activity_open, ac.report_id)  %></h4>
+              <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> <%= view_time ac.timestamp || ac.inserted_at, :detail %></small></p>
+            </div>
+            <div class="timeline-body">
+              <p><a href='<%= report_path(@conn, :overview, ac.report_id) %>'><%= ac.campaign.name %></a></p>
+            </div>
+          </div>
+        </li>
+      <% end %>
+
+
+      <%= if ac.status == :click do %>
+        <% ac_link = if ac.activity_link, do: ac.activity_link.link %>
+
+        <li class="timeline-inverted">
+          <div class="timeline-badge info"><i class="glyphicon glyphicon-link"></i></div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <h4 class="timeline-title"><%= link gettext("Link clicked"), to: report_path(@conn, :activity_click, ac.report_id) %></h4>
+              <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> <%= view_time ac.timestamp || ac.inserted_at, :detail %></small></p>
+            </div>
+            <div class="timeline-body">
+              <p><a href='<%= report_path(@conn, :overview, ac.report_id) %>'><%= ac.campaign.name %></a></p>
+              <p><a target='_blank' href='<%= ac_link || "#" %>'><%= ac_link || "Unknown link" %></a></p>
+            </div>
+          </div>
+        </li>
+      <% end %>
+
+
+    <% end %>
+
+  </ul>
+
+</div>
+
+
+<div class='clearfix'></div>
+
+<%= render_with "_subscriber_bouncedetail.html", assigns %>

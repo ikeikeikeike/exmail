@@ -1,0 +1,57 @@
+<div class='resources report'>
+
+  <h1 class='h2'>
+    <%= gettext "Reports" %>
+  </h1>
+
+  <%= render_with "_report_menu.html", assigns %>
+
+  <div class="middle">
+    <%= for r <- @reports do %>
+
+      <hr class='clearfix' />
+
+      <div class="media">
+        <div class="media-body pointer" aria-controls="recipient-radio" aria-expanded="true" data-target="#recipient-radio-<%= r.campaign.id %>" data-toggle="collapse">
+          <div class="media-heading">
+            <h3><div><%= r.campaign.name || gettext("Untitled") %></div></h3>
+          </div>
+          <p><strong><%= r.campaign.type %></strong>: <%= r.campaign.audience.name %></p>
+          <p><strong><%= gettext "Sent" %></strong><%= gettext " on %{date} ago by %{name}", date: time_ago_in_words(r.inserted_at), name: r.user.email %></p>
+        </div>
+        <div class="media-right vmiddle" aria-controls="recipient-radio" aria-expanded="true" data-target="#recipient-radio-<%= r.campaign.id %>" data-toggle="collapse">
+          <div class="btn-group">
+
+            <%= link gettext("View Report"), to: report_path(@conn, :overview, r), class: "btn btn-default" %>
+
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="caret"></span>
+              <span class="sr-only"><%= gettext "Toggle Dropdown for View Report" %></span>
+            </button>
+            <ul class="dropdown-menu">
+              <li class='disabled'><a href="#"><%= gettext "View email" %></a></li>
+              <li class='disabled'><a href="#"><%= gettext "Rename" %></a></li>
+              <li class='disabled'><a href="#"><%= gettext "Replaciate" %></a></li>
+              <li class='disabled'><a href="#"><%= gettext "Social Share" %></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+    <div class='clearfix'></div>
+    <div class='wrap-pagination'>
+      <% params = take_params @conn,
+                              carried_params(),
+                              distance: 7,
+                              first: false, last: false,
+                              previous: Phoenix.HTML.raw("&leftarrow;"), next: Phoenix.HTML.raw("&rightarrow;") %>
+
+      <%= pagination_links @reports, to_keylist(params) %>
+    </div>
+    <div class='clearfix'></div>
+
+  </div>
+
+
+</div>

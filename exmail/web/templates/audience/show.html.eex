@@ -1,0 +1,39 @@
+<div class='resources'>
+
+  <h1 class='h2'>
+    <%= @audience.name %>
+    <%= render_with "_audience_switcher.html", assigns %>
+  </h1>
+
+  <%= if false do %>
+    <ul>
+      <li>
+        <strong>Name:</strong>
+        <%= @audience.name %>
+      </li>
+
+      <li>
+        <strong>Email from:</strong>
+        <%= @audience.from_email %>
+      </li>
+
+      <li>
+        <strong>Name from:</strong>
+        <%= @audience.from_name %>
+      </li>
+
+      <li>
+        <strong>Explain:</strong>
+        <%= @audience.explain %>
+      </li>
+    </ul>
+  <% end %>
+
+  <%= render_with "_audience_menu.html", assigns %>
+
+  <%= if false do %>
+    <%= link gettext("Edit"), to: audience_path(@conn, :edit, @audience) %>
+    <%= link gettext("Back"), to: audience_path(@conn, :index) %>
+  <% end %>
+
+</div>

@@ -1,0 +1,23 @@
+<%
+data    =
+  if @reltype.tpl do
+    [confirm: gettext("You have a mail content already. Are you sure that deletes current state of it?")]
+  else
+    []
+  end
+%>
+
+<%= for tpl <- @templates do %>
+  <div class='col-sm-3 col-md-2'>
+    <div class="thumbnail">
+      <img alt="<%= name_tempalte tpl.title %>" class="media-object" data-holder-rendered="true" style="width: 100%; height: 240px;"
+           src="<%= Exmail.TemplateUploader.url({tpl.tpl, tpl}, :screenshot) || "https://placehold.it/300x240&text=No Photo" %>" >
+      <div class="caption">
+        <h3 class='h4'><%= truncate name_tempalte(tpl.title), length: 45 %></h3>
+        <p><%= gettext "No explain yet" %></p>
+        <%= link gettext("Select"), to: campaign_path(@conn, :distribute, id: @campaign.id, tid: tpl.id, relid: @reltype.id, type: tpl.type, wizard: "SaveTemplate"),
+                                    class: "btn btn-default", method: "post", data: data %>
+      </div>
+    </div>
+  </div>
+<% end %>
